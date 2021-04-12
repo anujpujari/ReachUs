@@ -20,26 +20,72 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2">
-
+        android:padding="10sp"
+        >
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100sp"
-            android:layout_weight="1.30"
+            android:layout_weight=""
             android:fontFamily="@font/font6"
-            android:text="Name :"
+            android:text=" First Name :"
             android:textAlignment="center"
-            android:textSize="40sp" />
+            android:textSize="25sp" />
        <EditText
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:layout_weight="0.70"
+           android:layout_weight="0.60"
             android:inputType="text"
-           android:hint="Enter Your Name Here"
-           android:textColorHint=""
-           android:layout_marginTop="100sp"
-           />
+           android:fontFamily="@font/font6"
+           android:textSize="25sp"
+           android:hint="@string/hint"
+           android:layout_marginTop="100sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_weight=""
+            android:fontFamily="@font/font6"
+            android:text=" Last Name :"
+            android:textAlignment="center"
+            android:textSize="25sp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.60"
+            android:inputType="text"
+            android:fontFamily="@font/font6"
+            android:textSize="25sp"
+            android:hint="@string/hint2"
+             />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10sp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font6"
+            android:text=" Phone:"
+            android:textAlignment="center"
+            android:textSize="25sp" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.60"
+            android:inputType="phone"
+            android:fontFamily="@font/font6"
+            android:textSize="25sp"
+            android:hint="@string/hint3"
+             />
     </LinearLayout>
 
 </LinearLayout>
