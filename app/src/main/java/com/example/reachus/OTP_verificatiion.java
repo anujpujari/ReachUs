@@ -19,6 +19,7 @@ import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
@@ -28,7 +29,7 @@ import static com.google.firebase.auth.PhoneAuthProvider.*;
 public class OTP_verificatiion extends AppCompatActivity {
     Button generate_otp,verify_otp;
     EditText number,otpp;
-    String phone_number,ottp;
+    String phone_number;
     FirebaseAuth mAuth;
     private String verificationId;
 
@@ -43,6 +44,8 @@ public class OTP_verificatiion extends AppCompatActivity {
         number = findViewById(R.id.phn_number);
         otpp = findViewById(R.id.otp);
         mAuth = FirebaseAuth.getInstance();
+
+
 
 
         generate_otp.setOnClickListener(new View.OnClickListener() {
@@ -94,7 +97,11 @@ public class OTP_verificatiion extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // if the code is correct and the task is successful
                             // we are sending our user to new activity.
+                            phone_number = number.getText().toString();
                             Intent i = new Intent(OTP_verificatiion.this,registration_page.class);
+                            i.putExtra("phone-number",phone_number);
+
+
                             startActivity(i);
                             finish();
                         } else {
@@ -110,7 +117,7 @@ public class OTP_verificatiion extends AppCompatActivity {
     private void sendVerificationCode(String number) {
         // this method is used for getting
         // OTP on user phone number.
-        getInstance().verifyPhoneNumber(
+    /* PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 number, // first parameter is user's mobile number
                 60, // second parameter is time limit for OTP
                 // verification which is 60 seconds in our case.
@@ -119,7 +126,15 @@ public class OTP_verificatiion extends AppCompatActivity {
                 (Activity) TaskExecutors.MAIN_THREAD, // this task will be excuted on Main thread.
                 mCallBack // we are calling callback method when we recieve OTP for
                 // auto verification of user.
-        );
+        );*/
+        PhoneAuthProvider.verifyPhoneNumber(
+                PhoneAuthOptions
+                        .newBuilder(FirebaseAuth.getInstance())
+                        .setActivity(this)
+                        .setPhoneNumber(number)
+                        .setTimeout(60L, TimeUnit.SECONDS)
+                        .setCallbacks(mCallBack)
+                        .build());
     }
     private OnVerificationStateChangedCallbacks
 
