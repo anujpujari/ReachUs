@@ -12,8 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
-        <activity android:name=".Login_page">
-        </activity>
+        <activity android:name=".Forgot_password"></activity>
+        <activity android:name=".Login_page"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".registration_page" />
         <activity android:name=".OTP_verificatiion">
