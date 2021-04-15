@@ -13,15 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
         <activity android:name=".Forgot_password"></activity>
-        <activity android:name=".Login_page"></activity>
-        <activity android:name=".MainActivity" />
-        <activity android:name=".registration_page" />
-        <activity android:name=".OTP_verificatiion">
+        <activity android:name=".Login_page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".registration_page" />
+        <activity android:name=".OTP_verificatiion">
+
         </activity>
     </application>
 

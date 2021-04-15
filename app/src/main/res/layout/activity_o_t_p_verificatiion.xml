@@ -6,16 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".OTP_verificatiion"
     android:orientation="vertical"
+    android:background="#75C1E3"
 
     android:padding="10sp"
     >
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textAlignment="center"
         android:text="VERIFY PHONE NUMBER"
-        android:textSize="35sp"
+        android:gravity="center"
+        android:textSize="30sp"
         android:layout_marginTop="30sp"
         android:fontFamily="@font/font1"
+        android:textColor="@color/black"
         />
    <EditText
        android:id="@+id/phn_number"

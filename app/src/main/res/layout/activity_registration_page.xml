@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".registration_page"
     android:orientation="vertical"
-    android:padding="20sp">
+    android:padding="20sp"
+    android:background="#6DB4D5">
 
 
     <TextView
@@ -15,6 +16,7 @@
         android:fontFamily="@font/font1"
         android:text="Register"
         android:layout_gravity="center"
+        android:textColor="@color/black"
         android:textSize="50sp"
         android:layout_marginTop="100sp"
         />
@@ -25,18 +27,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:fontFamily="@font/font6"
             android:textSize="25sp"
             android:hint="Enter Your Name"
             android:layout_marginTop="100sp" />
+    <EditText
+        android:id="@+id/Email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:textSize="25sp"
+        android:hint="Enter Your Email"
+         />
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:fontFamily="sans-serif-black"
-            android:textSize="25sp"
+            android:textSize="23sp"
             android:hint="ENTER PASSWORD"
             />
     <EditText
@@ -44,8 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:fontFamily="@font/font6"
-        android:textSize="25sp"
+        android:textSize="23sp"
         android:hint="Confirm PASSWORD"
         />
 
@@ -53,9 +60,11 @@
 
     <Button
         android:id="@+id/nextbtn"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Next"
+        android:backgroundTint="#1639FB"
         android:layout_marginTop="20sp"
         android:layout_gravity="center"/>
 

@@ -97,12 +97,10 @@ public class OTP_verificatiion extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // if the code is correct and the task is successful
                             // we are sending our user to new activity.
-                            phone_number = number.getText().toString();
                             Intent i = new Intent(OTP_verificatiion.this,registration_page.class);
-                            i.putExtra("phone-number",phone_number);
-
-
                             startActivity(i);
+                            phone_number = number.getText().toString();
+                            i.putExtra("phone-number",phone_number);
                             finish();
                         } else {
                             // if the code is not correct then we are

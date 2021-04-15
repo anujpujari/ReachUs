@@ -11,19 +11,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Login_page extends AppCompatActivity {
     private static final String TAG = "Email Password";
@@ -43,25 +35,35 @@ public class Login_page extends AppCompatActivity {
         }
         setContentView(R.layout.activity_login_page);
 
+
         email = findViewById(R.id.l_email);
         password = findViewById(R.id.l_password);
         login = findViewById(R.id.login_button);
         forgot_pass = findViewById(R.id.forgotpasword_button);
         signup = findViewById(R.id.Sign_up_button);
 
+        forgot_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Login_page.this,Forgot_password.class);
+                startActivity(i);
+                finish();
+
+            }
+        });
+
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Redirects the user to the registration Page
-                Intent i = new Intent(Login_page.this,registration_page.class);
+                Intent i = new Intent(Login_page.this,OTP_verificatiion.class);
                 startActivity(i);
                 finish();
             }
         });
 
-        s_email = email.getText().toString();
-        s_pass = password.getText().toString();
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,11 +82,10 @@ public class Login_page extends AppCompatActivity {
             return;
         }
 
-        String em = email.getText().toString();
-        String pw = password.getText().toString();
+        s_email = email.getText().toString();
+        s_pass = password.getText().toString();
 
-
-        mAuth.signInWithEmailAndPassword(em,pw)
+        mAuth.signInWithEmailAndPassword(s_email,s_pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
