@@ -6,9 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class Login_page extends AppCompatActivity {
     private static final String TAG = "Email Password";
     EditText email,password;
+    CheckBox show_pass;
  String s_email,s_pass;
  Button login,forgot_pass,signup;
     private FirebaseAuth mAuth ;
@@ -35,12 +39,26 @@ public class Login_page extends AppCompatActivity {
         }
         setContentView(R.layout.activity_login_page);
 
-
+        show_pass = findViewById(R.id.show_password);
         email = findViewById(R.id.l_email);
         password = findViewById(R.id.l_password);
         login = findViewById(R.id.login_button);
         forgot_pass = findViewById(R.id.forgotpasword_button);
         signup = findViewById(R.id.Sign_up_button);
+
+        show_pass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked)
+                {
+                    password.setTransformationMethod(null);
+                }
+                else
+                {
+                    password.setTransformationMethod(new PasswordTransformationMethod());
+                }
+            }
+        });
 
         forgot_pass.setOnClickListener(new View.OnClickListener() {
             @Override
