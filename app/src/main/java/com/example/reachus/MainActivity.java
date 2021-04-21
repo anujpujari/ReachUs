@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,8 +14,7 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 public class MainActivity extends AppCompatActivity {
-//    FirebaseAuth mAuth;
-//    Button logout;
+    Button logout;
     SliderView sliderView;
     int[] images = {R.drawable.one, R.drawable.two};
 
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        logout=findViewById(R.id.logout);
+        logout=findViewById(R.id.logout);
         sliderView=findViewById(R.id.imageSlider);
 
         SliderAdapter sliderAdapter = new SliderAdapter(images);
@@ -32,11 +32,13 @@ public class MainActivity extends AppCompatActivity {
         sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
         sliderView.startAutoCycle();
 
-//        logout.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                    startActivity(new Intent(getApplicationContext(), Login_page.class));
-//            }
-//        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), Login_page.class));
+                finish();
+            }
+        });
     }
 }

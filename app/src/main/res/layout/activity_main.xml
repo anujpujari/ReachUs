@@ -7,7 +7,6 @@
     tools:context=".MainActivity"
     android:orientation="vertical">
 
-
     <com.smarteist.autoimageslider.SliderView
         android:id="@+id/imageSlider"
         android:layout_width="match_parent"
@@ -27,8 +26,12 @@
         app:sliderStartAutoCycle="true" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:id="@+id/logout"/>
+        android:id="@+id/logout"
+        android:text="Logout">
+    </Button>
 
 </LinearLayout>
