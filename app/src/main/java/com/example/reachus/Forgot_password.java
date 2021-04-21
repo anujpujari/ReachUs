@@ -3,6 +3,7 @@ package com.example.reachus;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,6 +23,8 @@ public class Forgot_password extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
+
+
 
         email =  findViewById(R.id.frg_email);
         send_pass = findViewById(R.id.frg_send_password);
@@ -47,5 +50,12 @@ public class Forgot_password extends AppCompatActivity {
                 });
             }
         });
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent i = new Intent(Forgot_password.this, Login_page.class);
+        startActivity(i);
+
     }
 }

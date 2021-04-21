@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,7 @@ public class OTP_verificatiion extends AppCompatActivity {
     String phone_number;
     FirebaseAuth mAuth;
     private String verificationId;
+    final ProgressBar progressBar = findViewById(R.id.progressbar);
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -45,6 +47,7 @@ public class OTP_verificatiion extends AppCompatActivity {
         otpp = findViewById(R.id.otp);
         mAuth = FirebaseAuth.getInstance();
 
+
         generate_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +58,8 @@ public class OTP_verificatiion extends AppCompatActivity {
                     // displaying a toast message.
                     Toast.makeText(OTP_verificatiion.this, "Please enter a valid phone number.", Toast.LENGTH_SHORT).show();
                 } else {
+                    progressBar.setVisibility(View.VISIBLE);
+
                     // if the text field is not empty we are calling our 
                     // send OTP method for getting OTP from Firebase.
                     String phone = "+91" + number.getText().toString();
@@ -154,6 +159,8 @@ public class OTP_verificatiion extends AppCompatActivity {
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
             //displaying error message with firebase exception.
+            progressBar.setVisibility(View.GONE);
+
             Toast.makeText(OTP_verificatiion.this, e.getMessage(), Toast.LENGTH_LONG).show();
 
         }
@@ -163,6 +170,8 @@ public class OTP_verificatiion extends AppCompatActivity {
         public void onCodeSent(String s, ForceResendingToken forceResendingToken) {
             super.onCodeSent(s, forceResendingToken);
             //when we recieve the OTP it contains a unique id wich we are storing in our string which we have already created.
+            progressBar.setVisibility(View.GONE);
+
             verificationId = s;
         }
     };

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".OTP_verificatiion"
     android:orientation="vertical"
-    android:background="#75C1E3"
+    android:background="#F5F7F8"
 
     android:padding="10sp"
     >
@@ -18,22 +18,43 @@
         android:gravity="center"
         android:textSize="30sp"
         android:layout_marginTop="30sp"
-        android:fontFamily="@font/font1"
+        android:fontFamily="@font/font10"
         android:textColor="@color/black"
         />
-   <EditText
-       android:id="@+id/phn_number"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:hint="Enter Phone Number"
-       android:textSize="30sp"
-       android:inputType="number"
-       android:textAlignment="center"
-       android:layout_marginTop="100sp"
-       android:fontFamily="@font/font2"
-       android:layout_marginLeft="20dp"
-       android:layout_marginRight="20dp"
-   />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_gravity="center"
+        >
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_weight="1.70"
+            android:background="@drawable/custome_input"
+            android:padding="12dp"
+            android:text="+91" />
+
+        <EditText
+            android:id="@+id/phn_number"
+            android:layout_width="242dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="20sp"
+            android:background="@drawable/custome_input"
+            android:drawableStart="@drawable/ic_baseline_phone_24"
+            android:drawablePadding="12dp"
+            android:hint="Phone Number"
+            android:inputType="textPassword"
+            android:padding="12dp" />
+    </LinearLayout>
+
     <EditText
         android:id="@+id/otp"
         android:layout_marginTop="20dp"
@@ -62,4 +83,10 @@
         android:textSize="20dp"
         android:layout_marginTop="40dp"
         />
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20sp"
+        android:visibility="gone"/>
 </LinearLayout>
