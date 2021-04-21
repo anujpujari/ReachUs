@@ -45,9 +45,6 @@ public class OTP_verificatiion extends AppCompatActivity {
         otpp = findViewById(R.id.otp);
         mAuth = FirebaseAuth.getInstance();
 
-
-
-
         generate_otp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -168,10 +165,6 @@ public class OTP_verificatiion extends AppCompatActivity {
             //when we recieve the OTP it contains a unique id wich we are storing in our string which we have already created.
             verificationId = s;
         }
-
-
-
-
     };
 
     private void verifyCode(String code) {
@@ -183,6 +176,4 @@ public class OTP_verificatiion extends AppCompatActivity {
         // calling sign in method.
         signInWithCredential(credential);
     }
-
-
 }

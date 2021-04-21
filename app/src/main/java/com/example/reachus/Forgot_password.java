@@ -18,7 +18,6 @@ public class Forgot_password extends AppCompatActivity {
     EditText email;
     Button send_pass;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

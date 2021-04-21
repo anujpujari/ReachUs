@@ -57,7 +57,7 @@ public class Login_page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Redirects the user to the registration Page
-                Intent i = new Intent(Login_page.this,OTP_verificatiion.class);
+                Intent i = new Intent(Login_page.this,registration_page.class);
                 startActivity(i);
                 finish();
             }
@@ -130,8 +130,5 @@ public class Login_page extends AppCompatActivity {
             password.setError(null);
         }
         return valid;
-
     }
-
-
 }

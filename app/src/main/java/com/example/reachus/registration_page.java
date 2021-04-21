@@ -29,8 +29,6 @@ public class registration_page extends AppCompatActivity {
     private static final String TAG = "EmailPassword";
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,13 +80,12 @@ public class registration_page extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(registration_page.this,"Registration Sucessfull You Can Now Sign in ",Toast.LENGTH_SHORT).show();
-
+                            startActivity(new Intent(getApplicationContext(),Login_page.class));
                         }
                         else
                         {
                             Log.w(TAG,"Failed to Sign-up",task.getException());
                             Toast.makeText(registration_page.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-
                         }
                     }
                 });
@@ -132,5 +129,4 @@ public class registration_page extends AppCompatActivity {
         }
         return valid;
     }
-
 }
