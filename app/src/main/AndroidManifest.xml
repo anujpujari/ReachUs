@@ -12,7 +12,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
-        <activity android:name=".Homepage"></activity>
         <activity android:name=".Forgot_password" />
         <activity android:name=".Login_page">
             <intent-filter>
