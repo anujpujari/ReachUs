@@ -16,7 +16,6 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 public class MainActivity extends AppCompatActivity {
-    Button logout;
     SliderView sliderView;
     int[] images = {R.drawable.one, R.drawable.two};
 
@@ -43,14 +42,11 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.home:
                         return true;
-
-
                 }
                 return false;
             }
         });
 
-        logout=findViewById(R.id.logout);
         sliderView=findViewById(R.id.imageSlider);
 
         SliderAdapter sliderAdapter = new SliderAdapter(images);
@@ -59,14 +55,5 @@ public class MainActivity extends AppCompatActivity {
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
         sliderView.setSliderTransformAnimation(SliderAnimations.DEPTHTRANSFORMATION);
         sliderView.startAutoCycle();
-
-        logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), Login_page.class));
-                finish();
-            }
-        });
     }
 }

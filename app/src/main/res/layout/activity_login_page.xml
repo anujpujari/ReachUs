@@ -7,25 +7,23 @@
     android:paddingLeft="20dp"
     android:paddingRight="20dp"
     tools:context=".Login_page"
-    android:orientation="vertical">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/font10"
-        android:text="Sign In"
-        android:layout_marginTop="70dp"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="50dp" />
+    >
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_gravity="center"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/font10"
+            android:text="Sign In"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="50dp" />
 
         <EditText
             android:drawableStart="@drawable/ic_email"
@@ -39,7 +37,6 @@
             android:hint="Email" />
 
             <EditText
-
                 android:drawablePadding="12dp"
                 android:drawableStart="@drawable/ic_password"
                 android:id="@+id/l_password"
@@ -56,13 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Show Password"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="2dp"
             />
-
-
-
-
-
 
         <Button
             android:id="@+id/login_button"
@@ -99,7 +91,6 @@
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textSize="13dp" />
-
 
     </LinearLayout>
 

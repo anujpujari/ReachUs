@@ -16,6 +16,15 @@
        android:textSize="40sp"
        android:fontFamily="@font/font10"
        android:layout_marginTop="30dp"/>
+    <Button
+        android:id="@+id/logout"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="250sp"
+        android:text="Log-out" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
