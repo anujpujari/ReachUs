@@ -17,7 +17,7 @@ import com.smarteist.autoimageslider.SliderView;
 
 public class MainActivity extends AppCompatActivity {
     SliderView sliderView;
-    int[] images = {R.drawable.one, R.drawable.two};
+    int[] images = {R.drawable.one, R.drawable.two, R.drawable.three, R.drawable.four};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
