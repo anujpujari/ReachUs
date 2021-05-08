@@ -36,7 +36,7 @@
 
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="243dp"
+            android:layout_height="270dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_gravity="center"
@@ -71,7 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/font9"
-                        android:text="Cleaning"
+                        android:text="Repairing Service"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
@@ -106,7 +106,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/font9"
-                        android:text="Cleaning"
+                        android:text="Maid Service"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
@@ -141,7 +141,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/font9"
-                        android:text="Cleaning"
+                        android:text="Car Service"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
@@ -176,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/font9"
-                        android:text="Cleaning"
+                        android:text="Cleaning Service"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="15dp" />
