@@ -64,7 +64,7 @@
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
-                        android:src="@drawable/broom" />
+                        android:src="@drawable/car_icon" />
 
                     <TextView
                         android:layout_width="match_parent"
