@@ -26,7 +26,8 @@ public class Login_page extends AppCompatActivity {
     CheckBox show_pass;
  String s_email,s_pass;
  Button login,forgot_pass,signup;
-    private FirebaseAuth mAuth ;
+ private long pressedTime;
+    private FirebaseAuth mAuth=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public class Login_page extends AppCompatActivity {
             }
         });
 
+
         forgot_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,6 +94,18 @@ public class Login_page extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public void onBackPressed(){
+
+        if (pressedTime + 2000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            finish();
+        } else {
+            Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT).show();
+        }
+        pressedTime = System.currentTimeMillis();
+    }
     private void signIn() {
 
         Log.d(TAG,"signin"+email);

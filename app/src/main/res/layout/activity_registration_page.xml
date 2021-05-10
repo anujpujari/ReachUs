@@ -54,6 +54,7 @@
             android:background="@drawable/custome_input"
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="12dp"
+            android:inputType="textPassword"
             android:hint="Password"
             android:padding="12dp" />
 
@@ -65,6 +66,7 @@
             android:background="@drawable/custome_input"
             android:drawableStart="@drawable/ic_password"
             android:drawablePadding="12dp"
+            android:inputType="textPassword"
             android:hint="Confirm Password"
             android:padding="12dp" />
 

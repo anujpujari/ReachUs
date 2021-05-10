@@ -20,6 +20,7 @@
         android:layout_margin="1dp">
 
         <com.smarteist.autoimageslider.SliderView
+            android:layout_margin="10sp"
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
             android:layout_height="239dp"
@@ -201,7 +202,7 @@
             android:layout_gravity="top"
             android:background="@color/white"
             app:itemIconTint="@drawable/selector"
-            app:itemRippleColor="@color/purple_500"
+            app:itemRippleColor="@color/black"
             app:itemTextColor="@drawable/selector"
             app:menu="@menu/menu_navigation" />
 
