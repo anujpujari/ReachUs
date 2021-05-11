@@ -80,7 +80,11 @@ public class registration_page extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             Toast.makeText(registration_page.this,"Registration Sucessfull You Can Now Sign in ",Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(),Login_page.class));
+                            UserDetail val;
+                            val = new UserDetail(Name,s_email, Password, Phone_number);
+                            myref.child(Name).setValue(val);
+                            Toast.makeText(registration_page.this, "Details sucessfully Entered", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(registration_page.this,Login_page.class));
                         }
                         else
                         {
@@ -90,10 +94,7 @@ public class registration_page extends AppCompatActivity {
                     }
                 });
 
-        UserDetail val;
-        val = new UserDetail(Name,s_email, Password, Phone_number);
-        myref.child(Name).setValue(val);
-        Toast.makeText(registration_page.this, "Details sucessfully Entered", Toast.LENGTH_SHORT).show();
+
 
     }
     private boolean validateform () {

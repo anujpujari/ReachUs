@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <RelativeLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -14,6 +20,7 @@
         android:layout_margin="1dp">
 
         <com.smarteist.autoimageslider.SliderView
+            android:layout_margin="10sp"
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
             android:layout_height="239dp"
@@ -195,8 +202,9 @@
             android:layout_gravity="top"
             android:background="@color/white"
             app:itemIconTint="@drawable/selector"
-            app:itemRippleColor="@color/purple_500"
+            app:itemRippleColor="@color/black"
             app:itemTextColor="@drawable/selector"
             app:menu="@menu/menu_navigation" />
 
 </RelativeLayout>
+</ScrollView>
