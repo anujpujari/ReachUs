@@ -18,26 +18,29 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class Login_page extends AppCompatActivity {
     private static final String TAG = "Email Password";
     EditText email,password;
     CheckBox show_pass;
- String s_email,s_pass;
- Button login,forgot_pass,signup;
- private long pressedTime;
+    String s_email,s_pass;
+    Button login,forgot_pass,signup;
+    private long pressedTime;
     private FirebaseAuth mAuth=null;
+    FirebaseUser fuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Toast.makeText(Login_page.this, "login redirection", Toast.LENGTH_LONG).show();
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser()!=null)
-        {
-            startActivity(new Intent(Login_page.this,MainActivity.class) );
-            finish();
-        }
+//        if(mAuth.getCurrentUser()!=null)
+//        {
+//            startActivity(new Intent(Login_page.this,MainActivity.class) );
+//            finish();
+//        }
         setContentView(R.layout.activity_login_page);
 
         show_pass = findViewById(R.id.show_password);
@@ -72,7 +75,6 @@ public class Login_page extends AppCompatActivity {
             }
         });
 
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,12 +85,9 @@ public class Login_page extends AppCompatActivity {
             }
         });
 
-
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 signIn();
             }
         });
@@ -123,17 +122,22 @@ public class Login_page extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful())
                         {
-                            Toast.makeText(Login_page.this,"Sign-In Sucessfull",Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(Login_page.this,MainActivity.class);
-                            startActivity(i);
-                            finish();
+                            FirebaseUser fUser;
+                            if(!fuser.isEmailVerified()){
+                                Toast.makeText(Login_page.this,"Verify Email First",Toast.LENGTH_SHORT).show();
+                            }
+                            else{
+                                Toast.makeText(Login_page.this,"Sign-In Sucessfull",Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(Login_page.this,MainActivity.class);
+                                startActivity(i);
+                                finish();
+                            }
                         }
                         else
                         {
                             Log.w(TAG,"Failed to Sign-in",task.getException());
                             Toast.makeText(Login_page.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
     }
