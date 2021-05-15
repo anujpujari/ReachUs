@@ -33,9 +33,10 @@ public class Login_page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Toast.makeText(Login_page.this, "login redirection", Toast.LENGTH_LONG).show();
+    //    Toast.makeText(Login_page.this, "login redirection", Toast.LENGTH_LONG).show();
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
+        fuser = mAuth.getCurrentUser();
 //        if(mAuth.getCurrentUser()!=null)
 //        {
 //            startActivity(new Intent(Login_page.this,MainActivity.class) );
@@ -123,14 +124,15 @@ public class Login_page extends AppCompatActivity {
                         if (task.isSuccessful())
                         {
                             FirebaseUser fUser;
-                            if(!fuser.isEmailVerified()){
-                                Toast.makeText(Login_page.this,"Verify Email First",Toast.LENGTH_SHORT).show();
-                            }
-                            else{
+                            if(fuser.isEmailVerified()){
                                 Toast.makeText(Login_page.this,"Sign-In Sucessfull",Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(Login_page.this,MainActivity.class);
                                 startActivity(i);
                                 finish();
+                            }
+                            else{
+                                Toast.makeText(Login_page.this,"Please Verify your Email First",Toast.LENGTH_SHORT).show();
+
                             }
                         }
                         else
