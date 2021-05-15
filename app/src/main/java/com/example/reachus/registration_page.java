@@ -1,5 +1,4 @@
 package com.example.reachus;
-//anujpujari checking
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,9 +13,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,11 +36,6 @@ public class registration_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
-        if(mAuth.getCurrentUser()!=null)
-        {
-            startActivity(new Intent(registration_page.this,MainActivity.class));
-            finish();
-        }
 
         setContentView(R.layout.activity_registration_page);
 
@@ -49,8 +46,6 @@ public class registration_page extends AppCompatActivity {
         conf_pass = findViewById(R.id.conf_password);
         nxtbtn = findViewById(R.id.nextbtn);
         email = findViewById(R.id.Email);
-
-
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         myref = database.getReference("User Details");
@@ -77,25 +72,31 @@ public class registration_page extends AppCompatActivity {
         mAuth.createUserWithEmailAndPassword(s_email,Password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
+                    public void onComplete(@NonNull Task<AuthResult> task){
                         if(task.isSuccessful()){
-                            Toast.makeText(registration_page.this,"Registration Sucessfull You Can Now Sign in ",Toast.LENGTH_SHORT).show();
-                            UserDetail val;
-                            val = new UserDetail(Name,s_email, Password, Phone_number);
-                            myref.child(Name).setValue(val);
-                            Toast.makeText(registration_page.this, "Details sucessfully Entered", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(registration_page.this,Login_page.class));
+                            FirebaseUser fUser = mAuth.getCurrentUser();
+                            fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(registration_page.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Log.d(TAG, "onFailure: Email not sent " + e.getMessage());
+                                }
+                            });
+                            finish();
                         }
                         else
                         {
                             Log.w(TAG,"Failed to Sign-up",task.getException());
                             Toast.makeText(registration_page.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 });
-
-
-
     }
     private boolean validateform () {
         boolean valid = true;
