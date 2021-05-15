@@ -68,7 +68,7 @@ public class registration_page extends AppCompatActivity {
         startActivity(i);
 
     }
-}
+
     public void signup () {
         if (!validateform()) {
             return;
