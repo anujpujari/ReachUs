@@ -29,7 +29,7 @@ public class Login_page extends AppCompatActivity {
     Button login,forgot_pass,signup;
     private long pressedTime;
     private FirebaseAuth mAuth=null;
-    FirebaseUser fuser;
+    FirebaseUser fuser=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +37,6 @@ public class Login_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         fuser = mAuth.getCurrentUser();
-//        if(mAuth.getCurrentUser()!=null)
-//        {
-//            startActivity(new Intent(Login_page.this,MainActivity.class) );
-//            finish();
-//        }
         setContentView(R.layout.activity_login_page);
 
         show_pass = findViewById(R.id.show_password);
