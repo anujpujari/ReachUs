@@ -118,7 +118,6 @@ public class Login_page extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful())
                         {
-                            FirebaseUser fUser;
                             if(fuser.isEmailVerified()){
                                 Toast.makeText(Login_page.this,"Sign-In Sucessfull",Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(Login_page.this,MainActivity.class);
@@ -127,7 +126,6 @@ public class Login_page extends AppCompatActivity {
                             }
                             else{
                                 Toast.makeText(Login_page.this,"Please Verify your Email First",Toast.LENGTH_SHORT).show();
-
                             }
                         }
                         else
