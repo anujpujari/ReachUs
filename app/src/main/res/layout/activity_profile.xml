@@ -44,16 +44,20 @@
                 android:id="@+id/fullName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Aditya Sangave"
+                android:text=""
                 android:textSize="20dp"
+                android:fontFamily="@font/font11"
+                android:textColor="@color/black"
                 android:layout_marginTop="50dp"
                 android:textAlignment="textStart" />
             <TextView
                 android:id="@+id/Email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="adityasangave21@gmail.com"
-                android:textSize="20dp"
+                android:text=" "
+                android:textSize="15dp"
+                android:fontFamily="@font/font11"
+                android:textColor="@color/black"
                 android:layout_marginTop="20dp"
                 android:textAlignment="textStart" />
             </LinearLayout>
@@ -64,18 +68,12 @@
             android:layout_height="wrap_content"
             android:text="Be a Service Provider"
             android:layout_gravity="center"/>
-        <Button
-            android:id="@+id/user"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:text="Be a User"
-            android:layout_gravity="center"/>
             <Button
                 android:id="@+id/logout"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:text="Log-out"
-                android:layout_marginTop="100dp"
+                android:layout_marginTop="50dp"
                 android:layout_gravity="center"/>
     </LinearLayout>
 
