@@ -33,7 +33,6 @@ public class Login_page extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-    //    Toast.makeText(Login_page.this, "login redirection", Toast.LENGTH_LONG).show();
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
         fuser = mAuth.getCurrentUser();

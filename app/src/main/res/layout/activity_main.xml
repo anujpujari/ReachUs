@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -17,10 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="1dp">
+        android:layout_margin="0dp">
 
         <com.smarteist.autoimageslider.SliderView
-            android:layout_margin="10sp"
+            android:layout_margin="0sp"
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
             android:layout_height="239dp"
@@ -40,7 +40,6 @@
             app:sliderStartAutoCycle="true">
 
         </com.smarteist.autoimageslider.SliderView>
-
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="270dp"
@@ -68,12 +67,14 @@
                     android:textAlignment="center">
 
                     <ImageView
+                        android:id="@+id/repair_image"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:src="@drawable/repair_icon" />
 
                     <TextView
+                        android:id="@+id/repair_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -103,12 +104,14 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/maid_image"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:src="@drawable/maid_icon" />
 
                     <TextView
+                        android:id="@+id/maid_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -138,12 +141,14 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/car_image"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:src="@drawable/car_icon" />
 
                     <TextView
+                        android:id="@+id/car_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -173,12 +178,14 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/cleaning_image"
                         android:layout_width="60dp"
                         android:layout_height="60dp"
                         android:layout_gravity="center"
                         android:src="@drawable/broom" />
 
                     <TextView
+                        android:id="@+id/cleaning_text"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -191,7 +198,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </GridLayout>
-
     </LinearLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -207,4 +213,4 @@
             app:menu="@menu/menu_navigation" />
 
 </RelativeLayout>
-</ScrollView>
+</LinearLayout>
