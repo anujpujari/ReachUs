@@ -21,6 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class registration_page extends AppCompatActivity {
     EditText p_number, uname, pass, conf_pass,email;
@@ -28,6 +33,8 @@ public class registration_page extends AppCompatActivity {
     String Phone_number, Name, Password, Confirm_pass,s_email;
     DatabaseReference myref;
     private FirebaseAuth mAuth;
+    FirebaseFirestore fStore;
+    String userId;
     private static final String TAG = "EmailPassword";
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -83,6 +90,20 @@ public class registration_page extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task){
                         if(task.isSuccessful()){
+                            fStore = FirebaseFirestore.getInstance();
+                            userId = mAuth.getCurrentUser().getUid();
+                            DocumentReference documentReference = fStore.collection("users").document(userId);
+
+                            Map<String,Object> user = new HashMap<>();
+                            user.put("fullName", Name);
+                            user.put("Email", s_email);
+
+                            documentReference.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                                @Override
+                                public void onSuccess(DocumentReference documentReference) {
+                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                }
+                            });
                             startActivity(new Intent(registration_page.this,Login_page.class));
                             FirebaseUser fUser = mAuth.getCurrentUser();
                             fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {

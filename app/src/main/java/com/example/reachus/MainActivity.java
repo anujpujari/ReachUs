@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,11 +20,48 @@ import com.smarteist.autoimageslider.SliderView;
 public class MainActivity extends AppCompatActivity {
     SliderView sliderView;
     int[] images = {R.drawable.one, R.drawable.two, R.drawable.three, R.drawable.four};
+    ImageView cleaning,repairing,maid,carServices;
+    TextView cleaning_text,repairing_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        cleaning=findViewById(R.id.cleaning_image);
+        cleaning_text=findViewById(R.id.cleaning_text);
+
+        repairing=findViewById(R.id.repair_image);
+        repairing_text=findViewById(R.id.repair_text);
+
+        carServices=findViewById(R.id.car_image);
+
+        maid=findViewById(R.id.maid_image);
+
+        maid.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,maid_service.class));
+            }
+        });
+        carServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,car_services.class));
+            }
+        });
+        cleaning.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,cleaning.class));
+            }
+        });
+        repairing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,repairingTask.class));
+            }
+        });
 
         //Botton Navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationbar);
