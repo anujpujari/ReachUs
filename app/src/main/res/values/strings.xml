@@ -13,4 +13,11 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="frg_pass"> Provide your accounts email for which you want to reset your password!</string>
+
+    <string-array name="Services">
+        <item>Car Service</item>
+        <item>Repairing Service</item>
+        <item>Maid Service</item>
+        <item>Cleaning Service</item>
+    </string-array>
 </resources>

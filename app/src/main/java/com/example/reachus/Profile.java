@@ -23,7 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class Profile extends AppCompatActivity {
 
-    Button logout;
+    Button logout,service_provider;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
     String userId;
@@ -36,6 +36,16 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         logout=findViewById(R.id.logout);
+        service_provider = findViewById(R.id.service_provider);
+
+        service_provider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Service_Provider_Info.class));
+                finish();
+
+            }
+        });
 
         fullName=findViewById(R.id.fullName);
         Email=findViewById(R.id.Email);
