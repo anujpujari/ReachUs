@@ -54,7 +54,6 @@ public class Profile extends AppCompatActivity {
         fStore=FirebaseFirestore.getInstance();
 
         userId=mAuth.getCurrentUser().getUid();
-
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
