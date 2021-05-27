@@ -26,7 +26,7 @@ public class Profile extends AppCompatActivity {
     Button logout,service_provider;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
-    String userId;
+    String userId,s_name,s_email;
     TextView fullName,Email;
     private static final String TAG = "EmailPassword";
 
@@ -64,6 +64,8 @@ public class Profile extends AppCompatActivity {
                         Log.d(TAG, document.getId() + " => " + document.getData());
                         fullName.setText(document.getString("fullName"));
                         Email.setText(document.getString("Email"));
+
+
                     }
                 } else {
                     Log.w(TAG, "Error getting documents.", task.getException());
