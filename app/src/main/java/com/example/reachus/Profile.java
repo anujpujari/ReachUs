@@ -23,10 +23,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class Profile extends AppCompatActivity {
 
-    Button logout;
+    Button logout,service_provider;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
-    String userId;
+    String userId,s_name,s_email;
     TextView fullName,Email;
     private static final String TAG = "EmailPassword";
 
@@ -36,6 +36,16 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         logout=findViewById(R.id.logout);
+        service_provider = findViewById(R.id.service_provider);
+
+        service_provider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),Service_Provider_Info.class));
+                finish();
+
+            }
+        });
 
         fullName=findViewById(R.id.fullName);
         Email=findViewById(R.id.Email);
@@ -44,7 +54,6 @@ public class Profile extends AppCompatActivity {
         fStore=FirebaseFirestore.getInstance();
 
         userId=mAuth.getCurrentUser().getUid();
-
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -54,6 +63,8 @@ public class Profile extends AppCompatActivity {
                         Log.d(TAG, document.getId() + " => " + document.getData());
                         fullName.setText(document.getString("fullName"));
                         Email.setText(document.getString("Email"));
+
+
                     }
                 } else {
                     Log.w(TAG, "Error getting documents.", task.getException());

@@ -33,17 +33,7 @@ public class Splash_Screen extends AppCompatActivity {
             startActivity(new Intent(Splash_Screen.this,MainActivity.class) );
             finish();
         }
-            /*    if(currentUser!=null)
-      {
-          Intent i = new Intent(Splash_Screen.this, MainActivity.class);
-          startActivity(i);
-          finish();
-       } else
-           {
-                    Intent i = new Intent(Splash_Screen.this, Login_page.class);
-                    startActivity(i);
-                    finish();
-           }*/
+
 
             }
         }, 5000);

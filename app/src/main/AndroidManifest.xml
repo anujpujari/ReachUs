@@ -14,12 +14,14 @@
         android:theme="@style/Theme.ReachUs">
         <activity android:name=".car_services"></activity>
         <activity android:name=".maid_service" />
+        <activity android:name=".Service_Provider_Info" >
+
+        </activity>
         <activity android:name=".cleaning" />
         <activity android:name=".repairingTask" />
         <activity android:name=".Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -1,6 +1,7 @@
 package com.example.reachus;
 //this class stores these information to the Database
-public class UserDetail {
+public class
+UserDetail {
     public String Name,Password,Phone_number,s_email;
     public UserDetail() {
     }

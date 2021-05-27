@@ -2,7 +2,9 @@ package com.example.reachus;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -80,7 +82,12 @@ public class registration_page extends AppCompatActivity {
         if (!validateform()) {
             return;
         }
+
         Name = uname.getText().toString();
+        SharedPreferences mySharedPreferences = this.getSharedPreferences("MYPREFERENCENAME", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mySharedPreferences.edit();
+        editor.putString("USERNAME",Name);
+        editor.apply();
         s_email = email.getText().toString();
         Password = pass.getText().toString();
         Confirm_pass = conf_pass.getText().toString();
@@ -110,6 +117,9 @@ public class registration_page extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(registration_page.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
+                                    UserDetail val;
+                                    val = new UserDetail(Name,s_email, Password, Phone_number);
+                                    myref.child(userId).setValue(val);
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
