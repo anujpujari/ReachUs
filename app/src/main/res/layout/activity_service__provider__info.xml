@@ -69,14 +69,13 @@
             android:textSize="25sp" />
 
         <EditText
-            android:id="@+id/sp_number"
+            android:id="@+id/sp_numberr"
             android:layout_width="268dp"
             android:layout_height="wrap_content"
             android:layout_marginRight="10sp"
             android:layout_weight="1"
             android:textSize="25sp"
-            android:inputType="number"
-            android:textAlignment="center" />
+            />
 
     </LinearLayout>
 

@@ -41,7 +41,7 @@ public class Service_Provider_Info extends AppCompatActivity {
         name  = findViewById(R.id.sp_Username);
         myspinner = findViewById(R.id.u_service);
         submit = findViewById(R.id.sp_submit1);
-        Phone_number = findViewById(R.id.sp_number);
+        Phone_number = findViewById(R.id.sp_numberr);
         Age = findViewById(R.id.sp_age);
         mal = findViewById(R.id.sp_gen_male);
         femal = findViewById(R.id.sp_gen_female);
@@ -64,33 +64,26 @@ public class Service_Provider_Info extends AppCompatActivity {
         s_about = about.getText().toString();
 
 
+
         ///////////////////////////////////////////////////////
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signup();
-                //calls the signup method for the form validation`
+
 
             }
         });
 
     }
 
-    public void  storedata(){
-        setGender();
-        Toast.makeText(Service_Provider_Info.this,"Successfully Registered as a Service Provider",Toast.LENGTH_LONG).show();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myref = database.getReference("Service Provider Details");
-        ServiceProviderDetails val;
-        val = new ServiceProviderDetails(s_number,s_age,s_gender,s_name,s_about,s_service);
-        myref.child(userId).setValue(val);
-    }
+
     private void setGender() {
-        if(mal.isChecked()==true)
+        if(mal.isChecked())
         {
             s_gender="Male";
         }
-        else if (femal.isChecked()==true)
+        else if (femal.isChecked())
         {
             s_gender="Female";
 
@@ -102,50 +95,77 @@ public class Service_Provider_Info extends AppCompatActivity {
     }
 
     public void signup () {
-        if (validateform()==false) {
-            Toast.makeText(getApplicationContext(),"Something went Wrong",Toast.LENGTH_SHORT).show();
+        if (validateform()==true) {
+            setGender();
+            Toast.makeText(Service_Provider_Info.this,"Successfully Registered as a Service Provider",Toast.LENGTH_LONG).show();
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myref = database.getReference("Service Provider Details");
+            ServiceProviderDetails val;
+            val = new ServiceProviderDetails(s_number,s_age,s_gender,s_name,s_about,s_service);
+            myref.child(userId).setValue(val);
+            if(s_service.equals("Car Service"))
+            {
+                 myref = database.getReference("Car Service Provider Details");
+                val = new ServiceProviderDetails(s_number,s_age,s_gender,s_name,s_about,s_service);
+                myref.child(userId).setValue(val);
+            }
+            else if (s_service=="Repairing Service")
+            {
+                 myref = database.getReference("Repairing Service Provider Details");
+                val = new ServiceProviderDetails(s_number,s_age,s_gender,s_name,s_about,s_service);
+                myref.child(s_service).setValue(val);
+            }
+            else if (s_service=="Maid Service")
+            {
+                 myref = database.getReference("Maid Service Provider Details");
+                val = new ServiceProviderDetails(s_number,s_age,s_gender,s_name,s_about,s_service);
+                myref.child(s_service).setValue(val);
+            }
+            if (s_service=="Cleaning Service")
+            {
+              myref = database.getReference("Cleaning Service Provider Details");
+                val = new ServiceProviderDetails(s_number,s_age,s_gender,s_name,s_about,s_service);
+                myref.child(s_service).setValue(val);
+            }
+        }else{
+            Toast.makeText(getApplicationContext(),"Something went wrong",Toast.LENGTH_SHORT).show();
         }
-        else if(validateform()==true)
-        {
-            storedata();
-            Log.w("DATA","Data stored in Database");
-        }
-
-
 }
 
-    private boolean validateform() {
+    public boolean validateform() {
         boolean valid = true;
+        s_name = name.getText().toString();
         if (TextUtils.isEmpty(s_name)) {
             name.setError("Field Empty");
             valid = false;
-        } else {
-
         }
 
+        s_number = Phone_number.getText().toString();
 // onClick of button perform this simplest code.
         if (TextUtils.isEmpty(s_number)) {
-            name.setError("Field Empty");
-            valid = false;
-        } else if (!Phone_number.getText().toString().matches(MobilePattern)) {
             Phone_number.setError("Field Empty");
+            valid = false;
+        } else if (!s_number.matches(MobilePattern)) {
+            Phone_number.setError("Invalid Number");
             valid = false;
         } else {
             Phone_number.setError(null);
         }
 
-
+        s_age = Age.getText().toString();
         if (TextUtils.isEmpty(s_age)) {
             Age.setError("Field Empty");
             valid = false;
         } else {
             Age.setError(null);
         }
+
+        s_about = about.getText().toString();
         if (TextUtils.isEmpty(s_about)) {
             about.setError("Field Empty");
             valid = false;
         } else {
-            name.setError(null);
+            about.setError(null);
         }
 
         return valid;
