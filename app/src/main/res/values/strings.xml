@@ -20,4 +20,111 @@
         <item>Maid Service</item>
         <item>Cleaning Service</item>
     </string-array>
+    <string-array name="Region">
+        [10:57 AM, 5/28/2021] Anuj Pujari: <item>Ambegaon</item>
+        <item>Aundh</item>
+        <item>Baner</item>
+        <item>Bavdhan Khurd</item>
+        <item>Bavdhan Budruk</item>
+        <item>Balewadi</item>
+        <item>Shivajinagar</item>
+        <item>Bibvewadi</item>
+        <item>Bhugaon</item>
+        <item>Bhukum</item>
+        <item>Dhankawadi</item>
+        <item>Dhanori</item>
+        <item>Dhayari</item>
+        <item>Erandwane</item>
+        <item>Fursungi</item>
+        <item>Ghorpadi</item>
+        <item>Hadapsar</item>
+        <item>Hingne Khurd</item>
+        <item>Karve Nagar</item>
+        <item>Kalas</item>
+        <item>Katraj</item>
+        <item>Khadki</item>
+        <item>Kharadi</item>
+        <item>Kondhwa</item>
+        <item>Koregaon Park</item>
+        <item>Kothrud</item>
+        <item>Manjiri</item>
+        <item>Mundhwa</item>
+        <item>Nanded</item>
+        <item>Pashan</item>
+        <item>Shivane</item>
+        <item>Sus</item>
+        <item>Undri</item>
+        <item>Vishrantwadi</item>
+        <item>Vitthalwadi</item>
+        <item>Vadgaon Sheri</item>
+        <item>Wagholi</item>
+        <item>Wanowrie</item>
+        <item>Warje</item>
+        <item>Yerwada</item>
+        [10:59 AM, 5/28/2021] Anuj Pujari: link alyavar msg tak
+        [11:06 AM, 5/28/2021] Anuj Pujari: <item>Akurdi</item>
+        <item>Ambegaon</item>
+        <item>Aundh</item>
+        <item>Baner</item>
+        <item>Bavdhan Khurd</item>
+        <item>Bavdhan Budruk</item>
+        <item>Balewadi</item>
+        <item>Bhosari</item>
+        <item>Shivajinagar</item>
+        <item>Bibvewadi</item>
+        <item>Bhugaon</item>
+        <item>Bhukum</item>
+        <item>Chakan</item>
+        <item>Chikhli</item>
+        <item>Chimbali</item>
+        <item>Chinchwad</item>
+        <item>Dapodi</item>
+        <item>Dehu Road</item>
+        <item>Dighi</item>
+        <item>Dhankawadi</item>
+        <item>Dhanori</item>
+        <item>Dhayari</item>
+        <item>Erandwane</item>
+        <item>Fursungi</item>
+        <item>Ghorpadi</item>
+        <item>Hadapsar</item>
+        <item>Hingne Khurd</item>
+        <item>Hinjewadi</item>
+        <item>Karve Nagar</item>
+        <item>Kalas</item>
+        <item>Kalewadi</item>
+        <item>Kasarwadi</item>
+        <item>Katraj</item>
+        <item>Khadki</item>
+        <item>Kharadi</item>
+        <item>Kondhwa</item>
+        <item>Koregaon Park</item>
+        <item>Kothrud</item>
+        <item>Manjiri</item>
+        <item>Maan</item>
+        <item>Mundhwa</item>
+        <item>Moshi</item>
+        <item>Nanded</item>
+        <item>Pashan</item>
+        <item>Pimple Gurav</item>
+        <item>Pimple Nilakh</item>
+        <item>Pimpri</item>
+        <item>Phugewadi</item>
+        <item>Ravet</item>
+        <item>Sangvi</item>
+        <item>Shivane</item>
+        <item>Sus</item>
+        <item>Talawade</item>
+        <item>Tathawade</item>
+        <item>Thergaon</item>
+        <item>Undri</item>
+        <item>Vishrantwadi</item>
+        <item>Vitthalwadi</item>
+        <item>Vadgaon Sheri</item>
+        <item>Wagholi</item>
+        <item>Wakad</item>
+        <item>Wanowrie</item>
+        <item>Warje</item>
+        <item>Yerwada</item>
+    </string-array>
 </resources>

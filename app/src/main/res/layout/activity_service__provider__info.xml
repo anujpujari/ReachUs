@@ -44,7 +44,7 @@
         android:textAlignment="center"
         />
     <Spinner
-        android:id="@+id/sp_address"
+        android:id="@+id/sp_region"
         android:layout_marginTop="10sp"
         android:layout_width="229dp"
         android:layout_height="50sp"
