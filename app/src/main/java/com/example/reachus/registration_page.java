@@ -70,13 +70,13 @@ public class registration_page extends AppCompatActivity {
 
     }
 
-
     public void onBackPressed() {
         super.onBackPressed();
         Intent i = new Intent(registration_page.this, Login_page.class);
         startActivity(i);
 
     }
+
 
     public void signup () {
         if (!validateform()) {
