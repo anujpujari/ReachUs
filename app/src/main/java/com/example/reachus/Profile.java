@@ -23,7 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 public class Profile extends AppCompatActivity {
 
-    Button logout,service_provider;
+    Button logout,completeProfile;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
     String userId,s_name,s_email;
@@ -35,17 +35,7 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        logout=findViewById(R.id.logout);
-        service_provider = findViewById(R.id.service_provider);
-
-        service_provider.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),Service_Provider_Info.class));
-                finish();
-
-            }
-        });
+        completeProfile = findViewById(R.id.completeProfile);
 
         fullName=findViewById(R.id.fullName);
         Email=findViewById(R.id.Email);
@@ -63,20 +53,17 @@ public class Profile extends AppCompatActivity {
                         Log.d(TAG, document.getId() + " => " + document.getData());
                         fullName.setText(document.getString("fullName"));
                         Email.setText(document.getString("Email"));
-
-
                     }
                 } else {
                     Log.w(TAG, "Error getting documents.", task.getException());
                 }
             }
         });
-        logout.setOnClickListener(new View.OnClickListener() {
+
+        completeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), Login_page.class));
-                finish();
+                startActivity(new Intent(getApplicationContext(),complete_profile.class));
             }
         });
         //Botton Navigation

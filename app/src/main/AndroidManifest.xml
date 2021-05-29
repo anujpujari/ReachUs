@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.reachus">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,16 +13,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
-        <activity android:name=".car_services"></activity>
+        <activity android:name=".Service_Provider_finished"></activity>
+        <activity android:name=".Service_Provider_info_4" />
+        <activity android:name=".Service_Provider_Step3" />
+        <activity android:name=".Service_provider_step2" />
+        <activity android:name=".complete_profile" />
+        <activity android:name=".car_services" />
         <activity android:name=".maid_service" />
-        <activity android:name=".Service_Provider_Info" >
-
-        </activity>
+        <activity android:name=".Service_Provider_Info" />
         <activity android:name=".cleaning" />
         <activity android:name=".repairingTask" />
         <activity android:name=".Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

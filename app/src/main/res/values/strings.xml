@@ -20,4 +20,27 @@
         <item>Maid Service</item>
         <item>Cleaning Service</item>
     </string-array>
+    <string-array name="carServices">
+        <item>Car Washing</item>
+        <item>Car Reapiring</item>
+    </string-array>
+    <string-array name="repairingServices">
+        <item>Plumber</item>
+        <item>Electrician</item>
+        <item>Carpainter</item>
+    </string-array>
+    <string-array name="cleaningServices">
+        <item>Part Time</item>
+        <item>Task Based</item>
+    </string-array>
+    <string-array name="maidServices">
+        <item>Utensils Cleaning</item>
+        <item>Clothes Cleaning</item>
+        <item>Home Cleaning</item>
+    </string-array>
+    <string-array name="bankNames">
+        <item>State Bank Of India</item>
+        <item>Bank Of Maharashtra</item>
+        <item>Punjab National Bank</item>
+    </string-array>
 </resources>

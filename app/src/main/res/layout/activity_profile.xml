@@ -12,15 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Welcome"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="40sp"
-            android:fontFamily="@font/font10"
-            android:layout_marginTop="40dp"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,18 +54,12 @@
             </LinearLayout>
         </LinearLayout>
         <Button
-            android:id="@+id/service_provider"
+            android:id="@+id/completeProfile"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Be a Service Provider"
+            android:text="Complete Your Profile"
+            android:fontFamily="@font/font11"
             android:layout_gravity="center"/>
-            <Button
-                android:id="@+id/logout"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:text="Log-out"
-                android:layout_marginTop="50dp"
-                android:layout_gravity="center"/>
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

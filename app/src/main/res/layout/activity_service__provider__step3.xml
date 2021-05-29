@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Service_Provider_Step3"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Your Business Info"
+            android:fontFamily="@font/font11"
+            android:layout_margin="10dp"
+            android:textSize="30dp"
+            android:textColor="#0099ff"/>
+
+        <LinearLayout
+            android:id="@+id/mainJobLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_margin="20dp">
+            <Spinner
+                android:id="@+id/mainJob"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/Services" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/carServicesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_margin="20dp"
+            android:visibility="gone">
+            <Spinner
+                android:id="@+id/carServices"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/carServices" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/repairingServicesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_margin="20dp"
+            android:visibility="gone">
+            <Spinner
+                android:id="@+id/repairingServices"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/repairingServices" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/cleaningServicesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_margin="20dp"
+            android:visibility="gone">
+            <Spinner
+                android:id="@+id/cleaningServices"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/cleaningServices" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/maidServicesLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_margin="20dp"
+            android:visibility="gone">
+            <Spinner
+                android:id="@+id/maidServices"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:entries="@array/maidServices" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="60dp"
+            android:layout_marginHorizontal="20dp">
+            <EditText
+                android:id="@+id/jobDescription"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:hint="Provide your Job Description"
+                android:paddingLeft="7dp"
+                android:background="@drawable/input_design"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="20dp">
+            <EditText
+                android:id="@+id/priceRequirement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Price Requirement in RS."
+                android:padding="10dp"
+                android:background="@drawable/input_design"
+                android:layout_gravity="center"
+                />
+        </LinearLayout>
+        <Button
+            android:id="@+id/continueStep4"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Continue"
+            android:fontFamily="@font/font11"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp" />
+
+    </LinearLayout>
+
+</ScrollView>

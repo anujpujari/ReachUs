@@ -6,7 +6,6 @@ ServiceProviderDetails {
     public ServiceProviderDetails() {
     }
 
-
     public ServiceProviderDetails(String s_number, String s_age, String s_gender, String s_name, String s_about,String s_service) {
         this.s_number = s_number;
         this.s_about = s_about;

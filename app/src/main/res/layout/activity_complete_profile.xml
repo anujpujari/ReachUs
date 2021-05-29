@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".complete_profile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Be Insider"
+                android:fontFamily="@font/font10"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/be_insider"
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawableTint="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Be a Service Provider"
+                android:fontFamily="@font/font11"
+                android:textSize="15dp"
+                android:background="@drawable/border"
+                android:padding="7dp"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account and Login"
+                android:fontFamily="@font/font10"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:textSize="20dp"/>
+            <TextView
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawableTint="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login and Security"
+                android:fontFamily="@font/font11"
+                android:textSize="15dp"
+                android:background="@drawable/border"
+                android:padding="7dp"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawableTint="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Your Address"
+                android:fontFamily="@font/font11"
+                android:textSize="15dp"
+                android:background="@drawable/border"
+                android:padding="7dp"
+                android:layout_margin="5dp"/>
+            <TextView
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawableTint="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Personal Information"
+                android:fontFamily="@font/font11"
+                android:textSize="15dp"
+                android:background="@drawable/border"
+                android:padding="7dp"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rate Us"
+                android:textColor="@color/black"
+                android:fontFamily="@font/font10"
+                android:textSize="20dp"
+                android:layout_marginLeft="5dp"/>
+            <TextView
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawableTint="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rate Us"
+                android:fontFamily="@font/font11"
+                android:textSize="15dp"
+                android:background="@drawable/border"
+                android:padding="7dp"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:fontFamily="@font/font10"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/logout"
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawableTint="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:fontFamily="@font/font11"
+                android:textSize="15dp"
+                android:background="@drawable/border"
+                android:padding="7dp"
+                android:layout_margin="5dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

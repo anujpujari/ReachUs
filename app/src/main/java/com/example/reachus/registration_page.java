@@ -48,7 +48,6 @@ public class registration_page extends AppCompatActivity {
 
         setContentView(R.layout.activity_registration_page);
 
-
         p_number = findViewById(R.id.phn_number);
         uname = findViewById(R.id.Username);
         pass = findViewById(R.id.password);

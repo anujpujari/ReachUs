@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+    <!-- Here you put the rest of your current view-->
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Service_Provider_Info"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your Address Info."
+        android:fontFamily="@font/font11"
+        android:layout_margin="10dp"
+        android:textSize="30dp"
+        android:textColor="#0099ff"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+        <EditText
+            android:drawableTint="#0099ff"
+            android:background="@drawable/input_design"
+            android:id="@+id/storename"
+            android:padding="10dp"
+            android:drawablePadding="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Store Name" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/darker_gray" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/pincode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/input_design"
+            android:drawablePadding="12dp"
+            android:drawableTint="#0099ff"
+            android:hint="Pincode"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/Addr_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/input_design"
+            android:drawablePadding="12dp"
+            android:drawableTint="#0099ff"
+            android:hint="Address Line 1"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/Addr_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/input_design"
+            android:drawablePadding="12dp"
+            android:drawableTint="#0099ff"
+            android:hint="Address Line 2"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/city"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/input_design"
+            android:drawablePadding="12dp"
+            android:drawableTint="#0099ff"
+            android:hint="City"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/district"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/input_design"
+            android:drawablePadding="12dp"
+            android:drawableTint="#0099ff"
+            android:hint="District"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/input_design"
+            android:drawablePadding="12dp"
+            android:drawableTint="#0099ff"
+            android:inputType="none"
+            android:padding="10dp"
+            android:text="Maharashtra" />
+
+        <EditText
+            android:id="@+id/country"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/input_design"
+            android:drawablePadding="12dp"
+            android:drawableTint="#0099ff"
+            android:inputType="none"
+            android:padding="10dp"
+            android:text="India" />
+    </LinearLayout>
+
+    <Button
+            android:id="@+id/continueStep3"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:text="Continue"
+            android:fontFamily="@font/font11"
+            android:layout_gravity="center"
+            android:layout_margin="0dp"/>
+</LinearLayout>
+</ScrollView>
+
+
+
