@@ -3,39 +3,37 @@ package com.example.reachus;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 public class Service_Provider_Info extends AppCompatActivity {
     EditText Name;
     Button continueBtn;
+    CheckBox terms;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
     String userId,LegalName;
+    boolean valid;
+    private static final Pattern NAME_PATTERN =
+            Pattern.compile("[a-zA-Z]+\\.?");
     private static final String TAG = "Storing data";
 
     @Override
@@ -45,6 +43,7 @@ public class Service_Provider_Info extends AppCompatActivity {
 
         Name=findViewById(R.id.Name);
         continueBtn=findViewById(R.id.continueStep2);
+        terms = findViewById(R.id.termsandconditions);
 
         mAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
@@ -52,11 +51,45 @@ public class Service_Provider_Info extends AppCompatActivity {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                storeInfo();
+                if(validate()==true)
+                {
+                    storeInfo();
+                }
+               else {
+                    Log.d(TAG, "Validation Gone Wrong");
+
+                }
             }
         });
     }
 
+    public  boolean validate()
+    {
+        valid=true;
+
+        LegalName=Name.getText().toString();
+        if(TextUtils.isEmpty(LegalName))
+        {
+            Name.setError("Field Empty");
+            return valid = false;
+        }else if(!LegalName.matches("[a-zA-Z]+\\.?"))
+        {
+            Name.setError("Invalid Name");
+            return valid = false;
+        }
+        if(terms.isChecked()==true)
+        {
+            valid = true;
+        }
+        else {
+            Toast.makeText(getApplicationContext(),"You must agree to our terms  and conditions",Toast.LENGTH_SHORT).show();
+            terms.setError("Please check the checkbox");
+             return valid = false;
+             }
+
+
+        return valid;
+    }
     public void storeInfo(){
         LegalName=Name.getText().toString();
 
@@ -72,6 +105,7 @@ public class Service_Provider_Info extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d(TAG, "DocumentSnapshot added");
+                startActivity(new Intent(getApplicationContext(),Service_Provider_Step_2.class));
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -79,7 +113,7 @@ public class Service_Provider_Info extends AppCompatActivity {
                 Log.w(TAG, "Error adding document", e);
             }
         });
-        startActivity(new Intent(getApplicationContext(),Service_provider_step2.class ));
+
     }
 }
 

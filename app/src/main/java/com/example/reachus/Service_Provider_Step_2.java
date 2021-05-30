@@ -5,10 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -22,12 +22,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class Service_Provider_Step3 extends AppCompatActivity {
+public class Service_Provider_Step_2 extends AppCompatActivity {
 
     LinearLayout repairingServicesLayout,cleaningServicesLayout,maidServicesLayout,carServicesLayout;
     Spinner mainJob;
@@ -39,6 +37,7 @@ public class Service_Provider_Step3 extends AppCompatActivity {
     Spinner carServices;
     Button continueStep4;
     EditText description,price;
+    Boolean valid;
 
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;
@@ -48,7 +47,7 @@ public class Service_Provider_Step3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service__provider__step3);
+        setContentView(R.layout.activity_service__provider__step_2);
 
         fStore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
@@ -101,17 +100,44 @@ public class Service_Provider_Step3 extends AppCompatActivity {
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Toast.makeText(Service_Provider_Step3.this,"Nothing is selected", Toast.LENGTH_LONG);
+                Toast.makeText(Service_Provider_Step_2.this,"Nothing is selected", Toast.LENGTH_LONG);
             }
         });
 
         continueStep4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                storeInfo();
+                if(validate()==true) {
+                    storeInfo();
+                }
+                else
+                {
+                    Log.d(TAG, "Validation Error");
+                }
             }
         });
     }
+
+    private boolean validate() {
+        valid = true;
+        String descriptionText=description.getText().toString();
+        if(TextUtils.isEmpty(descriptionText))
+        {
+            description.setError("Field Empty");
+            return  valid =  false;
+        }
+
+        String priceText=price.getText().toString();
+        if(priceText.isEmpty())
+        {
+            price.setError("Field Empty");
+            return  valid =  false;
+        }
+
+
+        return valid;
+    }
+
     public void storeInfo(){
         repairing=repairingServices.getSelectedItem().toString();
         car=carServices.getSelectedItem().toString();
@@ -142,14 +168,18 @@ public class Service_Provider_Step3 extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d(TAG, "DocumentSnapshot successfully written!");
+                startActivity(new Intent(getApplicationContext(), Service_provider_step_3.class));
+                Toast.makeText(getApplicationContext(), "Service info Added", Toast.LENGTH_SHORT).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
                 Log.w(TAG, "Error adding document", e);
+                Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
+
             }
         });
-        Toast.makeText(getApplicationContext(), "Service info Added", Toast.LENGTH_SHORT).show();
-        startActivity(new Intent(getApplicationContext(), Service_Provider_info_4.class));
+
+
     }
 }

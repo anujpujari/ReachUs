@@ -9,7 +9,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".Service_Provider_Step3"
+        tools:context=".Service_Provider_Step_2"
         android:orientation="vertical">
 
         <TextView
@@ -46,6 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Account Holder Name"
+                android:textAllCaps="true"
+                android:importantForAutofill="no"
                 android:padding="10dp"
                 android:background="@drawable/input_design"
                 android:layout_gravity="center"
@@ -62,6 +64,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Account Number"
+                android:inputType="number"
                 android:padding="10dp"
                 android:background="@drawable/input_design"
                 android:layout_gravity="center"

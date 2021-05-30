@@ -30,6 +30,7 @@
             android:background="@drawable/input_design"
             android:id="@+id/storename"
             android:padding="10dp"
+            android:inputType="textPersonName"
             android:drawablePadding="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,6 +60,7 @@
             android:background="@drawable/input_design"
             android:drawablePadding="12dp"
             android:drawableTint="#0099ff"
+
             android:hint="Pincode"
             android:padding="10dp" />
 

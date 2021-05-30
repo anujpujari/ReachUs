@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,11 +22,14 @@ import com.google.firebase.firestore.SetOptions;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Service_provider_step2 extends AppCompatActivity {
+public class Service_provider_step_3 extends AppCompatActivity {
 
     private EditText storeName,pincode,addrLine1,addrLine2,city,district;
-    private String storename,pin,addr1,addr2,cityName,districtName,userId;
+    private String Storename,pin,addr1,addr2,cityName,districtName,userId;
     private Button continuestep3;
+    boolean valid;
+
+
 
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;
@@ -35,7 +39,7 @@ public class Service_provider_step2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_provider_step2);
+        setContentView(R.layout.activity_service_provider_step_3);
 
         fStore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
@@ -52,13 +56,69 @@ public class Service_provider_step2 extends AppCompatActivity {
         continuestep3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                storeAddress();
+              if(validate()==true)
+              {
+                  storeAddress();
+              }
+              else
+              {
+                  Toast.makeText(getApplicationContext(),"Fill the form Correctlty",Toast.LENGTH_SHORT).show();
+              }
             }
         });
     }
 
+    private boolean validate() {
+        valid = true;
+        Storename=storeName.getText().toString();
+        if(Storename.isEmpty())
+        {
+            storeName.setError("Field Empty");
+            return valid=false;
+        }
+
+        pin=pincode.getText().toString();
+        if(pin.isEmpty())
+        {
+            pincode.setError("Field Empty");
+            return valid=false;
+        }
+        else if(!pin.matches("^[1-9]{1}[0-9]{2}\\s{0,1}[0-9]{3}$"))
+        {
+            pincode.setError("Invalid Pincode");
+            return valid = false;
+        }
+
+
+        addr1=addrLine1.getText().toString();
+        if(addr1.isEmpty())
+        {
+            addrLine1.setError("Field Empty");
+            return valid=false;
+        }
+        addr2=addrLine2.getText().toString();
+        if(addr2.isEmpty())
+        {
+            addrLine2.setError("Field Empty");
+            return valid=false;
+        }
+        cityName=city.getText().toString();
+        if(cityName.isEmpty())
+        {
+            city.setError("Field Empty");
+            return valid=false;
+        }
+        districtName=district.getText().toString();
+        if(districtName.isEmpty())
+        {
+            district.setError("Field Empty");
+            return valid=false;
+        }
+        return  valid;
+    }
+
     public void storeAddress(){
-        storename=storeName.getText().toString();
+        Storename=storeName.getText().toString();
         pin=pincode.getText().toString();
         addr1=addrLine1.getText().toString();
         addr2=addrLine2.getText().toString();
@@ -70,7 +130,7 @@ public class Service_provider_step2 extends AppCompatActivity {
         DocumentReference AddressDocument = db.collection("provider").document(userId);
 
         Map<String,Object> provider = new HashMap<>();
-        provider.put("StoreName", storename);
+        provider.put("StoreName", Storename);
         provider.put("pincode", pin);
         provider.put("Address_1", addr1);
         provider.put("Address_2", addr2);
@@ -88,7 +148,7 @@ public class Service_provider_step2 extends AppCompatActivity {
                 Log.w(TAG, "Error adding document", e);
             }
         });
-        startActivity(new Intent(getApplicationContext(),Service_Provider_Step3.class ));
-        Toast.makeText(Service_provider_step2.this,"User Registered successfully", Toast.LENGTH_LONG);
+        startActivity(new Intent(getApplicationContext(), Service_Provider_step_4.class ));
+        Toast.makeText(Service_provider_step_3.this,"User Registered successfully", Toast.LENGTH_LONG);
     }
 }
