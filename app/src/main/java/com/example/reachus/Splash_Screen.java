@@ -18,7 +18,6 @@ public class Splash_Screen extends AppCompatActivity {
 
         new Handler().postDelayed(new Runnable() {
 
-
             @Override
             public void run() {
                 mAuth = FirebaseAuth.getInstance();
@@ -30,8 +29,10 @@ public class Splash_Screen extends AppCompatActivity {
         }
         else
         {
-            startActivity(new Intent(Splash_Screen.this,MainActivity.class) );
-            finish();
+            if(mAuth.getCurrentUser().isEmailVerified()){
+                startActivity(new Intent(Splash_Screen.this,MainActivity.class) );
+                finish();
+            }
         }
 
 

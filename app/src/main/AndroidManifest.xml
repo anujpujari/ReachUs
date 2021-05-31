@@ -13,23 +13,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
-        <activity android:name=".carpainterServices"></activity>
+        <activity android:name=".plumberServices"></activity>
+        <activity android:name=".carpainterServices" />
         <activity android:name=".Service_Provider_finished" />
         <activity android:name=".Service_Provider_step_4" />
         <activity android:name=".Service_Provider_Step_2" />
-        <activity android:name=".Service_provider_step_3"> <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <activity android:name=".Service_provider_step_3" />
         <activity android:name=".complete_profile" />
         <activity android:name=".car_services" />
         <activity android:name=".maid_service" />
-        <activity android:name=".Service_Provider_Info" ></activity>
+        <activity android:name=".Service_Provider_Info" />
         <activity android:name=".cleaning" />
         <activity android:name=".repairingTask" />
         <activity android:name=".Splash_Screen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".Profile" />
         <activity android:name=".Forgot_password" />

@@ -60,6 +60,7 @@
                     android:src="@drawable/broom"
                     android:layout_marginRight="20dp"/>
                 <TextView
+                    android:id="@+id/plumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Plumber"

@@ -28,5 +28,12 @@ public class repairingTask extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),carpainterServices.class));
             }
         });
+        plumber=findViewById(R.id.plumber);
+        plumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),plumberServices.class));
+            }
+        });
     }
 }

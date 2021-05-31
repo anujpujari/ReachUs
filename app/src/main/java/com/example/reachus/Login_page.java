@@ -29,13 +29,12 @@ public class Login_page extends AppCompatActivity {
     Button login,forgot_pass,signup;
     private long pressedTime;
     private FirebaseAuth mAuth=null;
-    FirebaseUser fuser=null;
+    FirebaseUser fuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mAuth = FirebaseAuth.getInstance();
-        fuser = mAuth.getCurrentUser();
         setContentView(R.layout.activity_login_page);
 
         show_pass = findViewById(R.id.show_password);
@@ -117,7 +116,7 @@ public class Login_page extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful())
                         {
-                            if(fuser.isEmailVerified()){
+                            if(mAuth.getCurrentUser().isEmailVerified()){
                                 Toast.makeText(Login_page.this,"Sign-In Sucessfull",Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(Login_page.this,MainActivity.class);
                                 startActivity(i);

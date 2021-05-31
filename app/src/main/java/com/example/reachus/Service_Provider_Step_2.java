@@ -149,7 +149,9 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
 
         userId=mAuth.getCurrentUser().getUid();
         FirebaseFirestore db=FirebaseFirestore.getInstance();
-        DocumentReference ServiceInformation = db.collection("provider").document(userId);
+        DocumentReference ServiceInformation = db.collection("provider").document("userId"+userId);
+        DocumentReference ServiceStorage = db.collection("Services").document("userId"+userId);
+
 
         Map<String,Object> ServiceInfo = new HashMap<>();
         ServiceInfo.put("mainJob", firstJob);
@@ -163,6 +165,44 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             ServiceInfo.put("secondaryJob",cleaning);
         ServiceInfo.put("Description", descriptionText);
         ServiceInfo.put("Price", priceText);
+
+
+        if(firstJob.equals("Car Service")){
+            Map<String,Object> carServiceInfo = new HashMap<>();
+            carServiceInfo.put("userID",userId);
+            carServiceInfo.put("mainJob", firstJob);
+            carServiceInfo.put("secondaryJob",car);
+            carServiceInfo.put("Description", descriptionText);
+            carServiceInfo.put("Price", priceText);
+            ServiceStorage.set(carServiceInfo, SetOptions.merge());
+        }
+        else if(firstJob.equals("Repairing Service")){
+            Map<String,Object> repairingServiceInfo = new HashMap<>();
+            repairingServiceInfo.put("userID",userId);
+            repairingServiceInfo.put("mainJob", firstJob);
+            repairingServiceInfo.put("secondaryJob",repairing);
+            repairingServiceInfo.put("Description", descriptionText);
+            repairingServiceInfo.put("Price", priceText);
+            ServiceStorage.set(repairingServiceInfo, SetOptions.merge());
+        }
+        else if(firstJob.equals("Maid Service")){
+            Map<String,Object> maidServiceInfo = new HashMap<>();
+            maidServiceInfo.put("userID",userId);
+            maidServiceInfo.put("mainJob", firstJob);
+            maidServiceInfo.put("secondaryJob",maid);
+            maidServiceInfo.put("Description", descriptionText);
+            maidServiceInfo.put("Price", priceText);
+            ServiceStorage.set(maidServiceInfo, SetOptions.merge());
+        }
+        else if(firstJob.equals("Cleaning Service")){
+            Map<String,Object> cleaningServiceInfo = new HashMap<>();
+            cleaningServiceInfo.put("userID",userId);
+            cleaningServiceInfo.put("mainJob", firstJob);
+            cleaningServiceInfo.put("secondaryJob",cleaning);
+            cleaningServiceInfo.put("Description", descriptionText);
+            cleaningServiceInfo.put("Price", priceText);
+            ServiceStorage.set(cleaningServiceInfo, SetOptions.merge());
+        }
 
         ServiceInformation.collection("ServiceCollection").document("Service").set(ServiceInfo, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
