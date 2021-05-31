@@ -171,7 +171,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             Map<String,Object> carServiceInfo = new HashMap<>();
             carServiceInfo.put("userID",userId);
             carServiceInfo.put("mainJob", firstJob);
-            carServiceInfo.put("secondaryJob",car);
+            carServiceInfo.put("secondaryJob",car.replaceAll("\\s", ""));
             carServiceInfo.put("Description", descriptionText);
             carServiceInfo.put("Price", priceText);
             ServiceStorage.set(carServiceInfo, SetOptions.merge());
@@ -180,7 +180,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             Map<String,Object> repairingServiceInfo = new HashMap<>();
             repairingServiceInfo.put("userID",userId);
             repairingServiceInfo.put("mainJob", firstJob);
-            repairingServiceInfo.put("secondaryJob",repairing);
+            repairingServiceInfo.put("secondaryJob",repairing.replaceAll("\\s",""));
             repairingServiceInfo.put("Description", descriptionText);
             repairingServiceInfo.put("Price", priceText);
             ServiceStorage.set(repairingServiceInfo, SetOptions.merge());
@@ -189,7 +189,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             Map<String,Object> maidServiceInfo = new HashMap<>();
             maidServiceInfo.put("userID",userId);
             maidServiceInfo.put("mainJob", firstJob);
-            maidServiceInfo.put("secondaryJob",maid);
+            maidServiceInfo.put("secondaryJob",maid.replaceAll("\\s", ""));
             maidServiceInfo.put("Description", descriptionText);
             maidServiceInfo.put("Price", priceText);
             ServiceStorage.set(maidServiceInfo, SetOptions.merge());
@@ -198,7 +198,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             Map<String,Object> cleaningServiceInfo = new HashMap<>();
             cleaningServiceInfo.put("userID",userId);
             cleaningServiceInfo.put("mainJob", firstJob);
-            cleaningServiceInfo.put("secondaryJob",cleaning);
+            cleaningServiceInfo.put("secondaryJob",cleaning.replaceAll("\\s",""));
             cleaningServiceInfo.put("Description", descriptionText);
             cleaningServiceInfo.put("Price", priceText);
             ServiceStorage.set(cleaningServiceInfo, SetOptions.merge());

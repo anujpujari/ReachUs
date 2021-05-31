@@ -14,16 +14,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
         <activity android:name=".plumberServices"></activity>
-        <activity android:name=".carpainterServices" />
+        <activity android:name=".allServices" />
         <activity android:name=".Service_Provider_finished" />
         <activity android:name=".Service_Provider_step_4" />
         <activity android:name=".Service_Provider_Step_2" />
         <activity android:name=".Service_provider_step_3" />
         <activity android:name=".complete_profile" />
-        <activity android:name=".car_services" />
-        <activity android:name=".maid_service" />
+        <activity android:name=".carTasks" />
+        <activity android:name=".maidTask" />
         <activity android:name=".Service_Provider_Info" />
-        <activity android:name=".cleaning" />
+        <activity android:name=".cleaningTask" />
         <activity android:name=".repairingTask" />
         <activity android:name=".Splash_Screen">
             <intent-filter>

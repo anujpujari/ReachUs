@@ -22,7 +22,7 @@
     </string-array>
     <string-array name="carServices">
         <item>Car Washing</item>
-        <item>Car Reapiring</item>
+        <item>Car Repairing</item>
     </string-array>
     <string-array name="repairingServices">
         <item>Plumber</item>

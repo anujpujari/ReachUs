@@ -6,26 +6,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
-public class carpainterServices extends AppCompatActivity {
+public class allServices extends AppCompatActivity {
 
     RecyclerView recyclerView;
     FirebaseFirestore fStore;
@@ -33,13 +24,20 @@ public class carpainterServices extends AppCompatActivity {
     TextView ServiceName, ServiceDescription,ServicePrice;
 
     FirestoreRecyclerAdapter Adapter;
-
+    String value,mainValue;
+    Query query;
+    Bundle extras;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_carpainter_services);
 
+        extras = getIntent().getExtras();
+        if (extras != null) {
+            mainValue=extras.getString("mainKey");
+            value = extras.getString("key");
+        }
         ServiceName=findViewById(R.id.serviceName);
         ServiceDescription=findViewById(R.id.serviceDescription);
         ServicePrice=findViewById(R.id.servicePrice);
@@ -48,25 +46,49 @@ public class carpainterServices extends AppCompatActivity {
 
         fStore=FirebaseFirestore.getInstance();
 
-        Query query = fStore.collection("Services").whereEqualTo("secondaryJob", "Carpainter");
-
+        if(mainValue.equals("Repairing")){
+            if(value.equals("carpainterService")){
+                query = fStore.collection("Services").whereEqualTo("secondaryJob", "Carpainter");
+            }
+            else if(value.equals("plumberService")){
+                query = fStore.collection("Services").whereEqualTo("secondaryJob", "Plumber");
+            }
+            else if(value.equals("electricianService")){
+                query = fStore.collection("Services").whereEqualTo("secondaryJob", "Electrician");
+            }
+        }
+        else if(mainValue.equals("Maid")){
+            if(value.equals("utensilsCleaning")){
+                query = fStore.collection("Services").whereEqualTo("secondaryJob", "UtensilsCleaning");
+            }
+            else if(value.equals("clothesCleaning")){
+                query = fStore.collection("Services").whereEqualTo("secondaryJob", "ClothesCleaning");
+            }
+            else if(value.equals("homeCleaning")){
+                query = fStore.collection("Services").whereEqualTo("secondaryJob", "HomeCleaning");
+            }
+        }
+        else if(mainValue.equals("Car")){
+            if(value.equals("carRepairing")){
+                query = fStore.collection("Services").whereEqualTo("secondaryJob", "CarRepairing");
+            }
+            else if(value.equals("carWashing")){
+                query = fStore.collection("Services").whereEqualTo("secondaryJob", "CarWashing");
+            }
+        }
         FirestoreRecyclerOptions<Services> options=new FirestoreRecyclerOptions.Builder<Services>().setQuery(query,Services.class).build();
 
-        Adapter = new FirestoreRecyclerAdapter<Services, carpainterServices.ServicesViewHolder>(options) {
+        Adapter = new FirestoreRecyclerAdapter<Services, allServices.ServicesViewHolder>(options) {
             @NonNull
             @Override
-            public carpainterServices.ServicesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public allServices.ServicesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_design,parent,false);
-                return new carpainterServices.ServicesViewHolder(view);
+                return new allServices.ServicesViewHolder(view);
             }
 
             @Override
-            protected void onBindViewHolder(@NonNull carpainterServices.ServicesViewHolder holder, int position, @NonNull Services model) {;
-                if(model.getMainJob().equals("Repairing Service")){
-                    if(model.getSecondaryJob().equals("Carpainter")) {
-                        holder.initializeValues(model.getMainJob(), model.getSecondaryJob(),model.getDescription(),model.getPrice());
-                    }
-                }
+            protected void onBindViewHolder(@NonNull allServices.ServicesViewHolder holder, int position, @NonNull Services model) {;
+            holder.initializeValues(model.getMainJob(), model.getSecondaryJob(),model.getDescription(),model.getPrice());
             }
         };
         recyclerView.setHasFixedSize(true);

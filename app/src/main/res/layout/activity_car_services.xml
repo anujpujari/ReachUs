@@ -29,6 +29,7 @@
                     android:src="@drawable/broom"
                     android:layout_marginRight="20dp"/>
                 <TextView
+                    android:id="@+id/carRepairing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Car Repairing"
@@ -59,9 +60,10 @@
                     android:src="@drawable/broom"
                     android:layout_marginRight="20dp"/>
                 <TextView
+                    android:id="@+id/carWashing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Car Repairing"
+                    android:text="Car Washing"
                     android:textSize="30dp"
                     android:fontFamily="@font/font11"
                     android:layout_gravity="center"

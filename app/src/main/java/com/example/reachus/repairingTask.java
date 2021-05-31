@@ -1,21 +1,16 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class repairingTask extends AppCompatActivity {
 
     TextView carpainter,electrician,plumber;
-
+    String whichService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,14 +20,33 @@ public class repairingTask extends AppCompatActivity {
         carpainter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),carpainterServices.class));
+                whichService="carpainterService";
+                Intent intent = new Intent(getApplicationContext(), allServices.class);
+                intent.putExtra("mainKey", "Repairing");
+                intent.putExtra("key", "carpainterService");
+                startActivity(intent);
             }
         });
         plumber=findViewById(R.id.plumber);
         plumber.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),plumberServices.class));
+                whichService="plumberService";
+                Intent intent = new Intent(getApplicationContext(), allServices.class);
+                intent.putExtra("mainKey", "Repairing");
+                intent.putExtra("key", "plumberService");
+                startActivity(intent);
+            }
+        });
+        electrician=findViewById(R.id.electrician);
+        electrician.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                whichService="plumberService";
+                Intent intent = new Intent(getApplicationContext(), allServices.class);
+                intent.putExtra("mainKey", "Repairing");
+                intent.putExtra("key", "electricianService");
+                startActivity(intent);
             }
         });
     }

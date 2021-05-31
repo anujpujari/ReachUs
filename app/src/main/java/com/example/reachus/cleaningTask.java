@@ -9,11 +9,11 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class maid_service extends AppCompatActivity {
+public class cleaningTask extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_maid_service);
+        setContentView(R.layout.activity_cleaning);
     }
 }

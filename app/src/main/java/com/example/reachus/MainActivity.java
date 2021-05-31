@@ -7,12 +7,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -41,19 +39,19 @@ public class MainActivity extends AppCompatActivity {
         maid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,maid_service.class));
+                startActivity(new Intent(MainActivity.this, maidTask.class));
             }
         });
         carServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,car_services.class));
+                startActivity(new Intent(MainActivity.this, carTasks.class));
             }
         });
         cleaning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,cleaning.class));
+                startActivity(new Intent(MainActivity.this, cleaningTask.class));
             }
         });
         repairing.setOnClickListener(new View.OnClickListener() {
