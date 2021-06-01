@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
-        <activity android:name=".plumberServices"></activity>
+        <activity android:name=".BookService"></activity>
+        <activity android:name=".plumberServices" />
         <activity android:name=".allServices" />
         <activity android:name=".Service_Provider_finished" />
         <activity android:name=".Service_Provider_step_4" />

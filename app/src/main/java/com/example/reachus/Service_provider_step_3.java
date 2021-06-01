@@ -3,6 +3,7 @@ package com.example.reachus;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -127,7 +128,8 @@ public class Service_provider_step_3 extends AppCompatActivity {
 
         userId=mAuth.getCurrentUser().getUid();
         FirebaseFirestore db=FirebaseFirestore.getInstance();
-        DocumentReference AddressDocument = db.collection("provider").document(userId);
+        DocumentReference AddressDocument = db.collection("provider").document("userId"+userId);
+        DocumentReference ServiceStorage = db.collection("Services").document("userId"+userId);
 
         Map<String,Object> provider = new HashMap<>();
         provider.put("StoreName", Storename);
@@ -136,6 +138,8 @@ public class Service_provider_step_3 extends AppCompatActivity {
         provider.put("Address_2", addr2);
         provider.put("City", cityName);
         provider.put("District", districtName);
+
+        ServiceStorage.set(provider,SetOptions.merge());
 
         AddressDocument.collection("AddressCollection").document("address").set(provider,SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override

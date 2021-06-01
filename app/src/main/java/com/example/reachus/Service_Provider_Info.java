@@ -99,11 +99,16 @@ public class Service_Provider_Info extends AppCompatActivity {
         userId=mAuth.getCurrentUser().getUid();
         FirebaseFirestore db=FirebaseFirestore.getInstance();
 
-        DocumentReference NameDocument = db.collection("provider").document(userId);
+        DocumentReference NameDocument = db.collection("provider").document("userId"+userId);
+        DocumentReference ServiceStorage = db.collection("Services").document("userId"+userId);
 
         Map<String,Object> provider = new HashMap<>();
         provider.put("LegalName", LegalName);
 
+        ServiceStorage.set(provider, SetOptions.merge());
+        Map<String,Object> field=new HashMap<>();
+        field.put("userID",userId);
+        NameDocument.set(field,SetOptions.merge());
         NameDocument.collection("NameCollection").document("Name").set(provider, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {

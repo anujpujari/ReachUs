@@ -97,7 +97,7 @@ public class Service_Provider_step_4 extends AppCompatActivity {
 
         String userId=mAuth.getCurrentUser().getUid();
         FirebaseFirestore db=FirebaseFirestore.getInstance();
-        DocumentReference BankDocument = db.collection("provider").document(userId);
+        DocumentReference BankDocument = db.collection("provider").document("userId"+userId);
 
         Map<String,Object> BankDetails = new HashMap<>();
         BankDetails.put("AccountName",accountName);

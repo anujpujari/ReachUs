@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +39,7 @@ public class allServices extends AppCompatActivity {
         if (extras != null) {
             mainValue=extras.getString("mainKey");
             value = extras.getString("key");
+            Log.d("Values", mainValue+" "+value);
         }
         ServiceName=findViewById(R.id.serviceName);
         ServiceDescription=findViewById(R.id.serviceDescription);
@@ -88,7 +91,7 @@ public class allServices extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull allServices.ServicesViewHolder holder, int position, @NonNull Services model) {;
-            holder.initializeValues(model.getMainJob(), model.getSecondaryJob(),model.getDescription(),model.getPrice());
+            holder.initializeValues(model.getMainJob(), model.getSecondaryJob(),model.getDescription(),model.getPrice(),model.getUserID());
             }
         };
         recyclerView.setHasFixedSize(true);
@@ -104,11 +107,19 @@ public class allServices extends AppCompatActivity {
             super(itemView);
             view=itemView;
         }
-        void initializeValues(String mainJob,String secondaryjob,String Description,String Price){
+        void initializeValues(String mainJob,String secondaryjob,String Description,String Price,String userID){
             ServiceName=(TextView) view.findViewById(R.id.serviceName);
             ServicePrice=(TextView) view.findViewById(R.id.servicePrice);
             ServiceDescription=(TextView) view.findViewById(R.id.serviceDescription);
             ServiceName.setText(mainJob);
+            ServiceName.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getApplicationContext(), BookService.class);
+                    intent.putExtra("userId", userID);
+                    startActivity(intent);
+                }
+            });
             ServiceDescription.setText(Description);
             ServicePrice.setText(Price);
         }
