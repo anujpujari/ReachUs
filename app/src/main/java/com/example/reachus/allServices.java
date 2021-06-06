@@ -1,10 +1,5 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
@@ -88,10 +88,10 @@ public class allServices extends AppCompatActivity {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_design,parent,false);
                 return new allServices.ServicesViewHolder(view);
             }
-
             @Override
             protected void onBindViewHolder(@NonNull allServices.ServicesViewHolder holder, int position, @NonNull Services model) {;
             holder.initializeValues(model.getMainJob(), model.getSecondaryJob(),model.getDescription(),model.getPrice(),model.getUserID());
+            Log.d("data fetched", model.getMainJob());
             }
         };
         recyclerView.setHasFixedSize(true);
@@ -107,7 +107,7 @@ public class allServices extends AppCompatActivity {
             super(itemView);
             view=itemView;
         }
-        void initializeValues(String mainJob,String secondaryjob,String Description,String Price,String userID){
+        void initializeValues(String mainJob,String secondaryjob,String Description,String Price,String provideruserID){
             ServiceName=(TextView) view.findViewById(R.id.serviceName);
             ServicePrice=(TextView) view.findViewById(R.id.servicePrice);
             ServiceDescription=(TextView) view.findViewById(R.id.serviceDescription);
@@ -116,7 +116,7 @@ public class allServices extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getApplicationContext(), BookService.class);
-                    intent.putExtra("userId", userID);
+                    intent.putExtra("provideruserId", provideruserID);
                     startActivity(intent);
                 }
             });

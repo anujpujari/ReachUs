@@ -1,14 +1,14 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
@@ -73,6 +73,9 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuitem.getItemId())
                 {
                     case  R.id.Dashboard:
+                        startActivity(new Intent(getApplicationContext(), userBookings.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     case  R.id.Profilee:
                         startActivity(new Intent(getApplicationContext(),Profile.class));
                         overridePendingTransition(0,0);

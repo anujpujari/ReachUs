@@ -1,8 +1,5 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -78,6 +78,9 @@ public class Profile extends AppCompatActivity {
                 switch (menuitem.getItemId())
                 {
                     case  R.id.Dashboard:
+                        startActivity(new Intent(getApplicationContext(), userBookings.class));
+                        overridePendingTransition(0,0);
+                        return true;
                     case  R.id.Profilee:
                         return true;
                     case R.id.home:

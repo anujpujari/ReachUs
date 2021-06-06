@@ -1,8 +1,5 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +11,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -174,7 +174,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             carServiceInfo.put("secondaryJob",car.replaceAll("\\s", ""));
             carServiceInfo.put("Description", descriptionText);
             carServiceInfo.put("Price", priceText);
-            ServiceStorage.set(carServiceInfo, SetOptions.merge());
+            ServiceStorage.set(carServiceInfo);
         }
         else if(firstJob.equals("Repairing Service")){
             Map<String,Object> repairingServiceInfo = new HashMap<>();
@@ -183,7 +183,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             repairingServiceInfo.put("secondaryJob",repairing.replaceAll("\\s",""));
             repairingServiceInfo.put("Description", descriptionText);
             repairingServiceInfo.put("Price", priceText);
-            ServiceStorage.set(repairingServiceInfo, SetOptions.merge());
+            ServiceStorage.set(repairingServiceInfo);
         }
         else if(firstJob.equals("Maid Service")){
             Map<String,Object> maidServiceInfo = new HashMap<>();
@@ -192,7 +192,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             maidServiceInfo.put("secondaryJob",maid.replaceAll("\\s", ""));
             maidServiceInfo.put("Description", descriptionText);
             maidServiceInfo.put("Price", priceText);
-            ServiceStorage.set(maidServiceInfo, SetOptions.merge());
+            ServiceStorage.set(maidServiceInfo);
         }
         else if(firstJob.equals("Cleaning Service")){
             Map<String,Object> cleaningServiceInfo = new HashMap<>();
@@ -201,7 +201,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             cleaningServiceInfo.put("secondaryJob",cleaning.replaceAll("\\s",""));
             cleaningServiceInfo.put("Description", descriptionText);
             cleaningServiceInfo.put("Price", priceText);
-            ServiceStorage.set(cleaningServiceInfo, SetOptions.merge());
+            ServiceStorage.set(cleaningServiceInfo);
         }
 
         ServiceInformation.collection("ServiceCollection").document("Service").set(ServiceInfo, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -216,7 +216,6 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             public void onFailure(@NonNull Exception e) {
                 Log.w(TAG, "Error adding document", e);
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
-
             }
         });
 

@@ -1,13 +1,13 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,7 +31,7 @@ public class BookService extends AppCompatActivity {
 
         extras = getIntent().getExtras();
         if (extras != null) {
-            value = extras.getString("userId");
+            value = extras.getString("provideruserId");
             Log.d("UserId is", value);
         }
 
@@ -67,7 +67,9 @@ public class BookService extends AppCompatActivity {
         bookService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(BookService.this,"Service Booked", Toast.LENGTH_LONG);
+                Intent intent = new Intent(getApplicationContext(), timeForService.class);
+                intent.putExtra("provideruserId", value);
+                startActivity(intent);
             }
         });
     }
