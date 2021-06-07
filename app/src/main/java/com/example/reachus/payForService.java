@@ -17,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
-public class payForService extends AppCompatActivity {
+public class    payForService extends AppCompatActivity {
 
     int Order=1;
     int min=0,max=500;

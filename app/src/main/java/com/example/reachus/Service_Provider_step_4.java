@@ -25,6 +25,7 @@ import java.util.Map;
 
 public class Service_Provider_step_4 extends AppCompatActivity {
 
+    String  statusofprovider;
     EditText accName,accNumber,ifscCode;
     Spinner bankName;
     Button finish;
@@ -109,8 +110,13 @@ public class Service_Provider_step_4 extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d(TAG, "DocumentSnapshot successfully written!");
-                startActivity(new Intent(getApplicationContext(), Service_Provider_finished.class));
+                startActivity(new Intent(getApplicationContext(), complete_profile.class));
                 Toast.makeText(getApplicationContext(),"Bank details Sucessfully Stored",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(), complete_profile.class);
+                String status = "success";
+                intent.putExtra("BEP", status);
+                startActivity(intent);
+                finish();
 
             }
         }).addOnFailureListener(new OnFailureListener() {

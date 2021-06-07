@@ -30,8 +30,8 @@
         <item>Carpainter</item>
     </string-array>
     <string-array name="cleaningServices">
-        <item>Part Time</item>
-        <item>Task Based</item>
+        <item>Home Sanitizing</item>
+        <item>Vehicle Sanitizing</item>
     </string-array>
     <string-array name="maidServices">
         <item>Utensils Cleaning</item>

@@ -45,7 +45,6 @@ public class registration_page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         mAuth = FirebaseAuth.getInstance();
-
         setContentView(R.layout.activity_registration_page);
 
         p_number = findViewById(R.id.phn_number);

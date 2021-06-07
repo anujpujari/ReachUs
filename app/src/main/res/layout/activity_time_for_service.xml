@@ -18,12 +18,13 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/input_design"
             android:padding="10dp">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Select Dtae For Service"
                 android:fontFamily="@font/font10"
-                android:textSize="25dp"/>
+                android:text="Select Date For Service"
+                android:textSize="25dp" />
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"

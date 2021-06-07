@@ -11,12 +11,67 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
+        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:text="Cleaning services will be displayed here"
-        />
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            card_view:cardCornerRadius="10dp"
+            android:backgroundTint="#E4E4E4">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:textAlignment="center">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/broom"
+                    android:layout_marginRight="20dp"/>
+                <TextView
+                    android:id="@+id/homesantizing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Home Sanitizing"
+                    android:textSize="30dp"
+                    android:fontFamily="@font/font11"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="1dp"
+            card_view:cardCornerRadius="10dp"
+            android:backgroundTint="#E4E4E4">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:textAlignment="center">
+                <ImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/broom"
+                    android:layout_marginRight="20dp"/>
+                <TextView
+                    android:id="@+id/vehiclesantizing"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Vehicle Sanitizing"
+                    android:textSize="30dp"
+                    android:fontFamily="@font/font11"
+                    android:layout_gravity="center"
+                    android:textColor="@color/black"
+                    />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
 </LinearLayout>

@@ -190,7 +190,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/font9"
-                        android:text="Cleaning Service"
+                        android:text="Sanitizing Service"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textSize="15dp" />

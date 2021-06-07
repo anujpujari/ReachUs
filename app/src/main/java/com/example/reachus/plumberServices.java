@@ -29,7 +29,6 @@ public class plumberServices extends AppCompatActivity {
     FirebaseFirestore fStore;
 
     TextView ServiceName, ServiceDescription,ServicePrice;
-
     FirestoreRecyclerAdapter Adapter;
 
     @Override

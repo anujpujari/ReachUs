@@ -98,6 +98,7 @@
                 android:textSize="20dp"
                 android:layout_marginLeft="5dp"/>
             <TextView
+                android:id="@+id/Rateus"
                 android:drawableEnd="@drawable/arrow_right"
                 android:drawableTint="@color/purple_700"
                 android:layout_width="match_parent"

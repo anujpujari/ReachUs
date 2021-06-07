@@ -20,7 +20,8 @@
         <activity android:name=".plumberServices" />
         <activity android:name=".allServices" />
         <activity android:name=".Service_Provider_finished" />
-        <activity android:name=".Service_Provider_step_4" />
+        <activity android:name=".Service_Provider_step_4" >
+           </activity>
         <activity android:name=".Service_Provider_Step_2" />
         <activity android:name=".Service_provider_step_3" />
         <activity android:name=".complete_profile" />

@@ -78,7 +78,15 @@ public class allServices extends AppCompatActivity {
             else if(value.equals("carWashing")){
                 query = fStore.collection("Services").whereEqualTo("secondaryJob", "CarWashing");
             }
+        }else if(mainValue.equals("Sanitizing")){
+            if(value.equals("homeSanitizing")){
+                query = fStore.collection("Services").whereEqualTo("secondaryJob", "HomeSanitizing");
+            }
+            else if(value.equals("vehicleSanitizing")){
+                query = fStore.collection("Services").whereEqualTo("secondaryJob", "vehicleSanitizing");
+            }
         }
+
         FirestoreRecyclerOptions<Services> options=new FirestoreRecyclerOptions.Builder<Services>().setQuery(query,Services.class).build();
 
         Adapter = new FirestoreRecyclerAdapter<Services, allServices.ServicesViewHolder>(options) {
