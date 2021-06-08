@@ -2,15 +2,24 @@ package com.example.reachus;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -20,11 +29,18 @@ public class MainActivity extends AppCompatActivity {
     int[] images = {R.drawable.one, R.drawable.two, R.drawable.three, R.drawable.four};
     ImageView cleaning,repairing,maid,carServices;
     TextView cleaning_text,repairing_text;
+    FirebaseFirestore fStore;
+    FirebaseAuth mAuth;
+    String userId;
+    boolean userAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        fStore=FirebaseFirestore.getInstance();
+        mAuth=FirebaseAuth.getInstance();
+        userId=mAuth.getCurrentUser().getUid();
 
         cleaning=findViewById(R.id.cleaning_image);
         cleaning_text=findViewById(R.id.cleaning_text);
@@ -36,28 +52,59 @@ public class MainActivity extends AppCompatActivity {
 
         maid=findViewById(R.id.maid_image);
 
+        DocumentReference docRef=fStore.collection("users").document(userId);
+        docRef.collection("User Address").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d("Data", document.getId() + " => " + document.getData());
+                        Log.d("Address", document.get("userAddress")+"");
+                        userAddress= (boolean) document.get("userAddress");
+                    }
+                } else {
+                    Log.w("Data", "Error getting documents.", task.getException());
+                }
+            }
+        });
+
         maid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, maidTask.class));
+                if(userAddress)
+                    startActivity(new Intent(MainActivity.this, maidTask.class));
+                else
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG);
             }
         });
         carServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, carTasks.class));
+                if(userAddress)
+                    startActivity(new Intent(MainActivity.this, carTasks.class));
+                else
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG);
+
             }
         });
         cleaning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, cleaningTask.class));
+                if(userAddress)
+                    startActivity(new Intent(MainActivity.this, cleaningTask.class));
+                else
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG);
+
             }
         });
         repairing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,repairingTask.class));
+                if(userAddress)
+                    startActivity(new Intent(MainActivity.this,repairingTask.class));
+                else
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG);
+
             }
         });
 

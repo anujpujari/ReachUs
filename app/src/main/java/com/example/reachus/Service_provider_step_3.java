@@ -1,17 +1,15 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.Service;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,8 +27,6 @@ public class Service_provider_step_3 extends AppCompatActivity {
     private String Storename,pin,addr1,addr2,cityName,districtName,userId;
     private Button continuestep3;
     boolean valid;
-
-
 
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;
