@@ -28,7 +28,6 @@ public class BookService extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_service);
-
         extras = getIntent().getExtras();
         if (extras != null) {
             value = extras.getString("provideruserId");
