@@ -1,8 +1,5 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -12,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -99,6 +99,10 @@ public class Service_Provider_step_4 extends AppCompatActivity {
         String userId=mAuth.getCurrentUser().getUid();
         FirebaseFirestore db=FirebaseFirestore.getInstance();
         DocumentReference BankDocument = db.collection("provider").document("userId"+userId);
+        DocumentReference isServiceProvider=db.collection("users").document(userId);
+        Map<String, Object> user=new HashMap<>();
+        user.put("isServiceProvider", true);
+        isServiceProvider.set(user, SetOptions.merge());
 
         Map<String,Object> BankDetails = new HashMap<>();
         BankDetails.put("AccountName",accountName);
@@ -117,7 +121,6 @@ public class Service_Provider_step_4 extends AppCompatActivity {
                 intent.putExtra("BEP", status);
                 startActivity(intent);
                 finish();
-
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

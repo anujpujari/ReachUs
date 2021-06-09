@@ -149,6 +149,7 @@ public class Service_provider_step_3 extends AppCompatActivity {
             }
         });
         startActivity(new Intent(getApplicationContext(), Service_Provider_step_4.class ));
+        finish();
         Toast.makeText(Service_provider_step_3.this,"User Registered successfully", Toast.LENGTH_LONG);
     }
 }

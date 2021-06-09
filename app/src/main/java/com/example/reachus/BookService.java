@@ -52,10 +52,10 @@ public class BookService extends AppCompatActivity {
                     for (QueryDocumentSnapshot document : task.getResult()) {
                         if(document.getString("userID").equals(value)){
                             bookStoreName.setText(document.getString("StoreName"));
-                            bookProviderName.setText(document.getString("LegalName"));
                             bookServiceDescription.setText(document.getString("Description"));
-                            bookServiceAddress.setText(document.getString("Address_1"+" "+"Address_2"));
-                            bookServicePrice.setText(document.getString("Price"));
+                            bookServiceAddress.setText(document.getString("Address_1")+","+" "+document.getString("Address_2")+","+" "+
+                                    document.getString("City")+"-"+document.getString("pincode")+","+" "+document.getString("District")+","+" Maharashtra"+","+" India");
+                            bookServicePrice.setText("RS"+document.getString("Price"));
                         }
                     }
                 } else {

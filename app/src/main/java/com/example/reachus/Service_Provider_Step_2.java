@@ -209,7 +209,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
                 Log.d(TAG, "DocumentSnapshot successfully written!");
                 startActivity(new Intent(getApplicationContext(), Service_provider_step_3.class));
-                Toast.makeText(getApplicationContext(), "Service info Added", Toast.LENGTH_SHORT).show();
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override

@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
-        <activity android:name=".inputUserAddress"></activity>
+        <activity android:name=".serviceBookings"></activity>
+        <activity android:name=".inputUserAddress" />
         <activity android:name=".userBookings" />
         <activity android:name=".payForService" />
         <activity android:name=".timeForService" />
@@ -21,7 +22,7 @@
         <activity android:name=".plumberServices" />
         <activity android:name=".allServices" />
         <activity android:name=".Service_Provider_finished" />
-        <activity android:name=".Service_Provider_step_4"></activity>
+        <activity android:name=".Service_Provider_step_4" />
         <activity android:name=".Service_Provider_Step_2" />
         <activity android:name=".Service_provider_step_3" />
         <activity android:name=".complete_profile" />

@@ -14,6 +14,23 @@ public class Services {
     private String City;
     private String District;
 
+    public Services(){}
+
+    public Services(String mainJob, String secondaryJob,String Price,String Description,String StoreName, String userID,String pincode, String LegalName, String Address_1, String Address_2, String City, String District){
+        this.mainJob=mainJob;
+        this.secondaryJob=secondaryJob;
+        this.Price=Price;
+        this.Description=Description;
+        this.StoreName=StoreName;
+        this.userID=userID;
+        this.pincode=pincode;
+        this.LegalName=LegalName;
+        this.Address_1=Address_1;
+        this.Address_2=Address_2;
+        this.City=City;
+        this.District=District;
+    }
+
     public String getUserID() {
         return userID;
     }
@@ -76,15 +93,6 @@ public class Services {
 
     public void setDistrict(String district) {
         District = district;
-    }
-
-    public Services(){}
-
-    public Services(String mainJob, String secondaryJob,String Price,String Description){
-        this.mainJob=mainJob;
-        this.secondaryJob=secondaryJob;
-        this.Price=Price;
-        this.Description=Description;
     }
 
     public String getSecondaryJob() {

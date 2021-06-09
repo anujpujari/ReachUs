@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -53,7 +52,7 @@ public class    payForService extends AppCompatActivity {
 
         bookingId=userId.substring(0,7)+BookingTime.replace(":", "").replace("PM", "").replace("AM","");
 
-        DocumentReference BookingInformation = fStore.collection("Services").document("userId"+providerUserId).collection("bookingId"+bookingId).document("Booking");
+        CollectionReference BookingInformation = fStore.collection("Services").document("userId"+providerUserId).collection("Bookings");
         CollectionReference UserServices = fStore.collection("ServicesBookedByUser").document("userId"+userId).collection("Bookings");
         serviceBooked.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,8 +63,11 @@ public class    payForService extends AppCompatActivity {
                 BookingInfo.put("BookingDate", BookingDate);
                 BookingInfo.put("BookingTime", BookingTime);
                 BookingInfo.put("bookingId", bookingId);
+                BookingInfo.put("StoreName", StoreName);
+                BookingInfo.put("mainJob", mainJob);
+                BookingInfo.put("secondaryJob", secondaryJob);
 
-                BookingInformation.set(BookingInfo);
+                BookingInformation.add(BookingInfo);
 
                 Map<String,Object> ServiceBookedInfo = new HashMap<>();
                 ServiceBookedInfo.put("userId", userId);

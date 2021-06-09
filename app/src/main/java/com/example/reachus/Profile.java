@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -28,6 +29,7 @@ public class Profile extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userId,s_name,s_email;
     TextView fullName,Email;
+    boolean isServiceProvider;
     private static final String TAG = "EmailPassword";
 
     @SuppressLint("WrongViewCast")
@@ -59,11 +61,27 @@ public class Profile extends AppCompatActivity {
                 }
             }
         });
+        documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if(task.isSuccessful()){
+                    DocumentSnapshot document=task.getResult();
+                    if (document.exists()) {
+                        Log.d("Data", "DocumentSnapshot data: " + document.getData());
+                        isServiceProvider=(boolean)document.get("isServiceProvider");
+                    } else {
+                        Log.d("data", "No such document");
+                    }
+                }
+            }
+        });
 
         completeProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),complete_profile.class));
+                Intent intent=new Intent(getApplicationContext(),complete_profile.class);
+                intent.putExtra("isServiceProvider", isServiceProvider);
+                startActivity(intent);
             }
         });
         //Botton Navigation

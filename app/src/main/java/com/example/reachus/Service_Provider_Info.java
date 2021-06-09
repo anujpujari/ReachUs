@@ -1,8 +1,5 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,15 +10,14 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
@@ -114,6 +110,7 @@ public class Service_Provider_Info extends AppCompatActivity {
             public void onSuccess(Void aVoid) {
                 Log.d(TAG, "DocumentSnapshot added");
                 startActivity(new Intent(getApplicationContext(),Service_Provider_Step_2.class));
+                finish();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
