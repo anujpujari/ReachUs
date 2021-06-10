@@ -57,7 +57,7 @@
             tools:layout_editor_absoluteY="70dp" />
 
         <EditText
-            android:id="@+id/PI_name"
+            android:id="@+id/PI_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10sp"/>
