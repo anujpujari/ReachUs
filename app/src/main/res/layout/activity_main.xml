@@ -36,7 +36,7 @@
             app:sliderIndicatorRadius="2dp"
             app:sliderIndicatorSelectedColor="#5A5A5A"
             app:sliderIndicatorUnselectedColor="#FFF"
-            app:sliderScrollTimeInSec="1"
+            app:sliderScrollTimeInSec="3"
             app:sliderStartAutoCycle="true">
 
         </com.smarteist.autoimageslider.SliderView>

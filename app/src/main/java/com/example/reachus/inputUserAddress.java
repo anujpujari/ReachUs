@@ -66,7 +66,7 @@ public class inputUserAddress extends AppCompatActivity {
                 userAddress.put("userDistrict", userDistrict.getText().toString());
 
                 documentReference.collection("User Address").document("Address").set(userAddress, SetOptions.merge());
-                Toast.makeText(getApplicationContext(),"Address Added", Toast.LENGTH_LONG);
+                Toast.makeText(getApplicationContext(),"Address Added", Toast.LENGTH_LONG).show();;
             }
         });
     }

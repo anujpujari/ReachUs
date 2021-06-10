@@ -14,9 +14,10 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class complete_profile extends AppCompatActivity {
 
-    private TextView beInsider,logout,youraddresses,insiderOrders;
+    private TextView beInsider,logout,youraddresses,insiderOrders,personalInform;
     String becomeinsider,userId,isInsider;
     private static final String TAG = "Storing data";
+
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
     boolean isServiceProvider;
@@ -34,6 +35,7 @@ public class complete_profile extends AppCompatActivity {
         beInsider=findViewById(R.id.be_insider);
         youraddresses=findViewById(R.id.yourAddresses);
         insiderOrders=findViewById(R.id.insiderOrders);
+        personalInform = findViewById(R.id.personalinfo);
         userId=mAuth.getCurrentUser().getUid();
 
         insiderOrders=findViewById(R.id.insiderOrders);
@@ -48,7 +50,7 @@ public class complete_profile extends AppCompatActivity {
                 if(!isServiceProvider)
                     startActivity(new Intent(getApplicationContext(),Service_Provider_Info.class));
                 else
-                    Toast.makeText(getApplicationContext(), "You are already a Service Provide", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "You are already a Service Provide", Toast.LENGTH_LONG).show();
             }
         });
         insiderOrders.setOnClickListener(new View.OnClickListener() {
@@ -73,6 +75,13 @@ public class complete_profile extends AppCompatActivity {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(), Login_page.class));
                 finish();
+            }
+        });
+
+        personalInform.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }

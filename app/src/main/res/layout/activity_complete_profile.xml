@@ -67,6 +67,7 @@
                 android:layout_marginLeft="5dp"
                 android:textSize="20dp"/>
             <TextView
+                android:id="@+id/loginandsecurity"
                 android:drawableEnd="@drawable/arrow_right"
                 android:drawableTint="@color/purple_700"
                 android:layout_width="match_parent"
@@ -90,6 +91,8 @@
                 android:padding="7dp"
                 android:layout_margin="5dp"/>
             <TextView
+
+                 android:id="@+id/personalinfo"
                 android:drawableEnd="@drawable/arrow_right"
                 android:drawableTint="@color/purple_700"
                 android:layout_width="match_parent"

@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 if(userAddress)
                     startActivity(new Intent(MainActivity.this, maidTask.class));
                 else
-                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG).show();
             }
         });
         carServices.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 if(userAddress)
                     startActivity(new Intent(MainActivity.this, carTasks.class));
                 else
-                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 if(userAddress)
                     startActivity(new Intent(MainActivity.this, cleaningTask.class));
                 else
-                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG).show();
 
             }
         });
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
                 if(userAddress)
                     startActivity(new Intent(MainActivity.this,repairingTask.class));
                 else
-                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG).show();
 
             }
         });
