@@ -33,7 +33,7 @@ public class timeForService extends AppCompatActivity implements DatePickerDialo
     FirebaseAuth mAuth;
     String bookingDate, bookingTime;
     TextView Date,Time;
-    String bookingId,providerUserId,storeName,mainJob,secondaryJob;
+    String bookingId,providerUserId,storeName,mainJob,secondaryJob,priceOfService;
     Bundle extras;
 
     @Override
@@ -44,6 +44,7 @@ public class timeForService extends AppCompatActivity implements DatePickerDialo
         extras = getIntent().getExtras();
         if (extras != null) {
             providerUserId= extras.getString("provideruserId");
+            priceOfService=extras.getString("priceOfService");
             Log.d("Values", bookingId+" "+providerUserId);
         }
 
@@ -105,6 +106,7 @@ public class timeForService extends AppCompatActivity implements DatePickerDialo
                 intent.putExtra("secondaryJob", secondaryJob);
                 intent.putExtra("BookingDate", bookingDate);
                 intent.putExtra("BookingTime", bookingTime);
+                intent.putExtra("priceOfService", priceOfService);
                 startActivity(intent);
             }
         });

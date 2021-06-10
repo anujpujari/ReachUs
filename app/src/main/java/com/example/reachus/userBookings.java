@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,6 +32,7 @@ public class userBookings extends AppCompatActivity {
     FirestoreRecyclerAdapter Adapter;
     RecyclerView recyclerView;
     TextView bookingDate,bookingTime,StoreName, mainJob,secondaryJob,bookingDateTime;
+    View cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class userBookings extends AppCompatActivity {
         setContentView(R.layout.activity_user_bookings);
         fStore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
+
 
         recyclerView=findViewById(R.id.recyclerViewBookings);
         userId=mAuth.getCurrentUser().getUid();
@@ -85,10 +88,18 @@ public class userBookings extends AppCompatActivity {
                 StoreName=view.findViewById(R.id.StoreNameBooking);
                 mainJob=view.findViewById(R.id.mainJobBooking);
                 bookingDateTime=view.findViewById(R.id.bookingDateTime);
+                cardView=view.findViewById(R.id.cardView);
 
                 StoreName.setText(Storename);
                 mainJob.setText(mainjob);
                 bookingDateTime.setText(bookingdate+" "+bookingtime);
+
+                cardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(getApplicationContext(),"Redireting", Toast.LENGTH_LONG).show();
+                    }
+                });
         }
     }
     @Override

@@ -13,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
-        <activity android:name=".serviceBookings"></activity>
+        <activity android:name=".bookingDetails"></activity>
+        <activity android:name=".serviceBookings" />
         <activity android:name=".inputUserAddress" />
         <activity android:name=".userBookings" />
         <activity android:name=".payForService" />

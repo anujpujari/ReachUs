@@ -68,7 +68,8 @@ public class Profile extends AppCompatActivity {
                     DocumentSnapshot document=task.getResult();
                     if (document.exists()) {
                         Log.d("Data", "DocumentSnapshot data: " + document.getData());
-                        isServiceProvider=(boolean)document.get("isServiceProvider");
+                        if(!document.getData().isEmpty())
+                            isServiceProvider=(boolean)document.get("isServiceProvider");
                     } else {
                         Log.d("data", "No such document");
                     }

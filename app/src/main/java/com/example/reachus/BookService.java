@@ -23,6 +23,7 @@ public class BookService extends AppCompatActivity {
     FirebaseAuth mAuth;
     String value;
     Bundle extras;
+    String price;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,8 @@ public class BookService extends AppCompatActivity {
                             bookServiceDescription.setText(document.getString("Description"));
                             bookServiceAddress.setText(document.getString("Address_1")+","+" "+document.getString("Address_2")+","+" "+
                                     document.getString("City")+"-"+document.getString("pincode")+","+" "+document.getString("District")+","+" Maharashtra"+","+" India");
-                            bookServicePrice.setText("RS"+document.getString("Price"));
+                            price=document.getString("Price");
+                            bookServicePrice.setText("RS"+price);
                         }
                     }
                 } else {
@@ -68,6 +70,7 @@ public class BookService extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), timeForService.class);
                 intent.putExtra("provideruserId", value);
+                intent.putExtra("priceOfService", price);
                 startActivity(intent);
             }
         });
