@@ -1,5 +1,6 @@
 package com.example.reachus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -97,6 +98,14 @@ public class userBookings extends AppCompatActivity {
                 cardView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        Intent intent=new Intent(getApplicationContext(), bookingDetails.class);
+                        intent.putExtra("BookingId",BookingId);
+                        intent.putExtra("Storename",Storename);
+                        intent.putExtra("mainJob", mainjob);
+                        intent.putExtra("bookingdate",bookingdate);
+                        intent.putExtra("bookingtime",bookingtime);
+                        intent.putExtra("providerUserId",providerUserId);
+                        startActivity(intent);
                         Toast.makeText(getApplicationContext(),"Redireting", Toast.LENGTH_LONG).show();
                     }
                 });
