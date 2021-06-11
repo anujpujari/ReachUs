@@ -18,7 +18,10 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -35,7 +38,7 @@ public class Personal_Information extends AppCompatActivity {
         Button subm;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
-    String userId;
+    String userId,old_email,pass;
     private static final String TAG = "Store Data";
 
     @Override
@@ -62,6 +65,8 @@ public class Personal_Information extends AppCompatActivity {
                         Log.d(TAG, document.getId() + " => " + document.getData());
                         name.setText(document.getString("fullName"));
                         email.setText(document.getString("Email"));
+                        old_email =document.getString("Email");
+                        pass = document.getString("Password");
                         phone.setText(document.getString("Phone"));
                     }
                 } else {
@@ -96,7 +101,33 @@ public class Personal_Information extends AppCompatActivity {
                         DocumentReference documentReference = fStore.collection("users").document(userId);
 
                         documentReference.update("fullName",name.getText().toString());
+
                         documentReference.update("Email",email.getText().toString());
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                        // Get auth credentials from the user for re-authentication
+                        AuthCredential credential = EmailAuthProvider
+                                .getCredential(old_email, pass); // Current Login Credentials \\
+                        // Prompt the user to re-provide their sign-in credentials
+                        user.reauthenticate(credential)
+                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<Void> task) {
+                                        Log.d(TAG, "User re-authenticated.");
+                                        //Now change your email address \\
+                                        //----------------Code for Changing Email Address----------\\
+                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                        user.updateEmail(email.getText().toString())
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        if (task.isSuccessful()) {
+                                                            Log.d(TAG, "User email address updated.");
+                                                        }
+                                                    }
+                                                });
+                                        //----------------------------------------------------------\\
+                                    }
+                                });
                         documentReference.update("Phone",phone.getText().toString());
                         documentReference.update("Age",age.getText().toString());
                         Toast.makeText(Personal_Information.this, "Values Changed", Toast.LENGTH_SHORT).show();
@@ -108,8 +139,7 @@ public class Personal_Information extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Do something when No button clicked
-                        Toast.makeText(getApplicationContext(),
-                                "No Button Clicked",Toast.LENGTH_SHORT).show();
+
                     }
                 });
 

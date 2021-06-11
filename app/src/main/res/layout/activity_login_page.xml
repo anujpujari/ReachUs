@@ -85,6 +85,8 @@
                     android:layout_margin="8dp"
                     android:hint="Password"
                     />
+
+
             <CheckBox
                 android:id="@+id/show_password"
                 android:layout_width="wrap_content"
@@ -92,6 +94,12 @@
                 android:text="Show Password"
                 android:layout_marginLeft="20dp"
                 />
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="gone"
+                android:id="@+id/pg1"/>
 
 
 

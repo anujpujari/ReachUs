@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,7 +32,7 @@ public class Login_page extends AppCompatActivity {
     private long pressedTime;
     private FirebaseAuth mAuth=null;
     FirebaseUser fuser;
-    ProgressDialog progress;
+    ProgressBar pg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,7 @@ public class Login_page extends AppCompatActivity {
         login = findViewById(R.id.login_button);
         forgot_pass = findViewById(R.id.forgotpasword_button);
         signup = findViewById(R.id.Sign_up_button);
+        pg = findViewById(R.id.pg1);
 
         show_pass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -84,10 +86,9 @@ public class Login_page extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progress.setMessage("Please Wait Loading...");
-                progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-                progress.setIndeterminate(true);
-                progress.show();
+
+               pg.setVisibility(View.VISIBLE);
+               pg.setIndeterminate(true);
                 signIn();
 
             }
@@ -111,7 +112,10 @@ public class Login_page extends AppCompatActivity {
         Log.d(TAG,"signin"+email);
         if (!validateform())
         {
+            pg.setVisibility(View.GONE);
             return;
+
+
         }
 
         s_email = email.getText().toString();
@@ -124,18 +128,21 @@ public class Login_page extends AppCompatActivity {
                         if (task.isSuccessful())
                         {
                             if(mAuth.getCurrentUser().isEmailVerified()){
-                                progress.dismiss();
+                                pg.setVisibility(View.GONE);
                                 Toast.makeText(Login_page.this,"Sign-In Sucessfull",Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(Login_page.this,MainActivity.class);
                                 startActivity(i);
                                 finish();
                             }
                             else{
+                                pg.setVisibility(View.GONE);
                                 Toast.makeText(Login_page.this,"Please Verify your Email First",Toast.LENGTH_SHORT).show();
                             }
                         }
                         else
                         {
+                            pg.setVisibility(View.GONE);
+
                             Log.w(TAG,"Failed to Sign-in",task.getException());
                             Toast.makeText(Login_page.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
                         }
