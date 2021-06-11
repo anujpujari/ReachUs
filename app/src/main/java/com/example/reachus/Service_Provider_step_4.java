@@ -55,7 +55,7 @@ public class Service_Provider_step_4 extends AppCompatActivity {
             public void onClick(View v) {
                 if(validate()==true)
                 {
-                    storedata();;
+                    storedata();
                 }
                 else
                 {
@@ -116,7 +116,7 @@ public class Service_Provider_step_4 extends AppCompatActivity {
                 Log.d(TAG, "DocumentSnapshot successfully written!");
                 startActivity(new Intent(getApplicationContext(), complete_profile.class));
                 Toast.makeText(getApplicationContext(),"Bank details Sucessfully Stored",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), complete_profile.class);
+                Intent intent = new Intent(getApplicationContext(), Service_Provider_finished.class);
                 String status = "success";
                 intent.putExtra("BEP", status);
                 startActivity(intent);
