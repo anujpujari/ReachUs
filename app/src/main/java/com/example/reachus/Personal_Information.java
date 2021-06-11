@@ -1,10 +1,5 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,33 +7,30 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.SetOptions;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Personal_Information extends AppCompatActivity {
-        EditText name,email,phone,age;
-        Button subm;
+    EditText name,email,phone,age;
+    Button subm;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
-    String userId,old_email,pass;
+    String userId;
     private static final String TAG = "Store Data";
 
     @Override
@@ -57,17 +49,17 @@ public class Personal_Information extends AppCompatActivity {
 
         userId=mAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("users").document(userId);
-        documentReference.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        documentReference.collection("users").document("Info").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
+                    DocumentSnapshot document=task.getResult();
+                    if(document.exists()) {
                         Log.d(TAG, document.getId() + " => " + document.getData());
                         name.setText(document.getString("fullName"));
                         email.setText(document.getString("Email"));
-                        old_email =document.getString("Email");
-                        pass = document.getString("Password");
                         phone.setText(document.getString("Phone"));
+                        age.setText(document.getString("Age"));
                     }
                 } else {
                     Log.w(TAG, "Error getting documents.", task.getException());
@@ -76,17 +68,11 @@ public class Personal_Information extends AppCompatActivity {
         });
 
 
-
-
         subm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Build an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(Personal_Information.this);
-
-                // Set a title for alert dialog
-
-                // Ask the final question
                 builder.setMessage("Are you sure u want to save the changes?");
 
                 // Set the alert dialog yes button click listener
@@ -98,39 +84,13 @@ public class Personal_Information extends AppCompatActivity {
                         fStore = FirebaseFirestore.getInstance();
                         userId = mAuth.getCurrentUser().getUid();
                         //Ha code ahee bg databse mse add cha
-                        DocumentReference documentReference = fStore.collection("users").document(userId);
-
-                        documentReference.update("fullName",name.getText().toString());
-
-                        documentReference.update("Email",email.getText().toString());
-                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        // Get auth credentials from the user for re-authentication
-                        AuthCredential credential = EmailAuthProvider
-                                .getCredential(old_email, pass); // Current Login Credentials \\
-                        // Prompt the user to re-provide their sign-in credentials
-                        user.reauthenticate(credential)
-                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<Void> task) {
-                                        Log.d(TAG, "User re-authenticated.");
-                                        //Now change your email address \\
-                                        //----------------Code for Changing Email Address----------\\
-                                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                                        user.updateEmail(email.getText().toString())
-                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                    @Override
-                                                    public void onComplete(@NonNull Task<Void> task) {
-                                                        if (task.isSuccessful()) {
-                                                            Log.d(TAG, "User email address updated.");
-                                                        }
-                                                    }
-                                                });
-                                        //----------------------------------------------------------\\
-                                    }
-                                });
-                        documentReference.update("Phone",phone.getText().toString());
-                        documentReference.update("Age",age.getText().toString());
-                        Toast.makeText(Personal_Information.this, "Values Changed", Toast.LENGTH_SHORT).show();
+                        DocumentReference Reference = fStore.collection("users").document(userId).collection("users").document("Info");
+                        Map<String, Object> updatedUserInfo = new HashMap<>();
+                        updatedUserInfo.put("fullName",name.getText().toString());
+                        updatedUserInfo.put("Email", email.getText().toString());
+                        updatedUserInfo.put("Phone", phone.getText().toString());
+                        updatedUserInfo.put("Age", age.getText().toString());
+                        Reference.set(updatedUserInfo, SetOptions.merge());
                     }
                 });
 
@@ -139,7 +99,8 @@ public class Personal_Information extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // Do something when No button clicked
-
+                        Toast.makeText(getApplicationContext(),
+                                "No Button Clicked",Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -161,8 +122,6 @@ public class Personal_Information extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
-
 
             }
         });

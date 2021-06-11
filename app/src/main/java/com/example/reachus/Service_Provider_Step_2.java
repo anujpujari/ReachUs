@@ -174,7 +174,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             carServiceInfo.put("secondaryJob",car.replaceAll("\\s", ""));
             carServiceInfo.put("Description", descriptionText);
             carServiceInfo.put("Price", priceText);
-            ServiceStorage.set(carServiceInfo);
+            ServiceStorage.set(carServiceInfo,SetOptions.merge());
         }
         else if(firstJob.equals("Repairing Service")){
             Map<String,Object> repairingServiceInfo = new HashMap<>();
@@ -183,7 +183,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             repairingServiceInfo.put("secondaryJob",repairing.replaceAll("\\s",""));
             repairingServiceInfo.put("Description", descriptionText);
             repairingServiceInfo.put("Price", priceText);
-            ServiceStorage.set(repairingServiceInfo);
+            ServiceStorage.set(repairingServiceInfo,SetOptions.merge());
         }
         else if(firstJob.equals("Maid Service")){
             Map<String,Object> maidServiceInfo = new HashMap<>();
@@ -192,7 +192,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             maidServiceInfo.put("secondaryJob",maid.replaceAll("\\s", ""));
             maidServiceInfo.put("Description", descriptionText);
             maidServiceInfo.put("Price", priceText);
-            ServiceStorage.set(maidServiceInfo);
+            ServiceStorage.set(maidServiceInfo,SetOptions.merge());
         }
         else if(firstJob.equals("Cleaning Service")){
             Map<String,Object> cleaningServiceInfo = new HashMap<>();
@@ -201,7 +201,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             cleaningServiceInfo.put("secondaryJob",cleaning.replaceAll("\\s",""));
             cleaningServiceInfo.put("Description", descriptionText);
             cleaningServiceInfo.put("Price", priceText);
-            ServiceStorage.set(cleaningServiceInfo);
+            ServiceStorage.set(cleaningServiceInfo,SetOptions.merge());
         }
 
         ServiceInformation.collection("ServiceCollection").document("Service").set(ServiceInfo, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -218,7 +218,5 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Something went wrong", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 }

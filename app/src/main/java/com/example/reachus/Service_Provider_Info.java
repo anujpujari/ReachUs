@@ -25,7 +25,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 public class Service_Provider_Info extends AppCompatActivity {
-    EditText Name;
+    EditText Name,Phone,Email;
     Button continueBtn;
     CheckBox terms;
     FirebaseAuth mAuth;
@@ -42,6 +42,9 @@ public class Service_Provider_Info extends AppCompatActivity {
         setContentView(R.layout.activity_service__provider__info);
 
         Name=findViewById(R.id.Name);
+        Phone=findViewById(R.id.Phone);
+        Email=findViewById(R.id.Email);
+
         continueBtn=findViewById(R.id.continueStep2);
         terms = findViewById(R.id.termsandconditions);
 
@@ -72,10 +75,6 @@ public class Service_Provider_Info extends AppCompatActivity {
         {
             Name.setError("Field Empty");
             return valid = false;
-        }else if(!LegalName.matches("[a-zA-Z]+\\.?"))
-        {
-            Name.setError("Invalid Name");
-            return valid = false;
         }
         if(terms.isChecked()==true)
         {
@@ -100,7 +99,8 @@ public class Service_Provider_Info extends AppCompatActivity {
 
         Map<String,Object> provider = new HashMap<>();
         provider.put("LegalName", LegalName);
-
+        provider.put("Phone", Phone.getText().toString());
+        provider.put("Email", Email.getText().toString());
         ServiceStorage.set(provider, SetOptions.merge());
         Map<String,Object> field=new HashMap<>();
         field.put("userID",userId);

@@ -16,8 +16,6 @@
 
         />
 
-
-
     <EditText
             android:background="@drawable/custome_input"
             android:layout_margin="20sp"

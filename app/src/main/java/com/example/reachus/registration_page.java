@@ -101,12 +101,7 @@ public class registration_page extends AppCompatActivity {
                             user.put("Password",Password);
 
 
-                            documentReference.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                                @Override
-                                public void onSuccess(DocumentReference documentReference) {
-                                    Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                                }
-                            });
+                            documentReference.collection("users").document("Info").set(user);
                             startActivity(new Intent(registration_page.this,Login_page.class));
                             FirebaseUser fUser = mAuth.getCurrentUser();
                             fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {

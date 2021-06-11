@@ -12,9 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class BookService extends AppCompatActivity {
 
@@ -45,19 +44,21 @@ public class BookService extends AppCompatActivity {
         fStore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
 
-        fStore.collection("Services").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        fStore.collection("Services").document("userId"+value).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        if(document.getString("userID").equals(value)){
+                    DocumentSnapshot document = task.getResult();
+                        if(document.exists()){
                             bookStoreName.setText(document.getString("StoreName"));
                             bookServiceDescription.setText(document.getString("Description"));
                             bookServiceAddress.setText(document.getString("Address_1")+","+" "+document.getString("Address_2")+","+" "+
                                     document.getString("City")+"-"+document.getString("pincode")+","+" "+document.getString("District")+","+" Maharashtra"+","+" India");
                             price=document.getString("Price");
                             bookServicePrice.setText("RS"+price);
-                        }
+                        }else
+                        {
+                            Log.d("Data", "document dont exist ");
                     }
                 } else {
                     Log.d("Data", "Error getting documents: ", task.getException());

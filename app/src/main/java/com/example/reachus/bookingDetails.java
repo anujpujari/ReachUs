@@ -16,7 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class bookingDetails extends AppCompatActivity {
 
-    TextView storeName, consumerAddress, providerAddress,deliverPrice, mainJob,dateTime;
+    TextView storeName, consumerAddress, providerAddress,deliverPrice, mainJob,dateTime,Phone,Email;
     Bundle extras;
     String BookingId,storename, consumeraddress,provideraddress,deliveryprice,mainjob,datetime,providerUserId,consumerUserId;
     FirebaseAuth mAuth;
@@ -47,6 +47,8 @@ public class bookingDetails extends AppCompatActivity {
         deliverPrice=findViewById(R.id.deliveryCost);
         mainJob=findViewById(R.id.mainJob);
         dateTime=findViewById(R.id.dateTime);
+        Phone=findViewById(R.id.Phone);
+        Email=findViewById(R.id.Email);
 
 
         DocumentReference coRef= fStore.collection("Services").document("userId"+providerUserId);
@@ -60,6 +62,8 @@ public class bookingDetails extends AppCompatActivity {
                         providerAddress.setText(document.getString("Address_1")+document.getString("Address_2")+document.getString("pincode")+document.getString("City")+
                         document.getString("District")+" Maharashtra"+" India");
                         deliverPrice.setText(document.getString("Price"));
+                        Phone.setText(document.getString("Phone"));
+                        Email.setText(document.getString("Email"));
                     }
                     else {
                         Log.d("Data","Does not exist");

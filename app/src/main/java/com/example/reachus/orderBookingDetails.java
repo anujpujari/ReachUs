@@ -13,12 +13,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class orderBookingDetails extends AppCompatActivity {
 
-    TextView consumerName,consumerAddress, providerAddress,deliverPrice, mainJob,dateTime;
+    TextView consumerName,consumerAddress, providerAddress,deliverPrice, mainJob,dateTime,Phone,Email;
     Bundle extras;
     String BookingId,storename, consumeraddress,provideraddress,deliveryprice,mainjob,datetime,providerUserId,consumerUserId;
     FirebaseAuth mAuth;
@@ -50,16 +48,21 @@ public class orderBookingDetails extends AppCompatActivity {
         deliverPrice=findViewById(R.id.deliveryCost);
         mainJob=findViewById(R.id.mainJob);
         dateTime=findViewById(R.id.dateTime);
+        Phone=findViewById(R.id.Phone);
+        Email=findViewById(R.id.Email);
 
 
         DocumentReference documentReference = fStore.collection("users").document(consumerUserId);
-        documentReference.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        documentReference.collection("users").document("Info").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
+                    DocumentSnapshot document=task.getResult();
+                    if(document.exists()) {
                         Log.d("Data", document.getId() + " => " + document.getData());
-                        consumerName.setText(document.getString("fullName"));
+                        consumerName.setText(document.getString("Name"));
+                        Phone.setText(document.getString("Phone"));
+                        Email.setText(document.getString("Email"));
                     }
                 } else {
                     Log.w("Data", "Error getting documents.", task.getException());

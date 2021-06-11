@@ -37,6 +37,8 @@
 
         </LinearLayout>
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,6 +61,7 @@
                 android:background="@drawable/input_design"
                 android:padding="10dp"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -102,6 +105,39 @@
                 android:padding="10dp"/>
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Provider Contact Info"
+                android:textSize="20dp"
+                android:textColor="@color/black"/>
+            <TextView
+                android:id="@+id/Phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="8408042265"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:background="@drawable/input_design"
+                android:padding="10dp"/>
+            <TextView
+                android:id="@+id/Email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="jeffbezos@amazon.com"
+                android:textSize="15dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:background="@drawable/input_design"
+                android:padding="10dp"/>
+        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

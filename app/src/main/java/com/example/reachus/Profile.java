@@ -20,8 +20,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class Profile extends AppCompatActivity {
 
@@ -55,15 +53,16 @@ public class Profile extends AppCompatActivity {
 
         userId=mAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("users").document(userId);
-        documentReference.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        documentReference.collection("users").document("Info").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        Log.d(TAG, document.getId() + " => " + document.getData());
-                        fullName.setText(document.getString("fullName"));
-                        Email.setText(document.getString("Email"));
-                        progress.dismiss();
+                        DocumentSnapshot document=task.getResult();
+                            if(document.exists()) {
+                            Log.d(TAG, document.getId() + " => " + document.getData());
+                            fullName.setText(document.getString("fullName"));
+                            Email.setText(document.getString("Email"));
+                            progress.dismiss();
                     }
                 } else {
                     Log.w(TAG, "Error getting documents.", task.getException());

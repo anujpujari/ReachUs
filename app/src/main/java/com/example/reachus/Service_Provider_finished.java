@@ -128,6 +128,8 @@ public class Service_Provider_finished extends AppCompatActivity {
                             docRef.set(isVerified, SetOptions.merge());
 
                             Toast.makeText(Service_Provider_finished.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {

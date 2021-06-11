@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -62,6 +69,30 @@
                 android:layout_margin="8dp"
                 android:hint="Name" />
 
+            <EditText
+                android:drawableStart="@drawable/ic_baseline_phone_24"
+                android:drawableTint="#0099ff"
+                android:id="@+id/Phone"
+                android:padding="10dp"
+                android:inputType=""
+                android:drawablePadding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="Phone No." />
+
+            <EditText
+                android:drawableStart="@drawable/ic_email"
+                android:drawableTint="#0099ff"
+                android:id="@+id/Email"
+                android:padding="10dp"
+                android:inputType=""
+                android:drawablePadding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:hint="Business Email" />
+
             <CheckBox
                 android:id="@+id/termsandconditions"
                 android:layout_width="wrap_content"
@@ -81,4 +112,4 @@
     </LinearLayout>
 
 </LinearLayout>
-
+</ScrollView>
