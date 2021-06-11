@@ -3,6 +3,7 @@ package com.example.reachus;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -30,6 +31,7 @@ public class Login_page extends AppCompatActivity {
     private long pressedTime;
     private FirebaseAuth mAuth=null;
     FirebaseUser fuser;
+    ProgressDialog progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +84,12 @@ public class Login_page extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progress.setMessage("Please Wait Loading...");
+                progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+                progress.setIndeterminate(true);
+                progress.show();
                 signIn();
+
             }
         });
     }
@@ -117,6 +124,7 @@ public class Login_page extends AppCompatActivity {
                         if (task.isSuccessful())
                         {
                             if(mAuth.getCurrentUser().isEmailVerified()){
+                                progress.dismiss();
                                 Toast.makeText(Login_page.this,"Sign-In Sucessfull",Toast.LENGTH_SHORT).show();
                                 Intent i = new Intent(Login_page.this,MainActivity.class);
                                 startActivity(i);

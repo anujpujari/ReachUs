@@ -15,53 +15,50 @@
         android:padding="10sp"
 
         />
-    <LinearLayout
+
+
+
+    <EditText
+            android:background="@drawable/custome_input"
+            android:layout_margin="20sp"
+            android:id="@+id/PI_name"
+            android:drawableStart="@drawable/ic_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10sp"/>
+    <EditText
+        android:background="@drawable/custome_input"
+        android:layout_margin="20sp"
+        android:drawableStart="@drawable/ic_email"
+        android:id="@+id/PI_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10sp"
-        android:orientation="horizontal"
+        android:padding="10sp"/>
+
+    <EditText
+        android:id="@+id/PI_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
         android:background="@drawable/custome_input"
-        >
-    <TextView
+        android:drawableStart="@drawable/ic_baseline_phone_24"
+        android:padding="10sp" />
+    <EditText
+        android:id="@+id/PI_age"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20sp"
+        android:hint="Choose Age Here"
+        android:textAlignment="center"
+        android:background="@drawable/custome_input"
+        android:drawableStart="@drawable/ic_baseline_calendar_today_24"
+        android:padding="10sp" />
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20sp"
-        android:text="Name :"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        tools:layout_editor_absoluteX="32dp"
-        tools:layout_editor_absoluteY="70dp" />
-
-        <EditText
-            android:id="@+id/PI_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10sp"/>
-
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10sp"
-        android:orientation="horizontal"
-        android:background="@drawable/custome_input"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="20sp"
-            android:text="Email :"
-            android:textColor="@color/black"
-            android:textSize="25sp"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="70dp" />
-
-        <EditText
-            android:id="@+id/PI_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10sp"/>
-
-    </LinearLayout>
+        android:text="Save Changes"
+        android:layout_gravity="center"
+        android:id="@+id/submit"
+        />
 
 </LinearLayout>

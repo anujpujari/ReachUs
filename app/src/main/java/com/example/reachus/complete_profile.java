@@ -81,7 +81,8 @@ public class complete_profile extends AppCompatActivity {
         personalInform.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(getApplicationContext(),Personal_Information.class));
+                finish();
             }
         });
     }

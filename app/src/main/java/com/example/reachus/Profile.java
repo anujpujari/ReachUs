@@ -1,6 +1,7 @@
 package com.example.reachus;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ public class Profile extends AppCompatActivity {
     FirebaseFirestore fStore;
     String userId,s_name,s_email;
     TextView fullName,Email;
+    ProgressDialog progress;
     boolean isServiceProvider;
     private static final String TAG = "EmailPassword";
 
@@ -45,6 +47,12 @@ public class Profile extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
 
+        progress = new ProgressDialog(this);
+        progress.setMessage("Please Wait Loading...");
+        progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progress.setIndeterminate(true);
+        progress.show();
+
         userId=mAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -55,6 +63,7 @@ public class Profile extends AppCompatActivity {
                         Log.d(TAG, document.getId() + " => " + document.getData());
                         fullName.setText(document.getString("fullName"));
                         Email.setText(document.getString("Email"));
+                        progress.dismiss();
                     }
                 } else {
                     Log.w(TAG, "Error getting documents.", task.getException());

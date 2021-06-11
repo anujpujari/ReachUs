@@ -102,6 +102,8 @@ public class registration_page extends AppCompatActivity {
                             Map<String,Object> user = new HashMap<>();
                             user.put("fullName", Name);
                             user.put("Email", s_email);
+                            user.put("Password",Password);
+
 
                             documentReference.collection("users").add(user).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
