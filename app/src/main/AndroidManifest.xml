@@ -13,7 +13,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
-        <activity android:name=".Personal_Information"></activity>
+        <activity android:name=".orderBookingDetails"></activity>
+        <activity android:name=".Personal_Information" />
         <activity android:name=".bookingDetails" />
         <activity android:name=".serviceBookings" />
         <activity android:name=".inputUserAddress" />

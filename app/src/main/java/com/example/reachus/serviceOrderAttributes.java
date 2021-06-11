@@ -5,11 +5,19 @@ public class serviceOrderAttributes {
     String BookingDate;
     String BookingTime;
     String bookingId;
-    String provideruserId;
+    String providerUserId;
     String Name;
     String StoreName;
+    String BookingUserId;
     String mainJob;
 
+    public String getBookingUserId() {
+        return BookingUserId;
+    }
+
+    public void setBookingUserId(String bookingUserId) {
+        BookingUserId = bookingUserId;
+    }
     public String getStoreName() {
         return StoreName;
     }
@@ -46,15 +54,16 @@ public class serviceOrderAttributes {
 
     public serviceOrderAttributes(){}
 
-    public serviceOrderAttributes(String BookingDate,String BookingTime,String bookingId,String provideruserId,String Name,String StoreName, String mainJob,String secondaryJob){
+    public serviceOrderAttributes(String BookingUserId,String BookingDate,String BookingTime,String bookingId,String providerUserId,String Name,String StoreName, String mainJob,String secondaryJob){
         this.BookingDate=BookingDate;
         this.BookingTime=BookingTime;
         this.bookingId=bookingId;
-        this.provideruserId=provideruserId;
+        this.providerUserId=providerUserId;
         this.Name=Name;
         this.StoreName=StoreName;
         this.mainJob=mainJob;
         this.secondaryJob=secondaryJob;
+        this.BookingUserId=BookingUserId;
     }
 
     public String getBookingDate() {
@@ -81,12 +90,12 @@ public class serviceOrderAttributes {
         this.bookingId = bookingId;
     }
 
-    public String getProvideruserId() {
-        return provideruserId;
+    public String getProviderUserId() {
+        return providerUserId;
     }
 
-    public void setProvideruserId(String provideruserId) {
-        this.provideruserId = provideruserId;
+    public void setProviderUserId(String providerUserId) {
+        this.providerUserId = providerUserId;
     }
 
 }

@@ -1,11 +1,13 @@
 package com.example.reachus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,11 +17,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 public class serviceBookings extends AppCompatActivity {
@@ -31,6 +37,7 @@ public class serviceBookings extends AppCompatActivity {
     FirestoreRecyclerAdapter Adapter;
     RecyclerView recyclerView;
     TextView bookingDate,bookingTime,serviceuserName,bookingDateTime;
+    View cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +72,7 @@ public class serviceBookings extends AppCompatActivity {
 
             @Override
             protected void onBindViewHolder(@NonNull serviceBookings.ServicesViewHolder holder, int position, @NonNull serviceOrderAttributes model) {
-                holder.initializeValue(model.getBookingId(),model.getProvideruserId(),model.getBookingDate(),model.getBookingTime(),model.getStoreName());
+                holder.initializeValue(model.getBookingId(),model.getProviderUserId(),model.getBookingDate(),model.getBookingTime(),model.getStoreName(),model.getBookingUserId());
             }
         };
         recyclerView.setHasFixedSize(true);
@@ -78,12 +85,40 @@ public class serviceBookings extends AppCompatActivity {
             super(itemView);
             view=itemView;
         }
-        void initializeValue(String BookingId, String providerUserId,String bookingdate,String bookingtime,String Storename){
+        void initializeValue(String BookingId, String providerUserId,String bookingdate,String bookingtime,String Storename,String BookingUserId){
             serviceuserName=view.findViewById(R.id.userBooking);
             bookingDateTime=view.findViewById(R.id.serviceDateTime);
 
-            serviceuserName.setText(Storename);
             bookingDateTime.setText(bookingdate+" "+bookingtime);
+            cardView=view.findViewById(R.id.cardView);
+
+            DocumentReference documentReference = fStore.collection("users").document(BookingUserId);
+            documentReference.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            serviceuserName.setText(document.getString("fullName"));
+                        }
+                    } else {
+                    }
+                }
+            });
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(getApplicationContext(), orderBookingDetails.class);
+                    intent.putExtra("BookingId",BookingId);
+                    intent.putExtra("BookingUserId", BookingUserId);
+                    intent.putExtra("Storename",Storename);
+                    intent.putExtra("bookingdate",bookingdate);
+                    intent.putExtra("bookingtime",bookingtime);
+                    intent.putExtra("providerUserId",providerUserId);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),"Redireting", Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
     @Override
