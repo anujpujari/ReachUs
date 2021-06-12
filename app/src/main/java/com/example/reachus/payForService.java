@@ -1,5 +1,6 @@
 package com.example.reachus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -30,7 +31,6 @@ public class payForService extends AppCompatActivity implements PaymentResultLis
     String userId,bookingId,providerUserId,BookingDate,BookingTime,StoreName,mainJob,secondaryJob,priceOfService;
     Bundle extras;
     Checkout ch;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,6 +111,7 @@ public class payForService extends AppCompatActivity implements PaymentResultLis
         ServiceBookedInfo.put("secondaryJob", secondaryJob);
 
         UserServices.add(ServiceBookedInfo);
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
     }
 
     @Override

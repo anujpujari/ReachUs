@@ -60,7 +60,7 @@ public class orderBookingDetails extends AppCompatActivity {
                     DocumentSnapshot document=task.getResult();
                     if(document.exists()) {
                         Log.d("Data", document.getId() + " => " + document.getData());
-                        consumerName.setText(document.getString("Name"));
+                        consumerName.setText(document.getString("fullName"));
                         Phone.setText(document.getString("Phone"));
                         Email.setText(document.getString("Email"));
                     }

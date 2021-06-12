@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;
     String userId;
-    boolean userAddress;
+    boolean userAddress,personalInfo=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,43 +67,58 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        DocumentReference docRe=fStore.collection("users").document(userId);
+        docRe.collection("users").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    for (QueryDocumentSnapshot document : task.getResult()) {
+                        Log.d("Data", document.getId() + " => " + document.getData());
+                        Log.d("Address", document.get("personalInfoAdded")+"");
+                        if(document.get("personalInfoAdded")!=null)
+                            personalInfo= (boolean) document.get("personalInfoAdded");
+                    }
+                } else {
+                    Log.w("Data", "Error getting documents.", task.getException());
+                }
+            }
+        });
         maid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userAddress)
+                if(userAddress && personalInfo)
                     startActivity(new Intent(MainActivity.this, maidTask.class));
                 else
-                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First and personal Info First", Toast.LENGTH_LONG).show();
             }
         });
         carServices.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userAddress)
+                if(userAddress && personalInfo)
                     startActivity(new Intent(MainActivity.this, carTasks.class));
                 else
-                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First and personal Info first", Toast.LENGTH_LONG).show();
 
             }
         });
         cleaning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userAddress)
+                if(userAddress && personalInfo)
                     startActivity(new Intent(MainActivity.this, cleaningTask.class));
                 else
-                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First and personal Info first", Toast.LENGTH_LONG).show();
 
             }
         });
         repairing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(userAddress)
+                if(userAddress && personalInfo)
                     startActivity(new Intent(MainActivity.this,repairingTask.class));
                 else
-                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First and personal Info first", Toast.LENGTH_LONG).show();
 
             }
         });
