@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".Splash_Screen"
     android:orientation="vertical"
-    android:background="#EACF80">
+    android:background="#EAD596">
 
     <ImageView
         android:layout_width="218dp"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:fontFamily="@font/font6"
-        android:text="Your Service is our Convinency"
+        android:text="Our Service is your Convinency"
         android:textColor="@color/black"
         android:textSize="20sp" />
 </LinearLayout>

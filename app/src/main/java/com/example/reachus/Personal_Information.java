@@ -90,8 +90,10 @@ public class Personal_Information extends AppCompatActivity {
                         updatedUserInfo.put("Email", email.getText().toString());
                         updatedUserInfo.put("Phone", phone.getText().toString());
                         updatedUserInfo.put("Age", age.getText().toString());
-                        updatedUserInfo.put("personalInfoAdded",true);
+                        updatedUserInfo.put("personalInfoAdded", true);
+
                         Reference.set(updatedUserInfo, SetOptions.merge());
+                        Toast.makeText(getApplicationContext(),"Changes Saved",Toast.LENGTH_SHORT).show();
                     }
                 });
 

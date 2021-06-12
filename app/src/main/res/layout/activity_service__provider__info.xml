@@ -99,6 +99,7 @@
                 android:layout_height="wrap_content"
                 android:text="I Agree With ReachUs Terms and Services"
                 android:layout_margin="10dp"
+                android:onClick="termsand"
                 />
         </LinearLayout>
         <Button

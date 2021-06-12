@@ -1,5 +1,6 @@
 package com.example.reachus;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -25,7 +27,7 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 public class Service_Provider_Info extends AppCompatActivity {
-    EditText Name,Phone,Email;
+    EditText Name;
     Button continueBtn;
     CheckBox terms;
     FirebaseAuth mAuth;
@@ -42,9 +44,6 @@ public class Service_Provider_Info extends AppCompatActivity {
         setContentView(R.layout.activity_service__provider__info);
 
         Name=findViewById(R.id.Name);
-        Phone=findViewById(R.id.Phone);
-        Email=findViewById(R.id.Email);
-
         continueBtn=findViewById(R.id.continueStep2);
         terms = findViewById(R.id.termsandconditions);
 
@@ -76,6 +75,7 @@ public class Service_Provider_Info extends AppCompatActivity {
             Name.setError("Field Empty");
             return valid = false;
         }
+
         if(terms.isChecked()==true)
         {
             valid = true;
@@ -99,8 +99,7 @@ public class Service_Provider_Info extends AppCompatActivity {
 
         Map<String,Object> provider = new HashMap<>();
         provider.put("LegalName", LegalName);
-        provider.put("Phone", Phone.getText().toString());
-        provider.put("Email", Email.getText().toString());
+
         ServiceStorage.set(provider, SetOptions.merge());
         Map<String,Object> field=new HashMap<>();
         field.put("userID",userId);
@@ -119,6 +118,36 @@ public class Service_Provider_Info extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void termsand(View view) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+
+        builder.setMessage(R.string.termsandconditions);
+
+        builder.setPositiveButton("Agree", new DialogInterface.OnClickListener() {
+
+            public void onClick(DialogInterface dialog, int which) {
+                // Do nothing but close the dialog
+                terms.setChecked(true);
+                dialog.dismiss();
+            }
+        });
+
+        builder.setNegativeButton("Disagree", new DialogInterface.OnClickListener() {
+
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                // Do nothing
+                terms.setChecked(false);
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
 
