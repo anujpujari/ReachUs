@@ -11,37 +11,35 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
+            android:id="@+id/utensilsCleaning"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
-            card_view:cardCornerRadius="10dp"
+            app:cardCornerRadius="10dp"
             android:backgroundTint="#E4E4E4">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
+                android:background="@drawable/utensils"
                 android:orientation="horizontal"
                 android:padding="10dp"
                 android:textAlignment="center">
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/broom"
-                    android:layout_marginRight="20dp"/>
+
                 <TextView
-                    android:id="@+id/utensilsCleaning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:fontFamily="@font/font10"
                     android:text="Utensils Cleaning"
-                    android:textSize="30dp"
-                    android:fontFamily="@font/font11"
-                    android:layout_gravity="center"
                     android:textColor="@color/black"
-                    />
+                    android:textSize="30dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
+            android:id="@+id/clothesCleaning"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
@@ -50,29 +48,25 @@
             android:backgroundTint="#E4E4E4">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:orientation="horizontal"
                 android:padding="10dp"
+                android:background="@drawable/clothes"
                 android:textAlignment="center">
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/broom"
-                    android:layout_marginRight="20dp"/>
                 <TextView
-                    android:id="@+id/clothesCleaning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Clothes Cleaning"
                     android:textSize="30dp"
-                    android:fontFamily="@font/font11"
-                    android:layout_gravity="center"
+                    android:fontFamily="@font/font10"
+                    android:layout_gravity="top"
                     android:textColor="@color/black"
                     />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
+            android:id="@+id/homeCleaning"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
@@ -81,23 +75,18 @@
             android:backgroundTint="#E4E4E4">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:orientation="horizontal"
+                android:background="@drawable/maid"
                 android:padding="10dp"
                 android:textAlignment="center">
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/broom"
-                    android:layout_marginRight="20dp"/>
                 <TextView
-                    android:id="@+id/homeCleaning"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Home Cleaning"
                     android:textSize="30dp"
-                    android:fontFamily="@font/font11"
-                    android:layout_gravity="center"
+                    android:fontFamily="@font/font10"
+                    android:layout_gravity="top"
                     android:textColor="@color/black"
                     />
             </LinearLayout>

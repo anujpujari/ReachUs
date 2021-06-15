@@ -1,6 +1,7 @@
 package com.example.reachus;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 
 public class repairingTask extends AppCompatActivity {
 
-    TextView carpainter,electrician,plumber;
+    CardView carpainter,electrician,plumber;
     String whichService;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,6 @@
 package com.example.reachus;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,6 +32,7 @@ public class allServices extends AppCompatActivity {
     String value,mainValue,userId;
     Query query;
     Bundle extras;
+    ProgressDialog pg1;
     View cardView;
 
     @Override
@@ -47,6 +49,12 @@ public class allServices extends AppCompatActivity {
         ServiceName=findViewById(R.id.serviceName);
         ServiceDescription=findViewById(R.id.serviceDescription);
         ServicePrice=findViewById(R.id.servicePrice);
+        //------------------------------
+        pg1 = new ProgressDialog(allServices.this);
+        pg1.setMessage("Loading wait...");
+        pg1.setCancelable(true);
+        pg1.setIndeterminate(true);
+        pg1.show();
 
         recyclerView=findViewById(R.id.recyclerView);
         mAuth=FirebaseAuth.getInstance();
@@ -131,6 +139,7 @@ public class allServices extends AppCompatActivity {
                 ServiceName.setText(StoreName);
                 ServiceDescription.setText(Description);
                 ServicePrice.setText("RS"+Price);
+                pg1.dismiss();
 
                 cardView.setOnClickListener(new View.OnClickListener() {
                     @Override

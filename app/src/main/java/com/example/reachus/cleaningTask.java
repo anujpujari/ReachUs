@@ -2,6 +2,7 @@ package com.example.reachus;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +13,7 @@ import android.widget.TextView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class cleaningTask extends AppCompatActivity {
-    TextView homesantz,vehiclesantz;
+    CardView homesantz,vehiclesantz;
     String whichService;
 
     @Override

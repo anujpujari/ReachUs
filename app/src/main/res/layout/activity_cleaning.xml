@@ -11,37 +11,35 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/homesantizing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="25dp"
-            card_view:cardCornerRadius="10dp"
+            app:cardCornerRadius="10dp"
             android:backgroundTint="#E4E4E4">
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="195dp"
+                android:background="@drawable/homesanitize"
                 android:orientation="horizontal"
                 android:padding="10dp"
                 android:textAlignment="center">
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/broom"
-                    android:layout_marginRight="20dp"/>
+
                 <TextView
-                    android:id="@+id/homesantizing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:fontFamily="@font/font10"
                     android:text="Home Sanitizing"
-                    android:textSize="30dp"
-                    android:fontFamily="@font/font11"
-                    android:layout_gravity="center"
                     android:textColor="@color/black"
-                    />
+                    android:textSize="30dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
+            android:id="@+id/vehiclesantizing"
             android:layout_height="wrap_content"
             android:layout_marginLeft="25dp"
             android:layout_marginRight="25dp"
@@ -53,20 +51,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:padding="10dp"
+                android:background="@drawable/carsanitizing"
                 android:textAlignment="center">
-                <ImageView
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:src="@drawable/broom"
-                    android:layout_marginRight="20dp"/>
                 <TextView
-                    android:id="@+id/vehiclesantizing"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Vehicle Sanitizing"
                     android:textSize="30dp"
-                    android:fontFamily="@font/font11"
-                    android:layout_gravity="center"
+                    android:fontFamily="@font/font10"
+                    android:layout_gravity="top"
                     android:textColor="@color/black"
                     />
             </LinearLayout>

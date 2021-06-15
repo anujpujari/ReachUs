@@ -38,6 +38,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
     Button continueStep4;
     EditText description,price;
     Boolean valid;
+    int counts;
 
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;

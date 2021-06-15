@@ -1,6 +1,7 @@
 package com.example.reachus;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +10,7 @@ import android.widget.TextView;
 
 public class maidTask extends AppCompatActivity {
 
-    TextView utensils, clothes,homecleaning;
+    CardView utensils, clothes,homecleaning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
