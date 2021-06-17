@@ -1,4 +1,5 @@
 package com.example.reachus;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -36,6 +37,7 @@ public class registration_page extends AppCompatActivity {
     private FirebaseAuth mAuth;
     FirebaseFirestore fStore;
     String userId;
+    ProgressDialog pg;
     private static final String TAG = "EmailPassword";
     String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
@@ -91,6 +93,7 @@ public class registration_page extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task){
                         if(task.isSuccessful()){
+
                             fStore = FirebaseFirestore.getInstance();
                             userId = mAuth.getCurrentUser().getUid();
                             DocumentReference documentReference = fStore.collection("users").document(userId);
@@ -102,15 +105,20 @@ public class registration_page extends AppCompatActivity {
 
 
                             documentReference.collection("users").document("Info").set(user);
-                            startActivity(new Intent(registration_page.this,Login_page.class));
                             FirebaseUser fUser = mAuth.getCurrentUser();
                             fUser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(registration_page.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
-                                    UserDetail val;
+                                   /* UserDetail val;
                                     val = new UserDetail(Name,s_email, Password, Phone_number);
-                                    myref.child(userId).setValue(val);
+                                    myref.child(userId).setValue(val);*/
+                                    Intent i =new Intent(registration_page.this,OTP_verificatiion.class);
+                                    i.putExtra("name",Name);
+
+                                    startActivity(i);
+                                    finish();
+
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override

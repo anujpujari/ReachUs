@@ -33,6 +33,11 @@ public class Splash_Screen extends AppCompatActivity {
                 startActivity(new Intent(Splash_Screen.this,MainActivity.class) );
                 finish();
             }
+            else if(!(mAuth.getCurrentUser().isEmailVerified()))
+            {
+                startActivity(new Intent(Splash_Screen.this,Login_page.class) );
+                finish();
+            }
         }
 
 

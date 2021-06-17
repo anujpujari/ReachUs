@@ -87,25 +87,30 @@ The App, the App Services, all your transactions with the App, and our relations
 
 
     <string-array name="Services">
+        <item>Select Main Service</item>
         <item>Car Service</item>
         <item>Repairing Service</item>
         <item>Maid Service</item>
         <item>Cleaning Service</item>
     </string-array>
     <string-array name="carServices">
+        <item>Select Secondary Service</item>
         <item>Car Washing</item>
         <item>Car Repairing</item>
     </string-array>
     <string-array name="repairingServices">
+        <item>Select Secondary Service</item>
         <item>Plumber</item>
         <item>Electrician</item>
         <item>Carpainter</item>
     </string-array>
     <string-array name="cleaningServices">
+        <item>Select Secondary Service</item>
         <item>Home Sanitizing</item>
         <item>Vehicle Sanitizing</item>
     </string-array>
     <string-array name="maidServices">
+        <item>Select Secondary Service</item>
         <item>Utensils Cleaning</item>
         <item>Clothes Cleaning</item>
         <item>Home Cleaning</item>

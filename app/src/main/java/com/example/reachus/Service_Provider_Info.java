@@ -146,8 +146,7 @@ public class Service_Provider_Info extends AppCompatActivity {
             }
         });
 
-        AlertDialog alert = builder.create();
-        alert.show();
+
     }
 }
 

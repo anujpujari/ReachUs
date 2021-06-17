@@ -26,8 +26,11 @@
         <activity android:name=".allServices" />
         <activity android:name=".Service_Provider_finished" />
         <activity android:name=".Service_Provider_step_4" />
-        <activity android:name=".Service_Provider_Step_2" />
-        <activity android:name=".Service_provider_step_3" />
+        <activity android:name=".Service_Provider_Step_2" >
+
+    </activity>
+
+    <activity android:name=".Service_provider_step_3" />
         <activity android:name=".complete_profile" />
         <activity android:name=".carTasks" />
         <activity android:name=".maidTask" />
@@ -37,7 +40,6 @@
         <activity android:name=".Splash_Screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
