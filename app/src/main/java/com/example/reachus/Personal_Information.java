@@ -206,12 +206,12 @@ public class Personal_Information extends AppCompatActivity {
         Log.d("Data", code+"");
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, code);
         Log.d("Data", credential.getSmsCode()+"");
-        if(code.equals(credential)){
+            Log.d("Value are", "true");
             DocumentReference docRef = fStore.collection("users").document(userId).collection("users").document("Info");
             Map<String,Object> phoneVerified=new HashMap<>();
             phoneVerified.put("isPhoneVerified",true);
             docRef.set(phoneVerified,SetOptions.merge());
-        }
-        Toast.makeText(Personal_Information.this,"Verification Completed", Toast.LENGTH_LONG);
+
+        Toast.makeText(Personal_Information.this,"Verification Completed", Toast.LENGTH_LONG).show();
     }
 }
