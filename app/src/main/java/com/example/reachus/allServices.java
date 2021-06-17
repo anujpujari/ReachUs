@@ -35,6 +35,7 @@ public class allServices extends AppCompatActivity {
     ProgressDialog pg1;
     View cardView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
