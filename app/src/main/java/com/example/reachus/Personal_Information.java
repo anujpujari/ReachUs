@@ -49,7 +49,6 @@ public class Personal_Information extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal__information);
 
-
         name = findViewById(R.id.PI_name);
         email = findViewById(R.id.PI_email);
         phone = findViewById(R.id.PI_phone);
@@ -213,7 +212,6 @@ public class Personal_Information extends AppCompatActivity {
             phoneVerified.put("isPhoneVerified",true);
             docRef.set(phoneVerified,SetOptions.merge());
         }
-        Toast.makeText(Personal_Information.this,"Verification Completed", Toast.LENGTH_LONG).show();
-
+        Toast.makeText(Personal_Information.this,"Verification Completed", Toast.LENGTH_LONG);
     }
 }
