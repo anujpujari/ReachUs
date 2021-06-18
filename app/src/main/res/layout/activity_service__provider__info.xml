@@ -2,7 +2,6 @@
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -18,7 +17,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Register and Start Selling"
+        android:text="Register and Start Earning"
         android:fontFamily="@font/font11"
         android:layout_margin="10dp"
         android:textSize="30dp"
@@ -99,7 +98,6 @@
                 android:layout_height="wrap_content"
                 android:text="I Agree With ReachUs Terms and Services"
                 android:layout_margin="10dp"
-                android:onClick="termsand"
                 />
         </LinearLayout>
         <Button

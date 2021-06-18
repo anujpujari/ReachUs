@@ -1,5 +1,6 @@
 package com.example.reachus;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputFilter;
@@ -30,6 +31,7 @@ public class Service_Provider_step_4 extends AppCompatActivity {
     Boolean valid;
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;
+    ProgressDialog pg;
 
     private static final String TAG = "Storing data";
     @Override
@@ -44,17 +46,24 @@ public class Service_Provider_step_4 extends AppCompatActivity {
         fStore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
 
+        pg = new ProgressDialog(Service_Provider_step_4.this);
+        pg.setMessage("Saving Info..");
+        pg.setIndeterminate(true);
+        pg.setCancelable(false);
+
 
         finish=findViewById(R.id.finish);
         finish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pg.show();
                 if(validate()==true)
                 {
                     storedata();
                 }
                 else
                 {
+                    pg.dismiss();
                     Log.w(TAG, "Validation Error");
                 }
             }
@@ -101,6 +110,7 @@ public class Service_Provider_step_4 extends AppCompatActivity {
                 Log.d(TAG, "DocumentSnapshot successfully written!");
                 startActivity(new Intent(getApplicationContext(), complete_profile.class));
                 Toast.makeText(getApplicationContext(),"Bank details Sucessfully Stored",Toast.LENGTH_SHORT).show();
+                pg.dismiss();
                 Intent intent = new Intent(getApplicationContext(), Service_Provider_finished.class);
                 String status = "success";
                 intent.putExtra("BEP", status);

@@ -1,5 +1,6 @@
 package com.example.reachus;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -42,6 +43,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
     Button continueStep4;
     EditText description, price;
     Boolean valid;
+    ProgressDialog pg;
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;
 
@@ -61,7 +63,8 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
         cleaningServicesLayout = findViewById(R.id.cleaningServicesLayout);
 
         carServices = (Spinner) findViewById(R.id.carServices);
-        repairingServices = (Spinner) findViewById(R.id.repairingServices);
+        repairingServices = (Spinner)
+        findViewById(R.id.repairingServices);
         maidServices = (Spinner) findViewById(R.id.maidServices);
         cleaningServices = (Spinner) findViewById(R.id.cleaningServices);
 
@@ -69,6 +72,12 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
         price = findViewById(R.id.priceRequirement);
 
         continueStep4 = findViewById(R.id.continueStep4);
+
+        pg = new ProgressDialog(Service_Provider_Step_2.this);
+        pg.setMessage("Saving Info..");
+        pg.setIndeterminate(true);
+        pg.setCancelable(false);
+
 
 
 
@@ -214,9 +223,11 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
         continueStep4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pg.show();
                 if (validate() == true) {
                     storeInfo();
                 } else {
+                    pg.dismiss();
                     Log.d(TAG, "Validation Error");
                 }
             }
@@ -307,6 +318,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             @Override
             public void onSuccess(Void aVoid) {
                 Log.d(TAG, "DocumentSnapshot successfully written!");
+                pg.dismiss();
                 startActivity(new Intent(getApplicationContext(), Service_provider_step_3.class));
                 finish();
             }

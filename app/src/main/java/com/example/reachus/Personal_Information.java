@@ -37,7 +37,7 @@ public class Personal_Information extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
     String userId;
-
+    boolean phoneverify=false;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     String mVerificationId;
     PhoneAuthProvider.ForceResendingToken mResendToken;
@@ -59,7 +59,7 @@ public class Personal_Information extends AppCompatActivity {
         verify=findViewById(R.id.verify);
         mAuth= FirebaseAuth.getInstance();
         fStore= FirebaseFirestore.getInstance();
-
+        checkinfoupdated();
         userId=mAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.collection("users").document("Info").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -113,45 +113,53 @@ public class Personal_Information extends AppCompatActivity {
         subm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Build an AlertDialog
-                AlertDialog.Builder builder = new AlertDialog.Builder(Personal_Information.this);
-                builder.setMessage("Are you sure u want to save the changes?");
+                if (checkinfoupdated())
+                {
+                    // Build an AlertDialog
 
-                // Set the alert dialog yes button click listener
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do something when user clicked the Yes button
-                        // Set the TextView visibility GONE
-                        fStore = FirebaseFirestore.getInstance();
-                        userId = mAuth.getCurrentUser().getUid();
-                        //Ha code ahee bg databse mse add cha
-                        DocumentReference Reference = fStore.collection("users").document(userId).collection("users").document("Info");
-                        Map<String, Object> updatedUserInfo = new HashMap<>();
-                        updatedUserInfo.put("fullName",name.getText().toString());
-                        updatedUserInfo.put("Email", email.getText().toString());
-                        updatedUserInfo.put("Phone", phone.getText().toString());
-                        updatedUserInfo.put("Age", age.getText().toString());
-                        updatedUserInfo.put("personalInfoAdded", true);
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Personal_Information.this);
+                    builder.setMessage("Are you sure u want to save the changes?");
 
-                        Reference.set(updatedUserInfo, SetOptions.merge());
-                        Toast.makeText(getApplicationContext(),"Changes Saved",Toast.LENGTH_SHORT).show();
-                    }
-                });
+                    // Set the alert dialog yes button click listener
+                    builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something when user clicked the Yes button
+                            // Set the TextView visibility GONE
+                            fStore = FirebaseFirestore.getInstance();
+                            userId = mAuth.getCurrentUser().getUid();
+                            //Ha code ahee bg databse mse add cha
+                            DocumentReference Reference = fStore.collection("users").document(userId).collection("users").document("Info");
+                            Map<String, Object> updatedUserInfo = new HashMap<>();
+                            updatedUserInfo.put("fullName", name.getText().toString());
+                            updatedUserInfo.put("Email", email.getText().toString());
+                            updatedUserInfo.put("Phone", phone.getText().toString());
+                            updatedUserInfo.put("Age", age.getText().toString());
+                            updatedUserInfo.put("personalInfoAdded", true);
 
-                // Set the alert dialog no button click listener
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        // Do something when No button clicked
-                        Toast.makeText(getApplicationContext(),
-                                "No Button Clicked",Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            Reference.set(updatedUserInfo, SetOptions.merge());
+                            Toast.makeText(getApplicationContext(), "Changes Saved", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                AlertDialog dialog = builder.create();
-                // Display the alert dialog on interface
-                dialog.show();
+                    // Set the alert dialog no button click listener
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do something when No button clicked
+                            Toast.makeText(getApplicationContext(),
+                                    "No Button Clicked", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    // Display the alert dialog on interface
+                    dialog.show();
+                }
+                else
+                {
+                    Toast.makeText(Personal_Information.this, "You must verify your number and enter your age", Toast.LENGTH_SHORT).show();
+                }
             }
         });
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -192,6 +200,20 @@ public class Personal_Information extends AppCompatActivity {
             }
         };
     }
+
+    private boolean checkinfoupdated() {
+         boolean vrfied;
+        if(phoneverify==true && (age.getText().toString())!=null)
+        {
+            vrfied=  true;
+        }
+        else
+        {
+            vrfied=false;
+        }
+        return  vrfied;
+    }
+
     public void sendVerificationCode(String number){
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
@@ -211,6 +233,7 @@ public class Personal_Information extends AppCompatActivity {
             Map<String,Object> phoneVerified=new HashMap<>();
             phoneVerified.put("isPhoneVerified",true);
             docRef.set(phoneVerified,SetOptions.merge());
+            phoneverify=true;
         }
         Toast.makeText(Personal_Information.this,"Verification Completed", Toast.LENGTH_LONG);
     }

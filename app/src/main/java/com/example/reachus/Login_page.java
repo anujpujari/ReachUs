@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
@@ -48,6 +49,8 @@ public class Login_page extends AppCompatActivity {
         signup = findViewById(R.id.Sign_up_button);
         pg = findViewById(R.id.pg1);
 
+
+
         show_pass.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -86,7 +89,9 @@ public class Login_page extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Drawable draw;
+                draw = getResources().getDrawable(R.drawable.customprogressbar);
+                pg.setProgressDrawable(draw);
                pg.setVisibility(View.VISIBLE);
                pg.setIndeterminate(true);
                 signIn();

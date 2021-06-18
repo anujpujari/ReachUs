@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -102,7 +103,9 @@ public class registration_page extends AppCompatActivity {
                             user.put("fullName", Name);
                             user.put("Email", s_email);
                             user.put("Password",Password);
-
+                            Intent i =new Intent(registration_page.this,Login_page.class);
+                            startActivity(i);
+                            finish();
 
                             documentReference.collection("users").document("Info").set(user);
                             FirebaseUser fUser = mAuth.getCurrentUser();
@@ -110,15 +113,6 @@ public class registration_page extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Void aVoid) {
                                     Toast.makeText(registration_page.this, "Verification Email Has been Sent.", Toast.LENGTH_SHORT).show();
-                                   /* UserDetail val;
-                                    val = new UserDetail(Name,s_email, Password, Phone_number);
-                                    myref.child(userId).setValue(val);*/
-                                    Intent i =new Intent(registration_page.this,OTP_verificatiion.class);
-                                    i.putExtra("name",Name);
-
-                                    startActivity(i);
-                                    finish();
-
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
@@ -147,7 +141,20 @@ public class registration_page extends AppCompatActivity {
         } else {
             uname.setError(null);
         }
-
+        String em = email.getText().toString();
+        if(TextUtils.isEmpty(em))
+        {
+            email.setError("Field Empty");
+            valid= false;
+        }
+        else  if(!Patterns.EMAIL_ADDRESS.matcher(em).matches())
+        {
+            email.setError("Invalid Email");
+            valid = false;
+        }
+        else {
+            email.setError(null);
+        }
 // onClick of button perform this simplest code.
         String pw = pass.getText().toString();
         if (TextUtils.isEmpty(pw)) {

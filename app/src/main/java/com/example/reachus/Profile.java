@@ -41,6 +41,17 @@ public class Profile extends AppCompatActivity {
 
         fullName=findViewById(R.id.fullName);
         Email=findViewById(R.id.Email);
+        logout = findViewById(R.id.logout);
+
+        logout=findViewById(R.id.logout);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(getApplicationContext(), Login_page.class));
+                finish();
+            }
+        });
 
         mAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
@@ -53,7 +64,8 @@ public class Profile extends AppCompatActivity {
 
         userId=mAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fStore.collection("users").document(userId);
-        documentReference.collection("users").document("Info").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+        documentReference.collection("users").document("Info")
+                .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {

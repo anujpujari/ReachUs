@@ -60,6 +60,21 @@
             android:text="Complete Your Profile"
             android:fontFamily="@font/font11"
             android:layout_gravity="center"/>
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_gravity="center"
+            android:textAlignment="center"
+            android:drawableTint="@color/purple_700"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:fontFamily="@font/font11"
+            android:textSize="15dp"
+
+           />
+
+
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

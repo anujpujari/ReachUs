@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login And Security"
+        android:textColor="@color/black"
+        android:textSize="35sp"
+        android:textAlignment="center"
+        android:fontFamily="@font/font10"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Current Email"
+            android:textColor="@color/black"
+            android:fontFamily="@font/font10"
+            android:textSize="20dp"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:id="@+id/LS_Email"
+            android:drawableEnd="@drawable/arrow_right"
+            android:drawableTint="@color/purple_700"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rate Us"
+            android:fontFamily="@font/font11"
+            android:textSize="15dp"
+            android:background="@drawable/border"
+            android:padding="7dp"
+            android:layout_margin="5dp"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/updateemail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Update Email"
+        android:backgroundTint="@color/black"
+        android:layout_gravity="center"
+        />
+    <LinearLayout
+        android:id="@+id/newmaillayout"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Email"
+            android:textColor="@color/black"
+            android:fontFamily="@font/font10"
+            android:textSize="20dp"
+            android:layout_marginLeft="5dp"/>
+        <EditText
+            android:id="@+id/newmail"
+            android:drawableEnd="@drawable/arrow_right"
+            android:drawableTint="@color/purple_700"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter New Email"
+            android:fontFamily="@font/font11"
+            android:textSize="15dp"
+            android:background="@drawable/border"
+            android:padding="7dp"
+            android:layout_margin="5dp"/>
+        <Button
+            android:id="@+id/done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Done"
+            android:backgroundTint="@color/black"
+            android:layout_gravity="center"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

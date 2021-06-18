@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".complete_profile">
+
 <LinearLayout
     android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent">
 
     <LinearLayout
@@ -138,26 +135,51 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Logout"
+                android:text="About Us"
                 android:fontFamily="@font/font10"
                 android:textColor="@color/black"
                 android:layout_marginLeft="5dp"
                 android:textSize="20dp"/>
             <TextView
-                android:id="@+id/logout"
+                android:id="@+id/aboutus"
                 android:drawableEnd="@drawable/arrow_right"
                 android:drawableTint="@color/purple_700"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Logout"
+                android:text="About Us"
                 android:fontFamily="@font/font11"
                 android:textSize="15dp"
                 android:background="@drawable/border"
                 android:padding="7dp"
                 android:layout_margin="5dp"/>
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contact us"
+            android:fontFamily="@font/font10"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:textSize="20dp"/>
+        <TextView
+            android:id="@+id/contactus"
+            android:drawableEnd="@drawable/arrow_right"
+            android:drawableTint="@color/purple_700"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contact us"
+            android:fontFamily="@font/font11"
+            android:textSize="15dp"
+            android:background="@drawable/border"
+            android:padding="7dp"
+            android:layout_margin="5dp"/>
+    </LinearLayout>
 
     </LinearLayout>
 
 </LinearLayout>
-</ScrollView>

@@ -72,6 +72,7 @@ public class payForService extends AppCompatActivity{
                 if(document.exists()){
                     upiID.setText(document.getString("AccountNumber"));
                     accHolderName.setText(document.getString("AccountName"));
+                    Log.d("ID", "UPIID: "+upiID);
                 }
             }
         });

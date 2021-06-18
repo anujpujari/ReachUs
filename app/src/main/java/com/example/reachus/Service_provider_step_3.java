@@ -1,5 +1,6 @@
 package com.example.reachus;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,7 +28,7 @@ public class Service_provider_step_3 extends AppCompatActivity {
     private String Storename,pin,addr1,addr2,cityName,districtName,userId;
     private Button continuestep3;
     boolean valid;
-
+    ProgressDialog pg;
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;
 
@@ -47,6 +48,11 @@ public class Service_provider_step_3 extends AppCompatActivity {
         addrLine2=findViewById(R.id.Addr_2);
         city=findViewById(R.id.city);
         district=findViewById(R.id.district);
+
+        pg = new ProgressDialog(Service_provider_step_3.this);
+        pg.setMessage("Saving Info..");
+        pg.setIndeterminate(true);
+        pg.setCancelable(false);
 
         continuestep3=findViewById(R.id.continueStep3);
 
