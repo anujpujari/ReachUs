@@ -141,7 +141,7 @@ public class loginandesecurity extends AppCompatActivity {
                                             docRef.update(updatedEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task) {
-                                                    Toast.makeText(loginandesecurity.this,"Email updated sucessfully",Toast.LENGTH_LONG).show();
+                                                    Toast.makeText(loginandesecurity.this,"Email updated sucessfully and verification mail has been sent",Toast.LENGTH_LONG).show();
                                                     user.sendEmailVerification();
                                                     pg.dismiss();
                                                 }
