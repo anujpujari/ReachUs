@@ -12,10 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.razorpay.Checkout;
 
@@ -36,11 +40,17 @@ public class payForService extends AppCompatActivity{
     EditText amt,accHolderName,upiID,message;
     final int UPI_PAYMENT=1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay_for_service);
+
+        message=findViewById(R.id.Message);
+        upiID=findViewById(R.id.upiID);
+        accHolderName=findViewById(R.id.accHolderName);
+        amt=findViewById(R.id.amount);
+        mAuth=FirebaseAuth.getInstance();
+        fStore=FirebaseFirestore.getInstance();
 
         extras = getIntent().getExtras();
         if (extras != null) {
@@ -54,20 +64,24 @@ public class payForService extends AppCompatActivity{
             Log.d("Values", bookingId+" "+providerUserId);
         }
 
-        message=findViewById(R.id.Message);
-        upiID=findViewById(R.id.upiID);
-        accHolderName=findViewById(R.id.accHolderName);
-        amt=findViewById(R.id.amount);
-        mAuth=FirebaseAuth.getInstance();
-        fStore=FirebaseFirestore.getInstance();
-
+        Task<DocumentSnapshot> dRef = fStore.collection("provider").document("userId"+providerUserId).
+                collection("Bank Details").document("BankDetails").get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+            DocumentSnapshot document = task.getResult();
+                if(document.exists()){
+                    upiID.setText(document.getString("AccountNumber"));
+                    accHolderName.setText(document.getString("AccountName"));
+                }
+            }
+        });
         serviceBooked=findViewById(R.id.payForService);
 
         userId=mAuth.getCurrentUser().getUid();
 
         bookingId=userId.substring(0,7)+BookingTime.replace(":", "").replace("PM", "").replace("AM","");
 
-        int amount=Math.round(Float.parseFloat(priceOfService)*100);
+        int amount=Math.round(Float.parseFloat(priceOfService));
         amt.setText(String.valueOf(amount));
 
         BookingInformation = fStore.collection("Services").document("userId"+providerUserId).collection("Bookings");

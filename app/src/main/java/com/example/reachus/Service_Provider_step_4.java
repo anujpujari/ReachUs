@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,8 +25,7 @@ import java.util.Map;
 public class Service_Provider_step_4 extends AppCompatActivity {
 
     String  statusofprovider;
-    EditText accName,accNumber,ifscCode;
-    Spinner bankName;
+    EditText accName,accNumber;
     Button finish;
     Boolean valid;
     FirebaseFirestore fStore;
@@ -42,12 +40,10 @@ public class Service_Provider_step_4 extends AppCompatActivity {
         accName=findViewById(R.id.accountName);
         accName.setFilters(new InputFilter[]{new InputFilter.AllCaps()});
         accNumber=findViewById(R.id.accountNumber);
-        ifscCode=findViewById(R.id.ifscCode);
 
         fStore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
 
-        bankName=findViewById(R.id.bankName);
 
         finish=findViewById(R.id.finish);
         finish.setOnClickListener(new View.OnClickListener() {
@@ -80,21 +76,12 @@ public class Service_Provider_step_4 extends AppCompatActivity {
             return valid = false;
         }
 
-        String Ifsccode=ifscCode.getText().toString();
-         if(Ifsccode.isEmpty())
-         {
-             ifscCode.setError("Field Empty");
-             return valid = false;
-         }
         return  valid;
     }
 
     private void storedata() {
         String accountName=accName.getText().toString();
         String accountNumber=accNumber.getText().toString();
-        String ifsccode=ifscCode.getText().toString();
-
-        String bankname = bankName.getSelectedItem().toString();
 
         String userId=mAuth.getCurrentUser().getUid();
         FirebaseFirestore db=FirebaseFirestore.getInstance();
@@ -107,8 +94,6 @@ public class Service_Provider_step_4 extends AppCompatActivity {
         Map<String,Object> BankDetails = new HashMap<>();
         BankDetails.put("AccountName",accountName);
         BankDetails.put("AccountNumber",accountNumber);
-        BankDetails.put("BankName",bankname);
-        BankDetails.put("ifscCode",ifsccode);
 
         BankDocument.collection("Bank Details").document("BankDetails").set(BankDetails, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
