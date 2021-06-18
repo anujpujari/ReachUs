@@ -34,8 +34,8 @@ public class bookingDetails extends AppCompatActivity {
     String BookingId,storename, consumeraddress,provideraddress,deliveryprice,mainjob,datetime,providerUserId,consumerUserId,bDate,bTime;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
-    Button cancleService;
-    ImageView phoneCall,videoCall;
+    Button cancleService,report;
+    ImageView phoneCall;
     private static final int REQUEST_CALL = 1;
 
     @Override
@@ -55,7 +55,7 @@ public class bookingDetails extends AppCompatActivity {
         }
 
         phoneCall=findViewById(R.id.phoneCall);
-        videoCall=findViewById(R.id.videoCall);
+
         mAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
 
@@ -70,6 +70,7 @@ public class bookingDetails extends AppCompatActivity {
         Phone=findViewById(R.id.Phone);
         Email=findViewById(R.id.Email);
         cancleService=findViewById(R.id.cancleService);
+        report=findViewById(R.id.reportService);
 
         DocumentReference coRef= fStore.collection("Services").document("userId"+providerUserId);
         coRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -155,6 +156,15 @@ public class bookingDetails extends AppCompatActivity {
                 });
                 Toast.makeText(bookingDetails.this,"Booking Deleted", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
+
+        report.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(),reportService.class);
+                intent.putExtra("providerId",providerUserId);
+                startActivity(intent);
             }
         });
     }
