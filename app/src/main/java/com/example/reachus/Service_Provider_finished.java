@@ -125,9 +125,10 @@ public class Service_Provider_finished extends AppCompatActivity {
                             DocumentReference docRef = fStore.collection("Services").document("userId"+userId);
                             Map<String, Object> isVerified = new HashMap<>();
                             isVerified.put("documentUploaded", true);
+                            isVerified.put("isIdVerified",false);
                             docRef.set(isVerified, SetOptions.merge());
 
-                            Toast.makeText(Service_Provider_finished.this, "Upload successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Service_Provider_finished.this, "Your Service will be available whenyour Id will be verified", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         }

@@ -13,10 +13,13 @@ public class Services {
     private String Address_2;
     private String City;
     private String District;
+    private String Phone;
+    private String Email;
+
 
     public Services(){}
 
-    public Services(String mainJob, String secondaryJob,String Price,String Description,String StoreName, String userID,String pincode, String LegalName, String Address_1, String Address_2, String City, String District){
+    public Services(String mainJob, String secondaryJob,String Price,String Description,String StoreName, String userID,String pincode, String LegalName, String Address_1, String Address_2, String City, String District,boolean isIdVerified,String Phone,String Email){
         this.mainJob=mainJob;
         this.secondaryJob=secondaryJob;
         this.Price=Price;
@@ -29,6 +32,33 @@ public class Services {
         this.Address_2=Address_2;
         this.City=City;
         this.District=District;
+        this.isIdVerified=isIdVerified;
+        this.Phone=Phone;
+        this.Email=Email;
+    }
+    public boolean getisIdVerified() {
+        return isIdVerified;
+    }
+
+    public void setisIdVerified(boolean isIdVerified) {
+        this.isIdVerified = isIdVerified;
+    }
+
+    private boolean isIdVerified;
+    public String getPhone() {
+        return Phone;
+    }
+
+    public void setPhone(String phone) {
+        this.Phone = phone;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        this.Email = email;
     }
 
     public String getUserID() {

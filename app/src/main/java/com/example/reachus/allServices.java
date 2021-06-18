@@ -110,7 +110,7 @@ public class allServices extends AppCompatActivity {
             }
             @Override
             protected void onBindViewHolder(@NonNull allServices.ServicesViewHolder holder, int position, @NonNull Services model) {
-                    holder.initializeValues(model.getStoreName(),model.getMainJob(), model.getSecondaryJob(),model.getDescription(),model.getPrice(),model.getUserID(),model.getAddress_1(),model.getAddress_2(),model.getPincode(),model.getCity(),model.getDistrict());
+                    holder.initializeValues(model.getStoreName(),model.getMainJob(), model.getSecondaryJob(),model.getDescription(),model.getPrice(),model.getUserID(),model.getAddress_1(),model.getAddress_2(),model.getPincode(),model.getCity(),model.getDistrict(),model.getisIdVerified());
             }
         };
         recyclerView.setHasFixedSize(true);
@@ -126,30 +126,32 @@ public class allServices extends AppCompatActivity {
             super(itemView);
             view=itemView;
         }
-        void initializeValues(String StoreName,String mainJob,String secondaryjob,String Description,String Price,String provideruserID,String addr_1,String addr_2,String pincode,String city,String district){
+        void initializeValues(String StoreName,String mainJob,String secondaryjob,String Description,String Price,String provideruserID,String addr_1,String addr_2,String pincode,String city,String district,boolean isIdVerified){
             if(!provideruserID.equals(userId)) {
-                ServiceName = (TextView) view.findViewById(R.id.serviceName);
-                ServicePrice = (TextView) view.findViewById(R.id.servicePrice);
-                ServiceDescription = (TextView) view.findViewById(R.id.serviceDescription);
-                ServiceType=view.findViewById(R.id.serviceType);
-                secondaryServiceType=view.findViewById(R.id.secondaryServiceType);
-                cardView=view.findViewById(R.id.cardView);
+                if(isIdVerified) {
+                    ServiceName = (TextView) view.findViewById(R.id.serviceName);
+                    ServicePrice = (TextView) view.findViewById(R.id.servicePrice);
+                    ServiceDescription = (TextView) view.findViewById(R.id.serviceDescription);
+                    ServiceType = view.findViewById(R.id.serviceType);
+                    secondaryServiceType = view.findViewById(R.id.secondaryServiceType);
+                    cardView = view.findViewById(R.id.cardView);
 
-                ServiceType.setText(mainJob);
-                secondaryServiceType.setText(secondaryjob);
-                ServiceName.setText(StoreName);
-                ServiceDescription.setText(Description);
-                ServicePrice.setText("RS"+Price);
-                pg1.dismiss();
+                    ServiceType.setText(mainJob);
+                    secondaryServiceType.setText(secondaryjob);
+                    ServiceName.setText(StoreName);
+                    ServiceDescription.setText(Description);
+                    ServicePrice.setText("RS" + Price);
+                    pg1.dismiss();
 
-                cardView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getApplicationContext(), BookService.class);
-                        intent.putExtra("provideruserId", provideruserID);
-                        startActivity(intent);
-                    }
-                });
+                    cardView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getApplicationContext(), BookService.class);
+                            intent.putExtra("provideruserId", provideruserID);
+                            startActivity(intent);
+                        }
+                    });
+                }
             }
             else{
                 cardView=view.findViewById(R.id.cardView);
