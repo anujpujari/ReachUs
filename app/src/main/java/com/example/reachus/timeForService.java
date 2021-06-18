@@ -3,6 +3,7 @@ package com.example.reachus;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
@@ -24,6 +26,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DateFormat;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 public class timeForService extends AppCompatActivity implements DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener {
@@ -112,15 +115,35 @@ public class timeForService extends AppCompatActivity implements DatePickerDialo
         });
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-        Calendar c = Calendar.getInstance();
-        c.set(Calendar.YEAR, year);
-        c.set(Calendar.MONTH, month);
-        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-        String currentDateString = DateFormat.getDateInstance().format(c.getTime());
-        Date = (TextView) findViewById(R.id.textView);
-        Date.setText(currentDateString);
+        LocalDate date = LocalDate.now();
+        int currentDay = date.getDayOfMonth();
+        int currentMonth = date.getMonthValue();
+        int currentYear = date.getYear();
+        Log.d("Values",month+""+currentMonth);
+        if(year>=currentYear){
+            if(month+1>=currentMonth){
+                if(dayOfMonth>currentDay){
+                    Calendar c = Calendar.getInstance();
+                    Calendar currentDate = Calendar.getInstance();
+                    c.set(Calendar.YEAR, year);
+                    c.set(Calendar.MONTH, month);
+                    c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                    String currentDateString = DateFormat.getDateInstance().format(c.getTime());
+
+                    Date = (TextView) findViewById(R.id.textView);
+                    Date.setText(currentDateString);
+                }else{
+                    Toast.makeText(timeForService.this,"Choose correct day",Toast.LENGTH_LONG).show();
+                }
+            }else{
+                Toast.makeText(timeForService.this,"Choose correct month",Toast.LENGTH_LONG).show();
+            }
+        }else{
+            Toast.makeText(timeForService.this,"Choose correct year",Toast.LENGTH_LONG).show();
+        }
     }
     @Override
     public void onTimeSet(TimePicker view, int hour, int minutes) {

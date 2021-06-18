@@ -50,7 +50,7 @@
         <activity android:name=".Login_page" />
         <activity android:name=".MainActivity" />
         <activity android:name=".registration_page" />
-        <activity android:name=".OTP_verificatiion" />
+        <activity android:name=".loginandesecurity" />
     </application>
 
 </manifest>

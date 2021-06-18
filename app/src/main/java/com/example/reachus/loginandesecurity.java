@@ -1,9 +1,5 @@
 package com.example.reachus;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -15,14 +11,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -137,24 +135,35 @@ public class loginandesecurity extends AppCompatActivity {
                                     public void onComplete(@NonNull Task<Void> task) {
                                         if (task.isSuccessful()) {
 
-                                            Map<String,Object> users = new HashMap<>();
-                                            users.put("Email", s_email);
-                                            Task<Void> reference;
-                                            reference = fStore.collection("users")
-                                                    .document(userId).collection("users").document("Info").update(users).addOnFailureListener(new OnFailureListener() {
-                                                        @Override
-                                                        public void onFailure(@NonNull Exception e) {
-                                                            Toast.makeText(loginandesecurity.this, "Failed", Toast.LENGTH_SHORT).show();
-                                                        }
-                                                    });
-                                            pg.dismiss();
-                                            Log.d(TAG, "You can now sign in with a new Email");
-                                            Toast.makeText(loginandesecurity.this, "Email Address Updated", Toast.LENGTH_SHORT).show();
-                                            nwmail.setVisibility(View.INVISIBLE);
+                                            DocumentReference docRef = fStore.collection("users").document(userId).collection("users").document("Info");
+                                            Map<String, Object> updatedEmail=new HashMap<>();
+                                            updatedEmail.put("Email",nmail.getText().toString());
+                                            docRef.update(updatedEmail).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Toast.makeText(loginandesecurity.this,"Email updated sucessfully",Toast.LENGTH_LONG).show();
+                                                    user.sendEmailVerification();
+                                                    pg.dismiss();
+                                                }
+                                            });
+
+//                                            Map<String,Object> users = new HashMap<>();
+//                                            users.put("Email", s_email);
+//                                            Task<Void> reference;
+//                                            reference = fStore.collection("users")
+//                                                    .document(userId).collection("users").document("Info").update(users).addOnFailureListener(new OnFailureListener() {
+//                                                        @Override
+//                                                        public void onFailure(@NonNull Exception e) {
+//                                                            Toast.makeText(loginandesecurity.this, "Failed", Toast.LENGTH_SHORT).show();
+//                                                        }
+//                                                    });
+//                                            Log.d(TAG, "You can now sign in with a new Email");
+//                                            Toast.makeText(loginandesecurity.this, "Email Address Updated", Toast.LENGTH_SHORT).show();
+//                                            nwmail.setVisibility(View.INVISIBLE);
                                         }
                                     }
                                 });
-                        user.sendEmailVerification();
+
 
                         //----------------------------------------------------------\\
                     }
@@ -164,8 +173,6 @@ public class loginandesecurity extends AppCompatActivity {
 
 
     private void getdata(TextView email) {
-
-
         DocumentReference documentReference = fStore.collection("users").document(userId);
         documentReference.collection("users").document("Info")
                 .get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
