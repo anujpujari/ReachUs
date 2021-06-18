@@ -63,5 +63,4 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-firestore:4.1.0'
     implementation 'com.github.hotchemi:android-rate:1.0.1'
     implementation 'com.squareup.picasso:picasso:2.71828'
-
 }

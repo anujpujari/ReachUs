@@ -27,12 +27,12 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 public class Service_Provider_Info extends AppCompatActivity {
-    EditText Name;
+    EditText Name,Phone,Email;
     Button continueBtn;
     CheckBox terms;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
-    String userId,LegalName,fullName;
+    String userId,LegalName,fullName,phoneText,emailText;
     boolean valid;
     private static final Pattern NAME_PATTERN =
             Pattern.compile("[a-zA-Z]+\\.?");
@@ -44,6 +44,8 @@ public class Service_Provider_Info extends AppCompatActivity {
         setContentView(R.layout.activity_service__provider__info);
 
         Name=findViewById(R.id.Name);
+        Phone=findViewById(R.id.Phone);
+        Email=findViewById(R.id.Email);
         continueBtn=findViewById(R.id.continueStep2);
         terms = findViewById(R.id.termsandconditions);
 
@@ -75,7 +77,6 @@ public class Service_Provider_Info extends AppCompatActivity {
             Name.setError("Field Empty");
             return valid = false;
         }
-
         if(terms.isChecked()==true)
         {
             valid = true;
@@ -85,12 +86,12 @@ public class Service_Provider_Info extends AppCompatActivity {
             terms.setError("Please check the checkbox");
              return valid = false;
              }
-
-
         return valid;
     }
     public void storeInfo(){
         LegalName=Name.getText().toString();
+        phoneText = Phone.getText().toString();
+        emailText=Email.getText().toString();
         userId=mAuth.getCurrentUser().getUid();
         FirebaseFirestore db=FirebaseFirestore.getInstance();
 
@@ -99,7 +100,8 @@ public class Service_Provider_Info extends AppCompatActivity {
 
         Map<String,Object> provider = new HashMap<>();
         provider.put("LegalName", LegalName);
-
+        provider.put("Phone",phoneText);
+        provider.put("Email",emailText);
         ServiceStorage.set(provider, SetOptions.merge());
         Map<String,Object> field=new HashMap<>();
         field.put("userID",userId);
@@ -122,10 +124,7 @@ public class Service_Provider_Info extends AppCompatActivity {
 
     public void termsand(View view) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-
         builder.setMessage(R.string.termsandconditions);
-
         builder.setPositiveButton("Agree", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {

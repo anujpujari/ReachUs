@@ -1,15 +1,21 @@
 package com.example.reachus;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,6 +35,8 @@ public class bookingDetails extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
     Button cancleService;
+    ImageView phoneCall,videoCall;
+    private static final int REQUEST_CALL = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +54,8 @@ public class bookingDetails extends AppCompatActivity {
             providerUserId=extras.getString("providerUserId");
         }
 
+        phoneCall=findViewById(R.id.phoneCall);
+        videoCall=findViewById(R.id.videoCall);
         mAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
 
@@ -106,6 +116,12 @@ public class bookingDetails extends AppCompatActivity {
         dateTime.setText(datetime);
         deliverPrice.setText(deliveryprice);
 
+        phoneCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makePhoneCall();
+            }
+        });
         cancleService.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -141,5 +157,30 @@ public class bookingDetails extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
+    }
+    public void makePhoneCall(){
+        String phoneNumber = Phone.getText().toString();
+        if (phoneNumber.trim().length() > 0) {
+            if (ContextCompat.checkSelfPermission(bookingDetails.this,
+                    Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(bookingDetails.this,
+                        new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL);
+            } else {
+                String dial = "tel:" + phoneNumber;
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            }
+        } else {
+            Toast.makeText(bookingDetails.this, "Enter Phone Number", Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == REQUEST_CALL) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCall();
+            } else {
+                Toast.makeText(this, "Permission DENIED", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
