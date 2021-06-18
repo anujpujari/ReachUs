@@ -1,8 +1,12 @@
 package com.example.reachus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,14 +17,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class bookingDetails extends AppCompatActivity {
 
     TextView storeName, consumerAddress, providerAddress,deliverPrice, mainJob,dateTime,Phone,Email;
     Bundle extras;
-    String BookingId,storename, consumeraddress,provideraddress,deliveryprice,mainjob,datetime,providerUserId,consumerUserId;
+    String BookingId,storename, consumeraddress,provideraddress,deliveryprice,mainjob,datetime,providerUserId,consumerUserId,bDate,bTime;
     FirebaseAuth mAuth;
     FirebaseFirestore fStore;
+    Button cancleService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,8 @@ public class bookingDetails extends AppCompatActivity {
             storename=extras.getString("Storename");
             mainjob=extras.getString("mainJob");
             datetime=extras.getString("bookingdate")+extras.getString("bookingtime");
+            bDate=extras.getString("bookingdate");
+            bTime=extras.getString("bookingtime");
             providerUserId=extras.getString("providerUserId");
         }
 
@@ -49,7 +59,7 @@ public class bookingDetails extends AppCompatActivity {
         dateTime=findViewById(R.id.dateTime);
         Phone=findViewById(R.id.Phone);
         Email=findViewById(R.id.Email);
-
+        cancleService=findViewById(R.id.cancleService);
 
         DocumentReference coRef= fStore.collection("Services").document("userId"+providerUserId);
         coRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -95,5 +105,41 @@ public class bookingDetails extends AppCompatActivity {
         mainJob.setText(mainjob);
         dateTime.setText(datetime);
         deliverPrice.setText(deliveryprice);
+
+        cancleService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Query coRef =fStore.collection("ServicesBookedByUser").document("userId"+consumerUserId).collection("Bookings").whereEqualTo("bookingId",BookingId);
+                Query coRe =fStore.collection("Services").document("userId"+providerUserId).collection("Bookings").whereEqualTo("bookingId",BookingId);
+                coRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("Data", document.getId() + " => " + document.getData());
+                                document.getReference().delete();
+                            }
+                        } else {
+                            Log.d("Data", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+                coRe.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("Data", document.getId() + " => " + document.getData());
+                                document.getReference().delete();
+                            }
+                        } else {
+                            Log.d("Data", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+                Toast.makeText(bookingDetails.this,"Booking Deleted", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            }
+        });
     }
 }
