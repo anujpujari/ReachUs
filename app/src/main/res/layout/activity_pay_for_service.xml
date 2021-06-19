@@ -4,46 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".payForService">
+    tools:context=".payForService"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <EditText
-            android:id="@+id/amount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Amount"
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="30dp"/>
-        <EditText
-            android:id="@+id/upiID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="UPI ID"
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="30dp"/>
-        <EditText
-            android:id="@+id/accHolderName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Account Holder Name"
-            android:layout_margin="30dp"/>
-        <EditText
-            android:id="@+id/Message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Message"
-            android:layout_marginVertical="20dp"
-            android:layout_marginHorizontal="30dp"/>
-        <Button
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical">-->
+<!--        <EditText-->
+<!--            android:id="@+id/amount"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Amount"-->
+<!--            android:layout_marginVertical="20dp"-->
+<!--            android:layout_marginHorizontal="30dp"/>-->
+<!--        <EditText-->
+<!--            android:id="@+id/upiID"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="UPI ID"-->
+<!--            android:layout_marginVertical="20dp"-->
+<!--            android:layout_marginHorizontal="30dp"/>-->
+<!--        <EditText-->
+<!--            android:id="@+id/accHolderName"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Account Holder Name"-->
+<!--            android:layout_margin="30dp"/>-->
+<!--        <EditText-->
+<!--            android:id="@+id/Message"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:hint="Message"-->
+<!--            android:layout_marginVertical="20dp"-->
+<!--            android:layout_marginHorizontal="30dp"/>-->
+        <TextView
             android:id="@+id/payForService"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center|center_horizontal"
-            android:text="Pay"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="150sp"
+            android:text="Call Service Provider"
+            android:textSize="25dp"/>
+        <ImageView
+            android:id="@+id/call"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_baseline_phone_24"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"/>
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/actiavate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="50dp"
+            android:visibility="gone">
+                <Button
+                    android:id="@+id/bookService"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Book Service"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="30dp"
+                    />
+                <Button
+                    android:id="@+id/dontbookService"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Book Service"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="30dp"
+                    />
+        </LinearLayout>
 
 </LinearLayout>

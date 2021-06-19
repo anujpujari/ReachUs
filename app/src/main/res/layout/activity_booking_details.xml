@@ -138,13 +138,6 @@
                 android:src="@drawable/ic_baseline_local_phone_24"
                 android:background="@color/white"
                 android:layout_margin="5dp"/>
-                <ImageView
-                    android:id="@+id/videoCall"
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
-                    android:src="@drawable/ic_baseline_videocam_24"
-                    android:background="@color/white"
-                    android:layout_margin="5dp"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/Email"
@@ -191,6 +184,14 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:text="Cancle Service"/>
+        <Button
+            android:id="@+id/reportService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:text="Report Service"/>
+
     </LinearLayout>
 
 </LinearLayout>
