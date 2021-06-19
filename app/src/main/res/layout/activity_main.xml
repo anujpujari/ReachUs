@@ -23,7 +23,6 @@
             android:id="@+id/imageSlider"
             android:layout_width="match_parent"
             android:layout_height="239dp"
-            android:background="#EFC2C2"
             app:sliderAnimationDuration="600"
             app:sliderAutoCycleDirection="back_and_forth"
             app:sliderAutoCycleEnabled="true"

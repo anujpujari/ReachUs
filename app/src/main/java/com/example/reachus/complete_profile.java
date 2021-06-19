@@ -26,7 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class complete_profile extends AppCompatActivity {
 
-    private TextView beInsider,logout,youraddresses,insiderOrders,personalInform,contactus,loginandsecurit;
+    private TextView beInsider,logout,youraddresses,insiderOrders,personalInform,contactus,loginandsecurit,aboutus;
     String becomeinsider,userId,isInsider;
     private static final String TAG = "Storing data";
 
@@ -51,6 +51,16 @@ public class complete_profile extends AppCompatActivity {
         userId=mAuth.getCurrentUser().getUid();
         insiderOrders=findViewById(R.id.insiderOrders);
         contactus = findViewById(R.id.contactus);
+        aboutus = findViewById(R.id.aboutus);
+
+
+        aboutus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.activity_about_us);
+            }
+        });
+
 
         loginandsecurit = findViewById(R.id.loginandsecurity);
         loginandsecurit.setOnClickListener(new View.OnClickListener() {

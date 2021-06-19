@@ -144,7 +144,7 @@ public class Service_Provider_Info extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
+        builder.show();
 
     }
 }

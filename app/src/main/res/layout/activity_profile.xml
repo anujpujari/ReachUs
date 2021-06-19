@@ -10,82 +10,92 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="50dp">
+            android:layout_marginBottom="50dp"
+            android:orientation="horizontal">
+
             <LinearLayout
                 android:layout_width="130dp"
                 android:layout_height="200dp"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/ic_name"/>
+                    android:src="@drawable/ic_name" />
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginTop="10dp">
-            <TextView
-                android:id="@+id/fullName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="20dp"
-                android:fontFamily="@font/font11"
-                android:textColor="@color/black"
-                android:layout_marginTop="50dp"
-                android:textAlignment="textStart" />
-            <TextView
-                android:id="@+id/Email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=" "
-                android:textSize="15dp"
-                android:fontFamily="@font/font11"
-                android:textColor="@color/black"
-                android:layout_marginTop="20dp"
-                android:textAlignment="textStart" />
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/fullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="50dp"
+                    android:fontFamily="@font/font11"
+                    android:text=""
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/Email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/font11"
+                    android:text=" "
+                    android:textAlignment="textStart"
+                    android:textColor="@color/black"
+                    android:textSize="15dp" />
             </LinearLayout>
         </LinearLayout>
+
         <Button
             android:id="@+id/completeProfile"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:text="Complete Your Profile"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/black"
             android:fontFamily="@font/font11"
-            android:layout_gravity="center"/>
+            android:text="Complete Your Profile" />
 
         <Button
             android:id="@+id/logout"
-            android:layout_gravity="center"
-            android:textAlignment="center"
-            android:drawableTint="@color/purple_700"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Logout"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/black"
+            android:drawableTint="@color/purple_700"
             android:fontFamily="@font/font11"
+            android:text="Logout"
+            android:textAlignment="center"
             android:textSize="15dp"
 
-           />
+            />
 
 
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigationbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/bottom_navigationbar"
-        app:itemTextColor="@drawable/selector"
-        app:itemIconTint="@drawable/selector"
-        app:menu="@menu/menu_navigation"
         android:layout_alignParentBottom="true"
+        android:layout_gravity="top"
         android:background="@color/white"
-        app:itemRippleColor="@color/purple_500"
-        tools:ignore="MissingConstraints" />
+        app:itemIconTint="@drawable/selector"
+        app:itemRippleColor="@color/black"
+        app:itemTextColor="@drawable/selector"
+        app:menu="@menu/menu_navigation" />
 </RelativeLayout>

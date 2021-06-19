@@ -101,32 +101,7 @@
                 android:padding="7dp"
                 android:layout_margin="5dp"/>
         </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Rate Us"
-                android:textColor="@color/black"
-                android:fontFamily="@font/font10"
-                android:textSize="20dp"
-                android:layout_marginLeft="5dp"/>
-            <TextView
-                android:id="@+id/Rateus"
-                android:drawableEnd="@drawable/arrow_right"
-                android:drawableTint="@color/purple_700"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Rate Us"
-                android:fontFamily="@font/font11"
-                android:textSize="15dp"
-                android:background="@drawable/border"
-                android:padding="7dp"
-                android:layout_margin="5dp"/>
-        </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

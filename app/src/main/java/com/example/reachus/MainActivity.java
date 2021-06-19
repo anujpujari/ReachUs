@@ -1,6 +1,7 @@
 package com.example.reachus;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Botton Navigation
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigationbar);
+
         //Selected Default as Home Navigation
         bottomNavigationView.setSelectedItemId(R.id.home);
 
