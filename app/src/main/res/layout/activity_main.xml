@@ -279,8 +279,8 @@
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:visibility="invisible"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="5dp"
+                android:layout_height="50dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="25dp"
@@ -315,8 +315,8 @@
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:visibility="invisible"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="5dp"
+                android:layout_height="50dp"
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="25dp"
