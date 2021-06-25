@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -34,7 +35,8 @@ public class Forgot_password extends AppCompatActivity {
         send_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(email.getText().toString()==null)
+                Log.d("TAG", "onClick: "+email.getText().toString());
+                if(email.getText().toString()==null||email.getText().toString().isEmpty())
                 {
                     email.setError("Field Empty");
                     Toast.makeText(Forgot_password.this, "Email cannot be Empty", Toast.LENGTH_SHORT).show();
