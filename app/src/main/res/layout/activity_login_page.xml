@@ -105,8 +105,9 @@
 
             <Button
                 android:id="@+id/login_button"
-                android:background="@drawable/round_bg"
+                android:backgroundTint="#0099ff"
                 android:layout_width="200dp"
+                android:textColorHint="@color/white"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15sp"

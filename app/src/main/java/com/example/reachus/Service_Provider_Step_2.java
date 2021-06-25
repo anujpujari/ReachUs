@@ -75,7 +75,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
         pg.setCancelable(false);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-        DocumentReference Servicecountafter = db.collection("provider").document("providercount");
+        DocumentReference Servicecountafter = db.collection("providercounter").document("providercount");
         Map<String, Object> ServiceProviderscount = new HashMap<>();
 
         repairingServices.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

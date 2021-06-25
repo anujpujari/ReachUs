@@ -49,7 +49,6 @@ public class registration_page extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_registration_page);
 
-        p_number = findViewById(R.id.phn_number);
         uname = findViewById(R.id.Username);
         pass = findViewById(R.id.password);
         conf_pass = findViewById(R.id.conf_password);
@@ -88,7 +87,6 @@ public class registration_page extends AppCompatActivity {
         s_email = email.getText().toString();
         Password = pass.getText().toString();
         Confirm_pass = conf_pass.getText().toString();
-        Phone_number = getIntent().getStringExtra("phone-number");
         mAuth.createUserWithEmailAndPassword(s_email,Password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override

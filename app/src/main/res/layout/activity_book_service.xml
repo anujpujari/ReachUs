@@ -103,6 +103,7 @@
             android:layout_margin="10dp"
             android:gravity="bottom|center">
             <Button
+                android:backgroundTint="#0099ff"
                 android:id="@+id/bookService"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

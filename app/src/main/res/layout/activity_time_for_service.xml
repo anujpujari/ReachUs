@@ -36,6 +36,7 @@
                 android:textSize="30sp" />
             <Button
                 android:id="@+id/button"
+                android:backgroundTint="#0099ff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -65,6 +66,7 @@
                 android:textSize="30sp" />
             <Button
                 android:id="@+id/timePicker"
+                android:backgroundTint="#0099ff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -77,6 +79,7 @@
             android:gravity="bottom|center">
             <Button
                 android:id="@+id/bookService"
+                android:backgroundTint="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/font10"

@@ -94,8 +94,8 @@
         android:layout_alignParentBottom="true"
         android:layout_gravity="top"
         android:background="@color/white"
-        app:itemIconTint="@drawable/selector"
-        app:itemRippleColor="@color/black"
-        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@color/black"
+        app:itemRippleColor="#21A3DE"
+        app:itemTextColor="@color/black"
         app:menu="@menu/menu_navigation" />
 </RelativeLayout>

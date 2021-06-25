@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:fillViewport="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FBFBFB"
-        tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    android:background="#FBFBFB"
+    tools:context=".MainActivity"
+    >
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -202,8 +208,7 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="25dp"
-                app:cardCornerRadius="10dp"
-                android:id="@+id/homeTutor">
+                app:cardCornerRadius="10dp">
 
 
                 <LinearLayout
@@ -239,8 +244,7 @@
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="25dp"
-                app:cardCornerRadius="10dp"
-                android:id="@+id/pasteControl">
+                app:cardCornerRadius="10dp">
 
 
                 <LinearLayout
@@ -272,7 +276,7 @@
             </androidx.cardview.widget.CardView>
         </GridLayout>
     </LinearLayout>
-
+</ScrollView>
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigationbar"
             android:layout_width="match_parent"
@@ -280,10 +284,10 @@
             android:layout_alignParentBottom="true"
             android:layout_gravity="top"
             android:background="@color/white"
-            app:itemIconTint="@drawable/selector"
-            app:itemRippleColor="@color/black"
-            app:itemTextColor="@drawable/selector"
+            app:itemIconTint="@color/black"
+            app:itemRippleColor="#1194CF"
+            app:itemTextColor="@color/black"
             app:menu="@menu/menu_navigation" />
-
 </RelativeLayout>
+
 </LinearLayout>

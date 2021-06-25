@@ -52,6 +52,12 @@ public class Service_Provider_Info extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
 
+        terms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                termsand();
+            }
+        });
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,9 +128,10 @@ public class Service_Provider_Info extends AppCompatActivity {
 
     }
 
-    public void termsand(View view) {
+    public void termsand() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.termsandconditions);
+        builder.setCancelable(false);
         builder.setPositiveButton("Agree", new DialogInterface.OnClickListener() {
 
             public void onClick(DialogInterface dialog, int which) {
