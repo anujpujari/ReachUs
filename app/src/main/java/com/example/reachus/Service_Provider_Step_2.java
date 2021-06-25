@@ -77,15 +77,18 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
         pg.setMessage("Saving Info..");
         pg.setIndeterminate(true);
         pg.setCancelable(false);
-
-
-
-
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         DocumentReference Servicecountafter = db.collection("provider").document("providercount");
-
         Map<String, Object> ServiceProviderscount = new HashMap<>();
+
+
+
+
+
+
+
+
 
         repairingServices.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

@@ -18,8 +18,7 @@ public class Forgot_password extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     EditText email;
     Button send_pass;
-//Asach
-    //parat asach
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,20 +34,26 @@ public class Forgot_password extends AppCompatActivity {
         send_pass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                firebaseAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if(task.isSuccessful())
-                        {
-                            Toast.makeText(Forgot_password.this,"Password reset Link is send to your email",Toast.LENGTH_SHORT).show();
-                        }
-                        else
-                        {
-                            Toast.makeText(Forgot_password.this,task.getException().getMessage(),Toast.LENGTH_SHORT).show();
-                        }
+                if(email.getText().toString()==null)
+                {
+                    email.setError("Field Empty");
+                    Toast.makeText(Forgot_password.this, "Email cannot be Empty", Toast.LENGTH_SHORT).show();
 
-                    }
-                });
+                }
+                else {
+                    email.setError(null);
+                    firebaseAuth.sendPasswordResetEmail(email.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(Forgot_password.this, "Password reset Link is send to your email", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(Forgot_password.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    });
+                }
             }
         });
     }
