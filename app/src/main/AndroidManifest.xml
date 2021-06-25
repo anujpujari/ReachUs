@@ -15,7 +15,7 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
-        <activity android:name=".reportService"></activity>
+        <activity android:name=".reportService" />
         <activity android:name=".orderBookingDetails" />
         <activity android:name=".Personal_Information" />
         <activity android:name=".bookingDetails" />
@@ -29,7 +29,7 @@
         <activity android:name=".allServices" />
         <activity android:name=".Service_Provider_finished" />
         <activity android:name=".Service_Provider_step_4" />
-        <activity android:name=".Service_Provider_Step_2"></activity>
+        <activity android:name=".Service_Provider_Step_2" />
         <activity android:name=".Service_provider_step_3" />
         <activity android:name=".complete_profile" />
         <activity android:name=".carTasks" />

@@ -99,6 +99,8 @@ The App, the App Services, all your transactions with the App, and our relations
         <item>Repairing Service</item>
         <item>Maid Service</item>
         <item>Cleaning Service</item>
+        <item>Home Tutor</item>
+        <item>Paste Control</item>
     </string-array>
     <string-array name="carServices">
         <item>Select Secondary Service</item>

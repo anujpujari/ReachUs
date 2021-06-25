@@ -4,8 +4,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/noServices"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No Services Available"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:layout_gravity="center"
+        android:visibility="gone"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"

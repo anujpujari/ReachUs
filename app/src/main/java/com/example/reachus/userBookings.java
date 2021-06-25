@@ -10,7 +10,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,11 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter;
 import com.firebase.ui.firestore.FirestoreRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class userBookings extends AppCompatActivity {
 
@@ -49,17 +45,17 @@ public class userBookings extends AppCompatActivity {
         Log.d("UserId", userId.substring(0,7));
 
         Query query = fStore.collection("ServicesBookedByUser").document("userId"+userId).collection("Bookings").whereEqualTo("userId", userId);
-        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if(value==null){
-                    Log.d("Query is empty", value+"");
-                }
-                else{
-                    Log.d("Query is", value+""+error);
-                }
-            }
-        });
+//        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
+//            @Override
+//            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+//                if(error==null){
+//                    Log.d("Query is empty", value+"");
+//                }
+//                else{
+//                    Log.d("Query is", value+"");
+//                }
+//            }
+//        });
         FirestoreRecyclerOptions<userBookingAttributes> options=new FirestoreRecyclerOptions.Builder<userBookingAttributes>().setQuery(query,userBookingAttributes.class).build();
 
         Adapter = new FirestoreRecyclerAdapter<userBookingAttributes, userBookings.ServicesViewHolder>(options){
@@ -71,7 +67,17 @@ public class userBookings extends AppCompatActivity {
             }
             @Override
             protected void onBindViewHolder(@NonNull userBookings.ServicesViewHolder holder, int position, @NonNull userBookingAttributes model) {
+                if(Adapter.getItemCount()==0){
+                    Log.d("no","bookings");
+                    holder.noBookings();
+                }else{
+                    Log.d("Service", Adapter.getItemCount()+"Initialized");
                     holder.initializeValue(model.getBookingId(),model.getProvideruserId(),model.getBookingDate(),model.getBookingTime(),model.getStoreName(),model.getMainJob(),model.getSecondaryJob());
+                }
+            }
+            @Override
+            public int getItemCount() {
+                return super.getItemCount();
             }
         };
         recyclerView.setHasFixedSize(true);
@@ -109,6 +115,11 @@ public class userBookings extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(),"Redireting", Toast.LENGTH_LONG).show();
                     }
                 });
+        }
+        void noBookings(){
+            TextView noBookings = view.findViewById(R.id.noBookings);
+            noBookings.setVisibility(View.VISIBLE);
+            noBookings.setText("Please Book Some Services");
         }
     }
     @Override

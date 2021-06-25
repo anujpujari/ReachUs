@@ -1,4 +1,4 @@
-f<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,10 +8,9 @@ f<?xml version="1.0" encoding="utf-8"?>
 
     <RelativeLayout
         android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#FBFBFB"
-    tools:context=".MainActivity"
-    >
+        android:layout_height="match_parent"
+        android:background="#FBFBFB"
+        tools:context=".MainActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -203,7 +202,8 @@ f<?xml version="1.0" encoding="utf-8"?>
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="25dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                android:id="@+id/homeTutor">
 
 
                 <LinearLayout
@@ -239,7 +239,8 @@ f<?xml version="1.0" encoding="utf-8"?>
                 android:layout_rowWeight="1"
                 android:layout_columnWeight="1"
                 android:layout_margin="25dp"
-                app:cardCornerRadius="10dp">
+                app:cardCornerRadius="10dp"
+                android:id="@+id/pasteControl">
 
 
                 <LinearLayout

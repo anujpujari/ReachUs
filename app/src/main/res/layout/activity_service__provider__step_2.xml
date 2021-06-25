@@ -32,7 +32,6 @@
                 android:layout_height="wrap_content"
                 android:text="Services :"
                 android:textSize="25sp"
-
                 android:textColor="@color/black"
                 />
 

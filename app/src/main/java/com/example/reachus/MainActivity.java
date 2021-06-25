@@ -1,7 +1,6 @@
 package com.example.reachus;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -12,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;
     String userId;
+    CardView homeTutor,pasteControl;
     boolean userAddress,personalInfo=false;
 
     @Override
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         carServices=findViewById(R.id.car_image);
 
         maid=findViewById(R.id.maid_image);
+
+        homeTutor=findViewById(R.id.homeTutor);
+        pasteControl=findViewById(R.id.pasteControl);
 
         DocumentReference docRef=fStore.collection("users").document(userId);
         docRef.collection("User Address").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -122,6 +126,30 @@ public class MainActivity extends AppCompatActivity {
                 else
                     Toast.makeText(getApplicationContext(), "Please Fill Your Address First and personal Info first", Toast.LENGTH_LONG).show();
 
+            }
+        });
+        homeTutor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(userAddress && personalInfo) {
+                    Intent i = new Intent(MainActivity.this, allServices.class);
+                    i.putExtra("mainKey","home");
+                    i.putExtra("key", "home");
+                    startActivity(i);
+                }else
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First and personal Info first", Toast.LENGTH_LONG).show();
+            }
+        });
+        pasteControl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(userAddress && personalInfo) {
+                    Intent i = new Intent(MainActivity.this, allServices.class);
+                    i.putExtra("mainKey","paste");
+                    i.putExtra("key", "paste");
+                    startActivity(i);
+                }else
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First and personal Info first", Toast.LENGTH_LONG).show();
             }
         });
 

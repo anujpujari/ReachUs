@@ -16,13 +16,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
@@ -63,8 +60,7 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
         cleaningServicesLayout = findViewById(R.id.cleaningServicesLayout);
 
         carServices = (Spinner) findViewById(R.id.carServices);
-        repairingServices = (Spinner)
-        findViewById(R.id.repairingServices);
+        repairingServices = (Spinner) findViewById(R.id.repairingServices);
         maidServices = (Spinner) findViewById(R.id.maidServices);
         cleaningServices = (Spinner) findViewById(R.id.cleaningServices);
 
@@ -81,14 +77,6 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
 
         DocumentReference Servicecountafter = db.collection("provider").document("providercount");
         Map<String, Object> ServiceProviderscount = new HashMap<>();
-
-
-
-
-
-
-
-
 
         repairingServices.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -315,6 +303,22 @@ public class Service_Provider_Step_2 extends AppCompatActivity {
             cleaningServiceInfo.put("Description", descriptionText);
             cleaningServiceInfo.put("Price", priceText);
             ServiceStorage.set(cleaningServiceInfo, SetOptions.merge());
+        }else if (firstJob.equals("Home Tutor")) {
+            Map<String, Object> homeTutorInfo = new HashMap<>();
+            homeTutorInfo.put("userID", userId);
+            homeTutorInfo.put("mainJob", firstJob);
+            homeTutorInfo.put("secondaryJob", "Home Tutor");
+            homeTutorInfo.put("Description", descriptionText);
+            homeTutorInfo.put("Price", priceText);
+            ServiceStorage.set(homeTutorInfo, SetOptions.merge());
+        }else if (firstJob.equals("Paste Control")) {
+            Map<String, Object> pasteControlInfo = new HashMap<>();
+            pasteControlInfo.put("userID", userId);
+            pasteControlInfo.put("mainJob", firstJob);
+            pasteControlInfo.put("secondaryJob", "Paste Control");
+            pasteControlInfo.put("Description", descriptionText);
+            pasteControlInfo.put("Price", priceText);
+            ServiceStorage.set(pasteControlInfo, SetOptions.merge());
         }
 
         ServiceInformation.collection("ServiceCollection").document("Service").set(ServiceInfo, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {

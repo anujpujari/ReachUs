@@ -25,7 +25,7 @@ public class allServices extends AppCompatActivity {
     RecyclerView recyclerView;
     FirebaseFirestore fStore;
 
-    TextView ServiceName, ServiceDescription,ServicePrice,ServiceType,secondaryServiceType;
+    TextView ServiceName, ServiceDescription,ServicePrice,ServiceType,secondaryServiceType,noServices;
 
     FirestoreRecyclerAdapter Adapter;
     FirebaseAuth mAuth;
@@ -50,7 +50,11 @@ public class allServices extends AppCompatActivity {
         ServiceName=findViewById(R.id.serviceName);
         ServiceDescription=findViewById(R.id.serviceDescription);
         ServicePrice=findViewById(R.id.servicePrice);
+
+        noServices=findViewById(R.id.noServices);
         //------------------------------
+
+
         pg1 = new ProgressDialog(allServices.this);
         pg1.setMessage("Loading wait...");
         pg1.setCancelable(true);
@@ -61,6 +65,7 @@ public class allServices extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
         userId=mAuth.getCurrentUser().getUid().toString();
+
         if(mainValue.equals("Repairing")){
             if(value.equals("carpainterService")){
                 query = fStore.collection("Services").whereEqualTo("secondaryJob", "Carpainter");
@@ -97,6 +102,10 @@ public class allServices extends AppCompatActivity {
             else if(value.equals("vehicleSanitizing")){
                 query = fStore.collection("Services").whereEqualTo("secondaryJob", "vehicleSanitizing");
             }
+        }else if(mainValue.equals("home")) {
+            query = fStore.collection("Services").whereEqualTo("mainJob", "Home Tutor");
+        }else if(mainValue.equals("paste")) {
+            query = fStore.collection("Services").whereEqualTo("mainJob", "Paste Control");
         }
 
         FirestoreRecyclerOptions<Services> options=new FirestoreRecyclerOptions.Builder<Services>().setQuery(query,Services.class).build();
@@ -112,6 +121,15 @@ public class allServices extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull allServices.ServicesViewHolder holder, int position, @NonNull Services model) {
                     holder.initializeValues(model.getStoreName(),model.getMainJob(), model.getSecondaryJob(),model.getDescription(),model.getPrice(),model.getUserID(),model.getAddress_1(),model.getAddress_2(),model.getPincode(),model.getCity(),model.getDistrict(),model.getisIdVerified());
             }
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                if(getItemCount()==0){
+                    pg1.dismiss();
+                    recyclerView.setVisibility(View.GONE);
+                    noServices.setVisibility(View.VISIBLE);
+                }
+            }
         };
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -126,39 +144,41 @@ public class allServices extends AppCompatActivity {
             super(itemView);
             view=itemView;
         }
-        void initializeValues(String StoreName,String mainJob,String secondaryjob,String Description,String Price,String provideruserID,String addr_1,String addr_2,String pincode,String city,String district,boolean isIdVerified){
-            if(!provideruserID.equals(userId)) {
-                if(isIdVerified) {
-                    ServiceName = (TextView) view.findViewById(R.id.serviceName);
-                    ServicePrice = (TextView) view.findViewById(R.id.servicePrice);
-                    ServiceDescription = (TextView) view.findViewById(R.id.serviceDescription);
-                    ServiceType = view.findViewById(R.id.serviceType);
-                    secondaryServiceType = view.findViewById(R.id.secondaryServiceType);
+        void initializeValues(String StoreName,String mainJob,String secondaryjob,String Description,String Price,String provideruserID,String addr_1,String addr_2,String pincode,String city,String district,boolean isIdVerified) {
+                if (!provideruserID.equals(userId)) {
+                    if (isIdVerified) {
+                        ServiceName = (TextView) view.findViewById(R.id.serviceName);
+                        ServicePrice = (TextView) view.findViewById(R.id.servicePrice);
+                        ServiceDescription = (TextView) view.findViewById(R.id.serviceDescription);
+                        ServiceType = view.findViewById(R.id.serviceType);
+                        secondaryServiceType = view.findViewById(R.id.secondaryServiceType);
+                        cardView = view.findViewById(R.id.cardView);
+
+                        ServiceType.setText(mainJob);
+                        secondaryServiceType.setText(secondaryjob);
+                        ServiceName.setText(StoreName);
+                        ServiceDescription.setText(Description);
+                        ServicePrice.setText("RS" + Price);
+                        pg1.dismiss();
+
+                        cardView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getApplicationContext(), BookService.class);
+                                intent.putExtra("provideruserId", provideruserID);
+                                startActivity(intent);
+                            }
+                        });
+                    }else {
+                        cardView = view.findViewById(R.id.cardView);
+                        cardView.setVisibility(View.GONE);
+                    }
+                } else {
                     cardView = view.findViewById(R.id.cardView);
-
-                    ServiceType.setText(mainJob);
-                    secondaryServiceType.setText(secondaryjob);
-                    ServiceName.setText(StoreName);
-                    ServiceDescription.setText(Description);
-                    ServicePrice.setText("RS" + Price);
-                    pg1.dismiss();
-
-                    cardView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent intent = new Intent(getApplicationContext(), BookService.class);
-                            intent.putExtra("provideruserId", provideruserID);
-                            startActivity(intent);
-                        }
-                    });
+                    cardView.setVisibility(View.GONE);
                 }
             }
-            else{
-                cardView=view.findViewById(R.id.cardView);
-                cardView.setVisibility(View.GONE);
-            }
         }
-    }
 
     @Override
     protected void onStart() {
