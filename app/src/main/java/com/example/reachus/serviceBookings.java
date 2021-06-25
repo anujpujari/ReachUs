@@ -36,7 +36,7 @@ public class serviceBookings extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirestoreRecyclerAdapter Adapter;
     RecyclerView recyclerView;
-    TextView bookingDate,bookingTime,serviceuserName,bookingDateTime;
+    TextView bookingDate,bookingTime,serviceuserName,bookingDateTime,noOrders;
     View cardView;
 
     @Override
@@ -48,6 +48,9 @@ public class serviceBookings extends AppCompatActivity {
         mAuth=FirebaseAuth.getInstance();
         recyclerView=findViewById(R.id.recyclerViewServiceBookings);
         userId=mAuth.getCurrentUser().getUid();
+
+        noOrders=findViewById(R.id.orders);
+
         Query query = fStore.collection("Services").document("userId"+userId).collection("Bookings").whereEqualTo("providerUserId", userId);
         query.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
@@ -69,10 +72,15 @@ public class serviceBookings extends AppCompatActivity {
                 View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_servicebooking,parent,false);
                 return new serviceBookings.ServicesViewHolder(view);
             }
-
             @Override
             protected void onBindViewHolder(@NonNull serviceBookings.ServicesViewHolder holder, int position, @NonNull serviceOrderAttributes model) {
                 holder.initializeValue(model.getBookingId(),model.getProviderUserId(),model.getBookingDate(),model.getBookingTime(),model.getStoreName(),model.getBookingUserId());
+            }
+            @Override
+            public void onDataChanged() {
+                super.onDataChanged();
+                recyclerView.setVisibility(View.GONE);
+                noOrders.setVisibility(View.VISIBLE);
             }
         };
         recyclerView.setHasFixedSize(true);

@@ -28,7 +28,7 @@ public class userBookings extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirestoreRecyclerAdapter Adapter;
     RecyclerView recyclerView;
-    TextView bookingDate,bookingTime,StoreName, mainJob,secondaryJob,bookingDateTime;
+    TextView bookingDate,bookingTime,StoreName, mainJob,secondaryJob,bookingDateTime,noBookings;
     View cardView;
 
     @Override
@@ -38,6 +38,7 @@ public class userBookings extends AppCompatActivity {
         fStore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
 
+        noBookings=findViewById(R.id.noBookings);
 
         recyclerView=findViewById(R.id.recyclerViewBookings);
         userId=mAuth.getCurrentUser().getUid();
@@ -76,8 +77,10 @@ public class userBookings extends AppCompatActivity {
                 }
             }
             @Override
-            public int getItemCount() {
-                return super.getItemCount();
+            public void onDataChanged() {
+                super.onDataChanged();
+                recyclerView.setVisibility(View.GONE);
+                noBookings.setVisibility(View.VISIBLE);
             }
         };
         recyclerView.setHasFixedSize(true);
