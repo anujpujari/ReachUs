@@ -76,12 +76,6 @@ public class userBookings extends AppCompatActivity {
                     holder.initializeValue(model.getBookingId(),model.getProvideruserId(),model.getBookingDate(),model.getBookingTime(),model.getStoreName(),model.getMainJob(),model.getSecondaryJob());
                 }
             }
-            @Override
-            public void onDataChanged() {
-                super.onDataChanged();
-                recyclerView.setVisibility(View.GONE);
-                noBookings.setVisibility(View.VISIBLE);
-            }
         };
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -76,12 +76,6 @@ public class serviceBookings extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull serviceBookings.ServicesViewHolder holder, int position, @NonNull serviceOrderAttributes model) {
                 holder.initializeValue(model.getBookingId(),model.getProviderUserId(),model.getBookingDate(),model.getBookingTime(),model.getStoreName(),model.getBookingUserId());
             }
-            @Override
-            public void onDataChanged() {
-                super.onDataChanged();
-                recyclerView.setVisibility(View.GONE);
-                noOrders.setVisibility(View.VISIBLE);
-            }
         };
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

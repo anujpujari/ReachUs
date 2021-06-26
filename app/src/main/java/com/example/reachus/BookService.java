@@ -35,7 +35,7 @@ public class BookService extends AppCompatActivity {
         }
 
         bookStoreName=findViewById(R.id.bookStoreName);
-        bookProviderName=findViewById(R.id.bookProviderName);
+        bookProviderName=findViewById(R .id.bookProviderName);
         bookServiceDescription=findViewById(R.id.bookServiceDescription);
         bookServiceAddress=findViewById(R.id.bookServiceAddress);
         bookServicePrice=findViewById(R.id.bookServicePrice);
