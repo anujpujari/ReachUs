@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseAuth mAuth;
     String userId;
-    CardView homeTutor,pasteControl;
+    CardView homeTutor,pasteControl,millServices,laundryServices;
     boolean userAddress,personalInfo=false;
 
     @Override
@@ -56,6 +56,9 @@ public class MainActivity extends AppCompatActivity {
 
         homeTutor=findViewById(R.id.homeTutor);
         pasteControl=findViewById(R.id.pasteControl);
+
+        millServices=findViewById(R.id.millView);
+        laundryServices=findViewById(R.id.clothingView);
 
         DocumentReference docRef=fStore.collection("users").document(userId);
         docRef.collection("User Address").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -147,6 +150,26 @@ public class MainActivity extends AppCompatActivity {
                     Intent i = new Intent(MainActivity.this, allServices.class);
                     i.putExtra("mainKey","paste");
                     i.putExtra("key", "paste");
+                    startActivity(i);
+                }else
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First and personal Info first", Toast.LENGTH_LONG).show();
+            }
+        });
+        millServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(userAddress && personalInfo) {
+                    Intent i = new Intent(MainActivity.this, millServices.class);
+                    startActivity(i);
+                }else
+                    Toast.makeText(getApplicationContext(), "Please Fill Your Address First and personal Info first", Toast.LENGTH_LONG).show();
+            }
+        });
+        laundryServices.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(userAddress && personalInfo) {
+                    Intent i = new Intent(MainActivity.this, LaundryServices.class);
                     startActivity(i);
                 }else
                     Toast.makeText(getApplicationContext(), "Please Fill Your Address First and personal Info first", Toast.LENGTH_LONG).show();
