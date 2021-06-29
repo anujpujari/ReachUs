@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<ScrollView android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent">
 <LinearLayout
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -49,6 +53,32 @@
                 android:padding="7dp"
                 android:layout_margin="5dp"
                 android:visibility="gone"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Orders"
+                android:fontFamily="@font/font10"
+                android:textColor="@color/black"
+                android:layout_marginLeft="5dp"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/pastOrders"
+                android:drawableEnd="@drawable/arrow_right"
+                android:drawableTint="@color/purple_700"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Past Orders"
+                android:fontFamily="@font/font11"
+                android:textSize="15dp"
+                android:background="@drawable/border"
+                android:padding="7dp"
+                android:layout_margin="5dp"/>
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
@@ -158,3 +188,4 @@
     </LinearLayout>
 
 </LinearLayout>
+</ScrollView>

@@ -1,6 +1,5 @@
 package com.example.reachus;
 
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -8,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -26,7 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class userBookings extends AppCompatActivity {
+public class pastBookings extends AppCompatActivity {
 
     FirebaseFirestore fStore;
     String userId;
@@ -65,20 +63,20 @@ public class userBookings extends AppCompatActivity {
 //        });
         FirestoreRecyclerOptions<userBookingAttributes> options=new FirestoreRecyclerOptions.Builder<userBookingAttributes>().setQuery(query,userBookingAttributes.class).build();
 
-        Adapter = new FirestoreRecyclerAdapter<userBookingAttributes, userBookings.ServicesViewHolder>(options){
+        Adapter = new FirestoreRecyclerAdapter<userBookingAttributes, pastBookings.ServicesViewHolder>(options){
             @NonNull
             @Override
-            public userBookings.ServicesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public pastBookings.ServicesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_bookings,parent,false);
-                return new userBookings.ServicesViewHolder(view);
+                return new pastBookings.ServicesViewHolder(view);
             }
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            protected void onBindViewHolder(@NonNull userBookings.ServicesViewHolder holder, int position, @NonNull userBookingAttributes model) {
+            protected void onBindViewHolder(@NonNull pastBookings.ServicesViewHolder holder, int position, @NonNull userBookingAttributes model) {
                     Log.d("Service", Adapter.getItemCount()+"Initialized");
                     holder.initializeValue(model.getBookingId(),model.getProvideruserId(),model.getBookingDate(),model.getBookingTime(),model.getStoreName(),model.getMainJob(),model.getSecondaryJob());
-
             }
+
             @Override
             public void onDataChanged() {
                 super.onDataChanged();
@@ -118,26 +116,24 @@ public class userBookings extends AppCompatActivity {
             int currentmin = Integer.parseInt(currentTime.substring(3, 5));
 
             Log.d("Current Time", currenthour+" "+currentmin);
-            Log.d("Time", bookingtime+"");
             int inputHour = Integer.parseInt(bookingtime.substring(0,2));
-            int inputMin = Integer.parseInt(bookingtime.substring(3,6).replace(" ",""));
-
-            Log.d("Input Time", inputHour+" "+inputMin);
+            int inputMin = Integer.parseInt(bookingtime.substring(3,5));
+            Log.d("Current Time", inputHour+" "+inputMin);
 
 
             Log.d("current Date", currentDay+"");
             Log.d("Input Day", bookingdate.substring(0,2)+"");
             int inputDay = Integer.parseInt(bookingdate.substring(0,2));
-            if(currentDay > inputDay){
+            if(currentDay < inputDay){
                 Log.d("day false","");
                 cardView.setVisibility(View.GONE);
             }
             else if(currentDay==inputDay){
-                if(currenthour>inputHour){
+                if(currenthour<inputHour){
                     Log.d("hour", "");
                     cardView.setVisibility(View.GONE);
                 }else if(inputHour==currenthour){
-                    if(currentmin>inputMin){
+                    if(currentmin<inputMin){
                         Log.d("min", "");
                         cardView.setVisibility(View.GONE);
                     }
@@ -160,25 +156,6 @@ public class userBookings extends AppCompatActivity {
                 mainJob.setText(mainjob);
                 bookingDateTime.setText(bookingdate+" "+bookingtime);
             }
-            cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent=new Intent(getApplicationContext(), bookingDetails.class);
-                    intent.putExtra("BookingId",BookingId);
-                    intent.putExtra("Storename",Storename);
-                    intent.putExtra("mainJob", mainjob);
-                    intent.putExtra("bookingdate",bookingdate);
-                    intent.putExtra("bookingtime",bookingtime);
-                    intent.putExtra("providerUserId",providerUserId);
-                    startActivity(intent);
-                    Toast.makeText(getApplicationContext(),"Redireting", Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-        void noBookings(){
-            TextView noBookings = view.findViewById(R.id.noBookings);
-            noBookings.setVisibility(View.VISIBLE);
-            noBookings.setText("Please Book Some Services");
         }
     }
     @Override

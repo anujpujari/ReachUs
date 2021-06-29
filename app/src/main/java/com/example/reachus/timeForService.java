@@ -125,7 +125,7 @@ public class timeForService extends AppCompatActivity implements DatePickerDialo
         Log.d("Values",month+""+currentMonth);
         if(year>=currentYear){
             if(month+1>=currentMonth){
-                if(dayOfMonth>currentDay){
+                if(dayOfMonth>=currentDay){
                     Calendar c = Calendar.getInstance();
                     Calendar currentDate = Calendar.getInstance();
                     c.set(Calendar.YEAR, year);
@@ -148,6 +148,7 @@ public class timeForService extends AppCompatActivity implements DatePickerDialo
     @Override
     public void onTimeSet(TimePicker view, int hour, int minutes) {
         String timeSet = "";
+        String hr ="";
         if (hour > 12) {
             hour -= 12;
             timeSet = "PM";
@@ -165,8 +166,12 @@ public class timeForService extends AppCompatActivity implements DatePickerDialo
             min = "0" + minutes ;
         else
             min = String.valueOf(minutes);
-
+        hr = String.valueOf(hour);
+        Log.d("length", hr.length()+"");
+        if(hr.length()==1){
+            hr ="0"+hour;
+        }
         Time = (TextView) findViewById(R.id.time);
-        Time.setText(hour + ":" + min+" "+timeSet);
+        Time.setText(hr + ":" + min+" "+timeSet);
     }
 }
