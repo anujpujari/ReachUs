@@ -15,7 +15,8 @@
         android:roundIcon="@drawable/logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.ReachUs">
-        <activity android:name=".pastBookings"></activity>
+        <activity android:name=".pastServiceBookings"></activity>
+        <activity android:name=".pastBookings" />
         <activity android:name=".millServices" />
         <activity android:name=".LaundryServices" />
         <activity android:name=".reportService" />

@@ -14,7 +14,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 public class complete_profile extends AppCompatActivity {
 
-    private TextView beInsider,logout,youraddresses,insiderOrders,personalInform,contactus,loginandsecurit,aboutus,pastOrders;
+    private TextView beInsider,logout,youraddresses,insiderOrders,personalInform,contactus,loginandsecurit,aboutus,pastOrders,pastServiceBookings;
     String becomeinsider,userId,isInsider;
     private static final String TAG = "Storing data";
 
@@ -41,6 +41,7 @@ public class complete_profile extends AppCompatActivity {
         contactus = findViewById(R.id.contactus);
         aboutus = findViewById(R.id.aboutus);
         pastOrders=findViewById(R.id.pastOrders);
+        pastServiceBookings=findViewById(R.id.pastServicesBooking);
 
         aboutus.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,11 +59,6 @@ public class complete_profile extends AppCompatActivity {
                 finish();
             }
         });
-
-
-
-
-
 
 
         Log.d("Data", isServiceProvider+"");
@@ -85,6 +81,16 @@ public class complete_profile extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), pastBookings.class));
             }
         });
+            pastServiceBookings.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(isServiceProvider) {
+                        startActivity(new Intent(getApplicationContext(), pastServiceBookings.class));
+                    }else{
+                        Toast.makeText(complete_profile.this,"You are not a Service Provider", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
         contactus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

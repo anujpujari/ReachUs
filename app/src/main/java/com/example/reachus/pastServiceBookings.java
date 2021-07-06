@@ -11,7 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,9 +22,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -34,7 +31,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class serviceBookings extends AppCompatActivity {
+public class pastServiceBookings extends AppCompatActivity {
 
     FirebaseFirestore fStore;
     String userId;
@@ -42,45 +39,37 @@ public class serviceBookings extends AppCompatActivity {
     FirebaseAuth mAuth;
     FirestoreRecyclerAdapter Adapter;
     RecyclerView recyclerView;
-    TextView bookingDate,bookingTime,serviceuserName,bookingDateTime,noOrders;
+    TextView bookingDate,bookingTime,StoreName, mainJob,secondaryJob,bookingDateTime,noServices,serviceuserName;
     View cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_bookings);
-
+        setContentView(R.layout.activity_past_service_bookings);
         fStore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
+
+        noServices=findViewById(R.id.noServices);
+
         recyclerView=findViewById(R.id.recyclerViewServiceBookings);
         userId=mAuth.getCurrentUser().getUid();
 
-        noOrders=findViewById(R.id.orders);
+        Log.d("UserId", userId.substring(0,7));
 
         Query query = fStore.collection("Services").document("userId"+userId).collection("Bookings").whereEqualTo("providerUserId", userId);
-        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if(value==null){
-                    Log.d("Query is empty", value+"");
-                }
-                else{
-                    Log.d("Query is", value+""+error);
-                }
-            }
-        });
+//
         FirestoreRecyclerOptions<serviceOrderAttributes> options=new FirestoreRecyclerOptions.Builder<serviceOrderAttributes>().setQuery(query,serviceOrderAttributes.class).build();
 
-        Adapter = new FirestoreRecyclerAdapter<serviceOrderAttributes, serviceBookings.ServicesViewHolder>(options){
+        Adapter = new FirestoreRecyclerAdapter<serviceOrderAttributes, pastServiceBookings.ServicesViewHolder>(options){
             @NonNull
             @Override
-            public serviceBookings.ServicesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            public pastServiceBookings.ServicesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_servicebooking,parent,false);
-                return new serviceBookings.ServicesViewHolder(view);
+                return new pastServiceBookings.ServicesViewHolder(view);
             }
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
-            protected void onBindViewHolder(@NonNull serviceBookings.ServicesViewHolder holder, int position, @NonNull serviceOrderAttributes model) {
+            protected void onBindViewHolder(@NonNull pastServiceBookings.ServicesViewHolder holder, int position, @NonNull serviceOrderAttributes model) {
                 holder.initializeValue(model.getBookingId(),model.getProviderUserId(),model.getBookingDate(),model.getBookingTime(),model.getStoreName(),model.getBookingUserId());
             }
         };
@@ -123,16 +112,16 @@ public class serviceBookings extends AppCompatActivity {
             Log.d("Input Day", bookingdate.substring(0,2)+"");
             int inputDay = Integer.parseInt(bookingdate.substring(0,2));
 
-            if(currentDay > inputDay){
+            if(currentDay < inputDay){
                 Log.d("day false","");
                 cardView.setVisibility(View.GONE);
             }
             else if(currentDay==inputDay){
-                if(currenthour>inputHour){
+                if(currenthour<inputHour){
                     Log.d("hour", "");
                     cardView.setVisibility(View.GONE);
                 }else if(inputHour==currenthour){
-                    if(currentmin>inputMin){
+                    if(currentmin<inputMin){
                         Log.d("min", "");
                         cardView.setVisibility(View.GONE);
                     }
