@@ -77,7 +77,6 @@ public class userBookings extends AppCompatActivity {
             protected void onBindViewHolder(@NonNull userBookings.ServicesViewHolder holder, int position, @NonNull userBookingAttributes model) {
                     Log.d("Service", Adapter.getItemCount()+"Initialized");
                     holder.initializeValue(model.getBookingId(),model.getProvideruserId(),model.getBookingDate(),model.getBookingTime(),model.getStoreName(),model.getMainJob(),model.getSecondaryJob());
-
             }
             @Override
             public void onDataChanged() {

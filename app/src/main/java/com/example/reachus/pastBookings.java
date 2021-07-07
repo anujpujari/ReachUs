@@ -38,7 +38,7 @@ public class pastBookings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_bookings);
+        setContentView(R.layout.activity_past_bookings);
         fStore=FirebaseFirestore.getInstance();
         mAuth=FirebaseAuth.getInstance();
 
@@ -50,17 +50,6 @@ public class pastBookings extends AppCompatActivity {
         Log.d("UserId", userId.substring(0,7));
 
         Query query = fStore.collection("ServicesBookedByUser").document("userId"+userId).collection("Bookings").whereEqualTo("userId", userId);
-//        query.addSnapshotListener(new EventListener<QuerySnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                if(error==null){
-//                    Log.d("Query is empty", value+"");
-//                }
-//                else{
-//                    Log.d("Query is", value+"");
-//                }
-//            }
-//        });
         FirestoreRecyclerOptions<userBookingAttributes> options=new FirestoreRecyclerOptions.Builder<userBookingAttributes>().setQuery(query,userBookingAttributes.class).build();
 
         Adapter = new FirestoreRecyclerAdapter<userBookingAttributes, pastBookings.ServicesViewHolder>(options){
