@@ -9,7 +9,7 @@ presents quality and comfortable services at the user’s doorstep.
 
 
 
-![WhatsApp Image 2023-05-11 at 11 06 51 PM (1)](https://github.com/anujpujari/ReachUs/assets/63943449/015892cd-e20f-4e61-b74d-667a914bbfd5)
+![WhatsApp Image 2023-05-11 at 11 06 51 PM (1)](https://github.com/anujpujari/ReachUs/assets/63943449/015892cd-e20f-4e61-b74d-667a914bbfd5 =250*250)
 ![WhatsApp Image 2023-05-11 at 11 06 51 PM](https://github.com/anujpujari/ReachUs/assets/63943449/d8df227d-4ae6-41ad-80d7-831da8bedc7d)
 ![WhatsApp Image 2023-05-11 at 11 06 50 PM (2)](https://github.com/anujpujari/ReachUs/assets/63943449/5e0f3b22-003d-4b5c-9689-ace6f268670f)
 ![WhatsApp Image 2023-05-11 at 11 06 50 PM (1)](https://github.com/anujpujari/ReachUs/assets/63943449/f7c04d74-b4b9-4279-ab62-927b627b523b)
@@ -20,3 +20,4 @@ presents quality and comfortable services at the user’s doorstep.
 ![WhatsApp Image 2023-05-11 at 11 06 48 PM (1)](https://github.com/anujpujari/ReachUs/assets/63943449/008bec93-3c8b-4d30-b811-d8fd63754501)
 ![WhatsApp Image 2023-05-11 at 11 06 48 PM](https://github.com/anujpujari/ReachUs/assets/63943449/4ffa69c5-36f2-419b-85ed-37f75c68c16b)
 ![WhatsApp Image 2023-05-11 at 11 06 47 PM](https://github.com/anujpujari/ReachUs/assets/63943449/2b5fe282-906a-4432-858b-b718e68c50fd)
+
