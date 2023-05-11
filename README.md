@@ -8,7 +8,7 @@ assistance app that will provide strong and scalable platform that
 presents quality and comfortable services at the user’s doorstep.
 
 
-<img src = "https://github.com/anujpujari/ReachUs/assets/63943449/015892cd-e20f-4e61-b74d-667a914bbfd5" width="400" height="400" />
+<img src = "https://github.com/anujpujari/ReachUs/assets/63943449/015892cd-e20f-4e61-b74d-667a914bbfd5" width="400" height="700" />
 ![WhatsApp Image 2023-05-11 at 11 06 51 PM (1)](https://github.com/anujpujari/ReachUs/assets/63943449/015892cd-e20f-4e61-b74d-667a914bbfd5)
 ![WhatsApp Image 2023-05-11 at 11 06 51 PM](https://github.com/anujpujari/ReachUs/assets/63943449/d8df227d-4ae6-41ad-80d7-831da8bedc7d)
 ![WhatsApp Image 2023-05-11 at 11 06 50 PM (2)](https://github.com/anujpujari/ReachUs/assets/63943449/5e0f3b22-003d-4b5c-9689-ace6f268670f)
